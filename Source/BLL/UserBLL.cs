@@ -5,11 +5,17 @@ using System.Text;
 using ZYSoft.SQLDAL;
 using System.Data.SqlClient;
 using System.Data;
+using ZYSoft.Comm.Entity;
+using ZYSoft.ORM.Operation;
 
 namespace ZYSoft.BLL
 {
     public class UserBLL
     {
+        /// <summary>
+        /// 获取用户名
+        /// </summary>
+        /// <returns></returns>
         public string GetUaerName()
         {
             string SQL = @"Select Top 1 Name From TUser";
@@ -34,6 +40,25 @@ namespace ZYSoft.BLL
                     return ex.Message;
                 }
             }
+        }
+
+        /// <summary>
+        /// 获取试卷列表
+        /// </summary>
+        /// <returns></returns>
+        public IList<ExamPaper> GetExamPapersList()
+        {
+            return ExamPaperOP.GetExamPapersList();
+        }
+
+        /// <summary>
+        /// 保存试卷
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public int SaveOrUpdateExamPaper(ExamPaper model)
+        {
+            return ExamPaperOP.SaveExamPaper(model);
         }
     }
 }

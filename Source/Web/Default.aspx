@@ -11,14 +11,6 @@
             width: 528px;
             height: 387px;
         }
-        .style2 {
-            width: 993px;
-            height: 688px;
-        }
-        .style3 {
-            width: 1090px;
-            height: 691px;
-        }
         .style4
         {
             font-family: 微软雅黑;
@@ -48,10 +40,14 @@
     <img alt="" class="style1" src="./image/1.jpg" />
     </p>
     <p>
-    <img alt="" class="style2" src="./image/2.jpg" />
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:Button ID="btnAdd" runat="server" onclick="btnAdd_Click" Text="添加" />
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+            ControlToValidate="TextBox1" ErrorMessage="必须输入"></asp:RequiredFieldValidator>
     </p>
     <p>
-    <img alt="" class="style3" src="./image/3.jpg" />
+        <asp:GridView ID="GridView1" runat="server">
+        </asp:GridView>
     </p>
     <p class="style5"><strong>版权所有:子杨智能软件</strong></p>
     </form>

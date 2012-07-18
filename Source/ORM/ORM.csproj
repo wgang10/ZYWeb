@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4DA132B6-F04A-4E1B-B44A-54E4AA6E4258}</ProjectGuid>
+    <ProjectGuid>{C2BC5D16-2132-415F-B6A5-0DB02A28A157}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZYSoft.BLL</RootNamespace>
-    <AssemblyName>ZYSoft.BLL</AssemblyName>
+    <RootNamespace>ZYSoft.ORM</RootNamespace>
+    <AssemblyName>ZYSoft.ORM</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,6 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConfOrm">
+      <HintPath>..\Comm\Lib\ConfOrm.dll</HintPath>
+    </Reference>
+    <Reference Include="ConfOrm.Shop">
+      <HintPath>..\Comm\Lib\ConfOrm.Shop.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\Comm\Lib\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinFu.DynamicProxy">
+      <HintPath>..\Comm\Lib\LinFu.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Comm\Lib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.LinFu">
+      <HintPath>..\Comm\Lib\NHibernate.ByteCode.LinFu.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,17 +58,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBConnection.cs" />
+    <Compile Include="DBHelper.cs" />
+    <Compile Include="NhConfig.cs" />
+    <Compile Include="NHibernateMappingsExtensions.cs" />
+    <Compile Include="Operation\AdminUserOP.cs" />
+    <Compile Include="Operation\AnswersOP.cs" />
+    <Compile Include="Operation\ExamPaperOP.cs" />
+    <Compile Include="Operation\ExamProcessOP.cs" />
+    <Compile Include="Operation\ExamUserOP.cs" />
+    <Compile Include="Operation\QuestionsOP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Comm\Comm.csproj">
       <Project>{2550689E-2AC0-4BA8-B73B-DD0278E6AD0D}</Project>
       <Name>Comm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ORM\ORM.csproj">
-      <Project>{C2BC5D16-2132-415F-B6A5-0DB02A28A157}</Project>
-      <Name>ORM</Name>
     </ProjectReference>
     <ProjectReference Include="..\SQLDAL\SQLDAL.csproj">
       <Project>{9C11C72E-0701-4D63-9E5F-39B71B048552}</Project>

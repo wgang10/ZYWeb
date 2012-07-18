@@ -1,17 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="D:\GitSource\ZYWeb\Published" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="配置文件1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="index.htm" publishTime="07/18/2012 13:08:02" />
-    <file relUrl="bin/ZYSoft.SQLDAL.dll" publishTime="07/18/2012 19:19:56" />
-    <file relUrl="bin/ZYSoft.BLL.pdb" publishTime="07/18/2012 19:19:56" />
-    <file relUrl="bin/ZYSoft.BLL.dll" publishTime="07/18/2012 19:19:56" />
-    <file relUrl="Web.config" publishTime="07/18/2012 19:20:04" />
-    <file relUrl="image/1.jpg" publishTime="07/18/2012 13:07:29" />
-    <file relUrl="image/3.jpg" publishTime="07/18/2012 13:07:29" />
-    <file relUrl="Default.aspx" publishTime="07/18/2012 18:11:42" />
-    <file relUrl="bin/ZYSoft.SQLDAL.pdb" publishTime="07/18/2012 19:19:56" />
-    <file relUrl="bin/Web.pdb" publishTime="07/18/2012 19:19:57" />
-    <file relUrl="image/2.jpg" publishTime="07/18/2012 13:07:29" />
-    <file relUrl="bin/Web.dll" publishTime="07/18/2012 19:19:57" />
+  <publishProfile publishUrl="E:\GitSource\ZYWeb\Published" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="配置文件1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/Web.pdb" publishTime="07/19/2012 01:24:15" />
+    <file relUrl="Web.config" publishTime="07/19/2012 01:24:31" />
+    <file relUrl="bin/ConfOrm.dll" publishTime="09/02/2011 09:54:00" />
+    <file relUrl="bin/ZYSoft.Comm.pdb" publishTime="07/19/2012 01:24:07" />
+    <file relUrl="bin/hibernate.cfg.xml" publishTime="07/19/2012 01:23:08" />
+    <file relUrl="index.htm" publishTime="07/18/2012 21:12:17" />
+    <file relUrl="bin/ZYSoft.Comm.dll" publishTime="07/19/2012 01:24:08" />
+    <file relUrl="image/2.jpg" publishTime="07/18/2012 21:12:17" />
+    <file relUrl="bin/ZYSoft.SQLDAL.dll" publishTime="07/19/2012 01:24:09" />
+    <file relUrl="bin/Iesi.Collections.xml" publishTime="09/02/2011 09:54:02" />
+    <file relUrl="bin/NHibernate.ByteCode.LinFu.xml" publishTime="09/02/2011 09:54:02" />
+    <file relUrl="image/3.jpg" publishTime="07/18/2012 21:12:17" />
+    <file relUrl="bin/ZYSoft.BLL.dll" publishTime="07/19/2012 01:24:14" />
+    <file relUrl="bin/Web.dll" publishTime="07/19/2012 01:24:16" />
+    <file relUrl="bin/ZYSoft.BLL.pdb" publishTime="07/19/2012 01:24:14" />
+    <file relUrl="bin/Iesi.Collections.dll" publishTime="09/02/2011 09:54:00" />
+    <file relUrl="bin/ZYSoft.ORM.dll" publishTime="07/19/2012 01:24:12" />
+    <file relUrl="bin/ZYSoft.SQLDAL.pdb" publishTime="07/19/2012 01:24:08" />
+    <file relUrl="bin/NHibernate.ByteCode.LinFu.dll" publishTime="09/02/2011 09:54:02" />
+    <file relUrl="image/1.jpg" publishTime="07/18/2012 21:12:17" />
+    <file relUrl="bin/NHibernate.xml" publishTime="09/02/2011 09:54:02" />
+    <file relUrl="bin/ZYSoft.ORM.pdb" publishTime="07/19/2012 01:24:12" />
+    <file relUrl="bin/NHibernate.dll" publishTime="09/02/2011 09:54:02" />
+    <file relUrl="Default.aspx" publishTime="07/19/2012 00:53:48" />
+    <file relUrl="bin/LinFu.DynamicProxy.dll" publishTime="09/02/2011 09:54:02" />
   </publishProfile>
 </publishData>
