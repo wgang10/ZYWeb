@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
   <publishProfile publishUrl="D:\GitSource\ZYWeb\Published" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="配置文件1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="index.htm" publishTime="07/18/2012 13:08:02" />
-    <file relUrl="bin/ZYSoft.SQLDAL.dll" publishTime="07/18/2012 18:15:42" />
-    <file relUrl="bin/ZYSoft.BLL.pdb" publishTime="07/18/2012 18:15:42" />
-    <file relUrl="bin/ZYSoft.BLL.dll" publishTime="07/18/2012 18:15:42" />
-    <file relUrl="Web.config" publishTime="07/18/2012 18:17:00" />
+    <file relUrl="bin/ZYSoft.SQLDAL.dll" publishTime="07/18/2012 19:05:12" />
+    <file relUrl="bin/ZYSoft.BLL.pdb" publishTime="07/18/2012 19:05:13" />
+    <file relUrl="bin/ZYSoft.BLL.dll" publishTime="07/18/2012 19:05:13" />
+    <file relUrl="Web.config" publishTime="07/18/2012 19:07:09" />
     <file relUrl="image/1.jpg" publishTime="07/18/2012 13:07:29" />
-    <file relUrl="image/3.jpg" publishTime="07/18/2012 13:07:29" />
     <file relUrl="Default.aspx" publishTime="07/18/2012 18:11:42" />
-    <file relUrl="bin/ZYSoft.SQLDAL.pdb" publishTime="07/18/2012 18:15:41" />
-    <file relUrl="bin/Web.pdb" publishTime="07/18/2012 18:17:24" />
+    <file relUrl="image/3.jpg" publishTime="07/18/2012 13:07:29" />
+    <file relUrl="index.htm" publishTime="07/18/2012 13:08:02" />
+    <file relUrl="bin/ZYSoft.SQLDAL.pdb" publishTime="07/18/2012 19:05:12" />
+    <file relUrl="bin/Web.pdb" publishTime="07/18/2012 19:05:14" />
     <file relUrl="image/2.jpg" publishTime="07/18/2012 13:07:29" />
-    <file relUrl="bin/Web.dll" publishTime="07/18/2012 18:17:24" />
+    <file relUrl="bin/Web.dll" publishTime="07/18/2012 19:05:14" />
   </publishProfile>
 </publishData>
