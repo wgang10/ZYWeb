@@ -7,10 +7,10 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <StartPageUrl>Default.aspx</StartPageUrl>
+          <StartPageUrl>SilverlightUITestPage.aspx</StartPageUrl>
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
-          <SilverlightDebugging>False</SilverlightDebugging>
+          <SilverlightDebugging>True</SilverlightDebugging>
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <ExternalProgram>
@@ -23,6 +23,9 @@
           </StartWorkingDirectory>
           <EnableENC>False</EnableENC>
           <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
+          <ProjectOutputReferences>
+            <Ref Project="{338D1B7B-C8E0-4F8E-AE9A-71F21A9F32F1}" Folder="ClientBin">SilverlightUI.xap</Ref>
+          </ProjectOutputReferences>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

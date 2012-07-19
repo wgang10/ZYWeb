@@ -14,6 +14,7 @@
     <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <SilverlightApplicationList>{338D1B7B-C8E0-4F8E-AE9A-71F21A9F32F1}|..\SilverlightUI\SilverlightUI.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,14 +49,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\hibernate.cfg.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="ClientBin\SilverlightUI.xap" />
     <Content Include="Default.aspx" />
     <Content Include="image\1.jpg" />
     <Content Include="image\2.jpg" />
     <Content Include="image\3.jpg" />
+    <Content Include="image\Connect_logo_5.png" />
     <Content Include="index.htm" />
+    <Content Include="Silverlight.js" />
+    <Content Include="indexSL.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -85,6 +87,9 @@
       <Project>{2550689E-2AC0-4BA8-B73B-DD0278E6AD0D}</Project>
       <Name>Comm</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="SilverlightUI.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid x:Name="LayoutRoot" Background="White" Height="557">
+        <Ellipse Height="285" HorizontalAlignment="Left" Margin="167,84,188,111" Name="Bside" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Width="285">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="/ZYSoft.SilverlightUI;component/images/bmwside.png"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse Height="172" HorizontalAlignment="Left" Margin="224,141,244,167" Name="BHeart" Stroke="Black" StrokeThickness="1" VerticalAlignment="Top" Width="172">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="/ZYSoft.SilverlightUI;component/images/bmwheart.png" />
+            </Ellipse.Fill>
+        </Ellipse>
+        <Button Content="更换图片" Height="23" HorizontalAlignment="Left" Margin="274,413,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+    </Grid>
+</UserControl>
