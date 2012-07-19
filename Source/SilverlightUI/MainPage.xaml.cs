@@ -19,7 +19,7 @@ namespace SilverlightUI
     {
         private PlaneProjection project = new PlaneProjection();
         private DispatcherTimer rotatetimer;
-        private int ts = 50;
+        //private int ts = 50;
         BitmapImage bmp = null;
         private byte[] SourceImageByte;
         public MainPage()
