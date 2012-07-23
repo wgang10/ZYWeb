@@ -1,0 +1,603 @@
+HTML {
+	BACKGROUND: #ffffff; HEIGHT: 100%; OVERFLOW: hidden
+}
+BODY {
+	MARGIN: 0px; FONT: 12px "arial","Î¢ÈíÑÅºÚ","ºÚÌå"; HEIGHT: 100%; COLOR: #77797c; OVERFLOW: hidden; WORD-BREAK: break-all
+}
+BODY IMG {
+	BORDER-BOTTOM-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none
+}
+BODY FORM {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+BODY UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+BODY LI {
+	LIST-STYLE-TYPE: none
+}
+IMG {
+	VERTICAL-ALIGN: middle
+}
+INPUT {
+	VERTICAL-ALIGN: middle
+}
+SELECT {
+	VERTICAL-ALIGN: middle
+}
+BUTTON {
+	VERTICAL-ALIGN: middle
+}
+A:link {
+	COLOR: #77797c; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #77797c; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #77797c; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #77797c; TEXT-DECORATION: none
+}
+A {
+	OUTLINE-STYLE: none
+}
+.hide {
+	VISIBILITY: hidden
+}
+.point {
+	CURSOR: pointer
+}
+.allkg {
+	POSITION: relative; MIN-WIDTH: 960px; OVERFLOW-X: hidden; OVERFLOW-Y: auto; HEIGHT: 100%
+}
+.scrollctn {
+	POSITION: relative; HEIGHT: 10%; OVERFLOW: hidden
+}
+.bg1 {
+	MIN-HEIGHT: 820px; BACKGROUND: #fdfdfd
+}
+.seabgot {
+	WIDTH: 100%; BACKGROUND: url(icon10.jpg) no-repeat right top; FLOAT: left; HEIGHT: 100%
+}
+.bg2 {
+	BACKGROUND: url(http://st1.dbank.com/images/index/icon9.jpg?v=2.6.1) center top
+}
+.allscn {
+	WIDTH: 100%; FLOAT: left; HEIGHT: 800px
+}
+.gototop {
+	Z-INDEX: 11; POSITION: absolute; TOP: 500px; LEFT: 50%
+}
+.gototop UL {
+	POSITION: absolute; WIDTH: 32px; BACKGROUND: url(http://st1.dbank.com/images/index/icon4.png?v=2.6.1) no-repeat; HEIGHT: 78px; OVERFLOW: hidden; TOP: -80px; LEFT: 480px
+}
+.gototop LI {
+	POSITION: relative; MARGIN-BOTTOM: 14px; HEIGHT: 32px; OVERFLOW: hidden; CURSOR: pointer
+}
+.gototop LI SPAN {
+	POSITION: absolute; LINE-HEIGHT: 11px; WIDTH: 11px; DISPLAY: none; HEIGHT: 11px; TOP: 11px; LEFT: 11px
+}
+.gototop LI.choose SPAN {
+	DISPLAY: block; BACKGROUND: url(http://st1.dbank.com/images/index/icon2.png?v=2.6.1) no-repeat center 50%
+}
+.searchbg {
+	MIN-HEIGHT: 620px; BACKGROUND: url(http://st1.dbank.com/images/index/icon6.jpg?v=2.6.1) repeat-x center top
+}
+.tpkg {
+	Z-INDEX: 1;
+	POSITION: relative;
+	TEXT-ALIGN: center;
+	WIDTH: 100%;
+	FONT-FAMILY: "ËÎÌå";
+	BACKGROUND: url(http://st1.dbank.com/images/index/bgscroll.gif?v=2.6.1) #000 repeat-x 0px -192px;
+	FLOAT: left;
+	HEIGHT: 55px;
+	COLOR: #ffffff;
+	background-image: url(http://st1.dbank.com/images/index/bgscroll.gif?v=2.6.1);
+}
+.tpkg .tphd {
+	POSITION: relative; TEXT-ALIGN: left; MARGIN: 0px auto; WIDTH: 980px; HEIGHT: 55px;
+}
+.tpkg .tpinfo {
+	POSITION: absolute; LINE-HEIGHT: 45px; DISPLAY: inline-block; HEIGHT: 45px; PADDING-TOP: 8px; TOP: 0px; LEFT: 256px; _left: 246px
+}
+.tpkg .tpinfo .tpinfotxt {
+	MARGIN-TOP: -8px; FLOAT: left
+}
+.tpkg .tpinfo .tpinfotxt INPUT {
+	MARGIN-TOP: 13px; FLOAT: left; _margin-top: 12px
+}
+.tpkg .inputbg {
+	LINE-HEIGHT: 24px; BORDER-RIGHT-WIDTH: 0px; MARGIN-TOP: 3px; WIDTH: 180px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat 0px 0px; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 24px; OVERFLOW: hidden; BORDER-LEFT-WIDTH: 0px; MARGIN-RIGHT: 8px
+}
+.tpkg IMG {
+	MARGIN-TOP: 7px; FLOAT: left
+}
+.tpkg A {
+	COLOR: #ffffff
+}
+.tpkg A:visited {
+	COLOR: #ffffff
+}
+#qq_login_link {
+	WIDTH: 14px; DISPLAY: inline-block; MARGIN-RIGHT: 6px
+}
+.tpkg .wrgkg {
+	Z-INDEX: 200; POSITION: absolute; PADDING-BOTTOM: 0px; MARGIN: -11px 0px 0px; PADDING-LEFT: 177px; WIDTH: 100%; PADDING-RIGHT: 0px; HEIGHT: 21px; RIGHT: 0px; PADDING-TOP: 0px; LEFT: 0px; _padding-left: 166px
+}
+.tpkg .wrgkg .wrnkg {
+	PADDING-BOTTOM: 0px; MARGIN: 1px auto 0px; PADDING-LEFT: 0px; WIDTH: 822px; PADDING-RIGHT: 0px; HEIGHT: 21px; PADDING-TOP: 0px
+}
+.tpkg .wrgkg .wrnkg .wrgnum {
+	WIDTH: 190px; FLOAT: left
+}
+.tpkg .wrgkg .wrnkg .wrgpsw {
+	WIDTH: 190px; FLOAT: left
+}
+.tpkg .wrgkg .wrnkg .wrgntc {
+	WIDTH: 220px; FLOAT: left
+}
+.tpkg .wrgkg .wrnkg SPAN {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 21px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; BACKGROUND: #cc0000; FLOAT: left; HEIGHT: 21px; VISIBILITY: hidden; PADDING-TOP: 0px
+}
+.qqicon {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 14px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -481px -1px; FLOAT: right; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 15px; BORDER-LEFT-WIDTH: 0px
+}
+.wbicon {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 16px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -460px 0px; FLOAT: right; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 13px; BORDER-LEFT-WIDTH: 0px
+}
+.otherload {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 130px; PADDING-RIGHT: 0px; FLOAT: right; PADDING-TOP: 17px
+}
+.othericon {
+	MARGIN: 3px 5px 0px 0px; WIDTH: 4px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -450px 0px; FLOAT: left; HEIGHT: 7px; OVERFLOW: hidden
+}
+.webqq {
+	TEXT-ALIGN: right; WIDTH: 55px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -480px -21px; HEIGHT: 15px
+}
+.nonemask {
+	BACKGROUND: url(http://st1.dbank.com/images/index/bg_none.png?v=2.6.1) no-repeat 6px center
+}
+.membermask {
+	BACKGROUND: url(http://st1.dbank.com/images/index/bg_member.png?v=2.6.1) no-repeat 6px center
+}
+.pwdmask {
+	BACKGROUND: url(http://st1.dbank.com/images/index/bg_pwd.png?v=2.6.1) no-repeat 6px center
+}
+.hardmask {
+	BACKGROUND: url(http://st1.dbank.com/images/index/bgs01.png?v=2.6.1) no-repeat 10px 5px
+}
+.namemask {
+	BACKGROUND: url(http://st1.dbank.com/images/index/bgs01.png?v=2.6.1) no-repeat 10px -54px
+}
+.emailmask {
+	BACKGROUND: url(http://st1.dbank.com/images/index/bgs01.png?v=2.6.1) no-repeat 10px -25px
+}
+.allctn {
+	WIDTH: 100%; FLOAT: left
+}
+.ctnwkg {
+	WIDTH: 100%; BACKGROUND: url(http://st1.dbank.com/images/index/bg.jpg?v=2.6.1) center top; FLOAT: left
+}
+.ctnkg {
+	WIDTH: 100%; BACKGROUND: url(http://st1.dbank.com/images/index/icon6.gif?v=2.6.1) repeat-x center bottom; FLOAT: left
+}
+.ctnlinebg {
+	MARGIN-TOP: 10px; WIDTH: 100%; BACKGROUND: url(http://st1.dbank.com/images/index/bg2.jpg?v=2.6.1) no-repeat center bottom; FLOAT: left; OVERFLOW: hidden
+}
+.ctnwzkg {
+	MARGIN: 0px auto; WIDTH: 978px
+}
+.introbg {
+	WIDTH: 978px; BACKGROUND: url(http://st1.dbank.com/images/index/icon7.png?v=2.6.1) no-repeat 568px 20px; FLOAT: left; PADDING-TOP: 31px
+}
+.leftkg {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 53px; WIDTH: 414px; PADDING-RIGHT: 80px; BACKGROUND: url(http://st1.dbank.com/images/index/bg3.png?v=2.6.1) no-repeat left bottom; FLOAT: left; HEIGHT: 534px; MARGIN-LEFT: 40px; OVERFLOW: hidden; PADDING-TOP: 0px; _margin-left: 20px
+}
+.moviekg {
+	WIDTH: 414px; FLOAT: left; HEIGHT: 296px; PADDING-TOP: 12px
+}
+.noticekg {
+	WIDTH: 414px; FLOAT: left; PADDING-TOP: 23px
+}
+.noticekg .notice {
+	PADDING-BOTTOM: 10px; WIDTH: 414px; BACKGROUND: url(http://st1.dbank.com/images/index/icon1.jpg?v=2.6.1) no-repeat 0px 0px; FLOAT: left; HEIGHT: 36px
+}
+.noticekg .notice A {
+	WIDTH: 129px; DISPLAY: inline-block; FONT: 12px/20 arial; HEIGHT: 36px; OVERFLOW: hidden
+}
+.noticekg LI {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 24px; PADDING-LEFT: 4px; WIDTH: 410px; PADDING-RIGHT: 0px; FONT-FAMILY: "ËÎÌå"; COLOR: #000000; PADDING-TOP: 0px
+}
+.noticekg .title {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 24px; PADDING-LEFT: 4px; WIDTH: 410px; PADDING-RIGHT: 0px; FONT-FAMILY: "ËÎÌå"; COLOR: #000000; FONT-SIZE: 14px; FONT-WEIGHT: 900; PADDING-TOP: 0px
+}
+.noticekg LI A {
+	DISPLAY: inline-table; COLOR: #000000
+}
+.noticekg LI A:visited {
+	COLOR: #000000
+}
+.noticekg LI A:visited {
+	COLOR: #000000
+}
+.noticekg LI A:hover {
+	COLOR: #2b62cf
+}
+.iconkg {
+	Z-INDEX: 210; POSITION: absolute; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; RIGHT: 0px; PADDING-TOP: 0px; TOP: 45px; LEFT: 0px
+}
+.iconkg DIV {
+	PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-LEFT: 0px; WIDTH: 978px; PADDING-RIGHT: 0px; HEIGHT: 81px; PADDING-TOP: 0px
+}
+.iconkg DIV UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 72px; PADDING-RIGHT: 0px; FLOAT: right; CURSOR: pointer; PADDING-TOP: 0px
+}
+.iconkg DIV UL LI {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 70px; PADDING-RIGHT: 0px; FLOAT: left; PADDING-TOP: 0px
+}
+.iconkg DIV .scrobg {
+	WIDTH: 70px; DISPLAY: none; BACKGROUND: url(http://st1.dbank.com/images/index/searbtncenter.png?v=2.6.1) repeat-y left center; HEIGHT: 10px
+}
+.iconkg DIV LI IMG {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FLOAT: left; CLEAR: both; CURSOR: pointer; PADDING-TOP: 0px
+}
+.iconkg .searchtop {
+	BACKGROUND: url(http://st1.dbank.com/images/index/searbtntop.png?v=2.6.1) no-repeat center top; HEIGHT: 15px; OVERFLOW: hidden
+}
+.iconkg .searchbtm {
+	BACKGROUND: url(http://st1.dbank.com/images/index/searbtnbottom.png?v=2.6.1) no-repeat center top; HEIGHT: 64px; OVERFLOW: hidden
+}
+.regkg {
+	MARGIN-TOP: 54px; WIDTH: 391px; FLOAT: left
+}
+.regkg LI DIV {
+	WIDTH: 241px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat 0px -29px; FLOAT: left; HEIGHT: 32px
+}
+.regkg INPUT {
+	FLOAT: left
+}
+.regkg UL {
+	WIDTH: 391px; FLOAT: left
+}
+LI {
+	WIDTH: 391px; FLOAT: left
+}
+.regkg UL LI {
+	PADDING-TOP: 23px
+}
+.regkg UL LI.mt8 {
+	PADDING-TOP: 8px
+}
+.regkg UL LI.mt18 {
+	PADDING-TOP: 18px
+}
+.regkg SPAN {
+	Z-INDEX: 60; POSITION: absolute; PADDING-BOTTOM: 3px; MARGIN: 4px 0px 0px 5px; PADDING-LEFT: 3px; WIDTH: 133px; PADDING-RIGHT: 3px; FONT-FAMILY: arial,simsun; PADDING-TOP: 3px
+}
+.regkg SPAN.nmsg {
+	MARGIN-TOP: 7px; BACKGROUND: #fff0b8; COLOR: #686868; FONT-SIZE: 12px
+}
+.regkg SPAN.nmsg1 {
+	MARGIN-TOP: 0px; BACKGROUND: #fff0b8; COLOR: #686868; FONT-SIZE: 12px
+}
+.regkg SPAN.nmsg2 {
+	MARGIN-TOP: 1px; BACKGROUND: #fff0b8; COLOR: #686868; FONT-SIZE: 12px
+}
+.regkg SPAN.wmsg {
+	MARGIN-TOP: 7px; BACKGROUND: #cd0906; COLOR: #fff; FONT-SIZE: 12px
+}
+.regkg SPAN.wmsg1 {
+	MARGIN-TOP: -1px; BACKGROUND: #cd0906; COLOR: #fff; FONT-SIZE: 12px
+}
+.regkg SPAN.wmsg2 {
+	MARGIN-TOP: 1px; BACKGROUND: #cd0906; COLOR: #fff; FONT-SIZE: 12px
+}
+.regkg SPAN.wmsgpwd {
+	MARGIN: 4px 0px 0px 5px; BACKGROUND: #cd0906; COLOR: #fff; FONT-SIZE: 12px; _margin: 27px 0 0 5px
+}
+.regkg H2 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 12px; PADDING-RIGHT: 0px; FONT-FAMILY: "ËÎÌå"; FLOAT: left; COLOR: #ffffff; FONT-SIZE: 12px; FONT-WEIGHT: normal; PADDING-TOP: 28px
+}
+.regkg H2 A {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.regkg H2 A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.regkg H2 A:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+.phonekg {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 381px; PADDING-RIGHT: 0px; FLOAT: left; PADDING-TOP: 100px; _padding-top: 85px
+}
+.btlist {
+	WIDTH: 100%; BACKGROUND: url(http://st1.dbank.com/images/index/bgscroll.gif?v=2.6.1) repeat-x 0px 0px; FLOAT: left; HEIGHT: 148px; PADDING-TOP: 44px
+}
+.btctn {
+	MARGIN: 0px auto; WIDTH: 976px
+}
+.btctn UL {
+	LINE-HEIGHT: 21px; WIDTH: 325px; FLOAT: left
+}
+.btctn .wd1 {
+	TEXT-ALIGN: center; WIDTH: 95px; FLOAT: left
+}
+.btctn .wd2 {
+	WIDTH: 222px; PADDING-RIGHT: 8px; FONT-FAMILY: "ËÎÌå"; FLOAT: left
+}
+.btctn A {
+	DISPLAY: inline-table
+}
+.searchkg {
+	POSITION: relative; WIDTH: 100%; BACKGROUND: url(http://st1.dbank.com/images/index/icon6.jpg?v=2.6.1) no-repeat center top; HEIGHT: 100%; LEFT: -50px
+}
+.searchwzbg {
+	Z-INDEX: 25; POSITION: absolute; MARGIN-TOP: -150px; WIDTH: 800px; LEFT: -300px
+}
+.searchwzbg .search {
+	TEXT-ALIGN: left; WIDTH: 800px; FLOAT: left
+}
+.searchwzbg .search DIV {
+	MARGIN: 7px 10px 0px 0px; WIDTH: 495px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat 0px -66px; FLOAT: left; HEIGHT: 45px
+}
+.searchwzbg .keykg {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 490px; PADDING-RIGHT: 0px; FONT: 14px "ËÎÌå"; FLOAT: left; COLOR: #ffffff; PADDING-TOP: 10px
+}
+.searchwzbg .keykg A {
+	DISPLAY: inline-table; COLOR: #ffffff; MARGIN-RIGHT: 10px; TEXT-DECORATION: none
+}
+.searchwzbg .keykg A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.searchwzbg .keykg A:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+.sericonkg {
+	TEXT-ALIGN: right; MARGIN: 0px auto; WIDTH: 978px
+}
+.sericonkg IMG {
+	CURSOR: pointer; MARGIN-RIGHT: 3px
+}
+.btmkg {
+	POSITION: absolute; TEXT-ALIGN: center; PADDING-BOTTOM: 10px; PADDING-LEFT: 0px; WIDTH: 100%; BOTTOM: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: "ËÎÌå",Tahoma; BACKGROUND: #ffffff; HEIGHT: 49px; COLOR: #707070; OVERFLOW: hidden; PADDING-TOP: 15px
+}
+.btmkg IMG {
+	MARGIN-TOP: -5px; MARGIN-RIGHT: 5px
+}
+.btmkg A {
+	DISPLAY: inline-block; COLOR: #707070
+}
+.btmkg A:visited {
+	COLOR: #707070
+}
+.btmkg A.blue {
+	LINE-HEIGHT: 13px; HEIGHT: 13px; VERTICAL-ALIGN: 1px
+}
+.btmkg A.blue IMG {
+	MARGIN-TOP: 0px; VERTICAL-ALIGN: -3px
+}
+.searchctn {
+	Z-INDEX: 20; POSITION: absolute; TOP: 50%; LEFT: 50%
+}
+.imgScroll {
+	WIDTH: 414px; HEIGHT: 296px; OVERFLOW: hidden
+}
+.sericonkg DIV {
+	PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-LEFT: 0px; WIDTH: 978px; PADDING-RIGHT: 0px; HEIGHT: 81px; PADDING-TOP: 0px
+}
+.sericonkg DIV UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 72px; PADDING-RIGHT: 0px; FLOAT: right; CURSOR: pointer; PADDING-TOP: 0px
+}
+.sericonkg DIV UL LI {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 70px; PADDING-RIGHT: 0px; FLOAT: left; PADDING-TOP: 0px
+}
+.sericonkg DIV .upscrobg {
+	WIDTH: 70px; DISPLAY: none; BACKGROUND: url(http://st1.dbank.com/images/index/upbtncenter.png?v=2.6.1) repeat-y left center; HEIGHT: 10px
+}
+.sericonkg DIV LI IMG {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FLOAT: left; CLEAR: both; PADDING-TOP: 0px
+}
+.sericonkg .uptopbg {
+	BACKGROUND: url(http://st1.dbank.com/images/index/searbtntop.png?v=2.6.1) no-repeat center top; HEIGHT: 15px; OVERFLOW: hidden
+}
+.sericonkg .upbtmbg {
+	BACKGROUND: url(http://st1.dbank.com/images/index/upbtnbottom.png?v=2.6.1) no-repeat center top; HEIGHT: 65px; OVERFLOW: hidden
+}
+.imgScroll IMG {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+.banner_wenziscroll {
+	Z-INDEX: 40; POSITION: absolute; WIDTH: 414px; BOTTOM: 0px; LEFT: 0px; _margin-bottom: 11px
+}
+.mrwm_slide {
+	POSITION: relative
+}
+.mrwm_slide .mrwm_slist {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 0px; PADDING-RIGHT: 8px; FLOAT: right; PADDING-TOP: 0px
+}
+.mrwm_slide .mrwm_slist LI {
+	BORDER-BOTTOM: #d1d7dd 1px solid; BORDER-LEFT: #d1d7dd 1px solid; LINE-HEIGHT: 7px; WIDTH: 10px; BACKGROUND: #e8ecf0; FLOAT: left; HEIGHT: 7px; COLOR: #000000; MARGIN-LEFT: 5px; FONT-SIZE: 0px; OVERFLOW: hidden; BORDER-TOP: #d1d7dd 1px solid; CURSOR: pointer; BORDER-RIGHT: #d1d7dd 1px solid
+}
+.mrwm_slide .mrwm_slist .select {
+	BORDER-BOTTOM: #d1d7dd 1px solid; BORDER-LEFT: #d1d7dd 1px solid; BACKGROUND: #398fc0; COLOR: #ffffff; BORDER-TOP: #d1d7dd 1px solid; BORDER-RIGHT: #d1d7dd 1px solid
+}
+.imgScroll {
+	WIDTH: 414px; HEIGHT: 296px; OVERFLOW: hidden
+}
+.input {
+	BORDER-RIGHT-WIDTH: 0px; MARGIN-TOP: -2px; PADDING-LEFT: 5px; WIDTH: 175px; FONT: 13px arial,simsun; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 19px; COLOR: #000; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 9px; _padding-top: 6px
+}
+:unknown .input {
+	PADDING-TOP: 6px
+}
+.input1 {
+	BORDER-RIGHT-WIDTH: 0px; MARGIN-TOP: 4px; PADDING-LEFT: 10px; WIDTH: 230px; FONT: 14px/22px "Î¢ÈíÑÅºÚ"; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 22px; COLOR: #000; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 1px
+}
+.input2 {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN-TOP: 5px; PADDING-LEFT: 10px; WIDTH: 485px; PADDING-RIGHT: 0px; FONT: 20px "Î¢ÈíÑÅºÚ"; BACKGROUND: none transparent scroll repeat 0% 0%; FLOAT: left; HEIGHT: 32px; COLOR: #b5b5b5; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 7px
+}
+.btn {
+	BORDER-RIGHT-WIDTH: 0px; MARGIN: 3px 0px 0px; WIDTH: 52px; FONT: 14px "ËÎÌå"; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat 0px -116px; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 24px; COLOR: #ffffff; BORDER-LEFT-WIDTH: 0px; CURSOR: pointer
+}
+.btn_over {
+	BORDER-RIGHT-WIDTH: 0px; MARGIN: 3px 0px 0px; WIDTH: 52px; FONT: 14px "ËÎÌå"; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -57px -116px; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 24px; COLOR: #ffffff; BORDER-LEFT-WIDTH: 0px; CURSOR: pointer
+}
+.btn_press {
+	BORDER-RIGHT-WIDTH: 0px; MARGIN: 3px 0px 0px; WIDTH: 52px; FONT: 14px "ËÎÌå"; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -114px -116px; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 24px; COLOR: #ffffff; BORDER-LEFT-WIDTH: 0px; CURSOR: pointer
+}
+.btn-login-unbind {
+	BORDER-RIGHT-WIDTH: 0px; MARGIN: 3px 0px 0px; WIDTH: 52px; FONT: 14px "ËÎÌå"; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -171px -116px; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 24px; COLOR: #ffffff; BORDER-LEFT-WIDTH: 0px; CURSOR: default
+}
+.btn1 {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 154px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat 0px -145px; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 40px; BORDER-LEFT-WIDTH: 0px; CURSOR: pointer
+}
+.btn1_over {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 154px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -159px -145px; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 40px; BORDER-LEFT-WIDTH: 0px; CURSOR: pointer
+}
+.btn1_press {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 154px; BACKGROUND: url(http://st1.dbank.com/images/index/allicon.gif?v=2.6.1) no-repeat -318px -145px; FLOAT: left; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 40px; BORDER-LEFT-WIDTH: 0px; CURSOR: pointer
+}
+.btn2 {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 126px; FONT: 24px "Î¢ÈíÑÅºÚ"; BACKGROUND: url(http://st1.dbank.com/images/index/icon6.png?v=2.6.1) no-repeat center 50%; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 62px; COLOR: #ffffff; BORDER-LEFT-WIDTH: 0px; CURSOR: pointer
+}
+.font14wz {
+	FONT-SIZE: 14px
+}
+.b {
+	FONT-WEIGHT: 900
+}
+.enwz {
+	FONT-FAMILY: Tahoma
+}
+A.blue {
+	COLOR: #2b62cf
+}
+.enwz1 {
+	FONT-FAMILY: Arial
+}
+.cmrgin10l {
+	MARGIN-LEFT: 10px
+}
+.cmrgin0t {
+	MARGIN-TOP: 0px
+}
+.pwd {
+	BACKGROUND: url(http://st1.dbank.com/images/index/pwdbg.png?v=2.6.1) no-repeat center 50%
+}
+.shopobg .shopoinfo {
+	MARGIN-BOTTOM: 20px; HEIGHT: 520px
+}
+.shopoinfo {
+	POSITION: relative; MARGIN: 0px auto; WIDTH: 800px; BACKGROUND: url(http://st1.dbank.com/images/index/backgrounds.png?v=2.6.1) no-repeat center bottom; HEIGHT: 649px
+}
+.shopoinfo .left_btn {
+	POSITION: absolute; WIDTH: 43px; BOTTOM: 166px; HEIGHT: 65px; CURSOR: pointer
+}
+.shopoinfo .right_btn {
+	POSITION: absolute; WIDTH: 43px; BOTTOM: 166px; HEIGHT: 65px; CURSOR: pointer
+}
+.shopoinfo .left_btn {
+	LEFT: 26px
+}
+.shopoinfo .right_btn {
+	RIGHT: 25px
+}
+.shopoinfo .so_box {
+	POSITION: absolute; WIDTH: 570px; BOTTOM: 19px; WHITE-SPACE: nowrap; HEIGHT: 360px; OVERFLOW: hidden; LEFT: 112px; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: ignore
+}
+.shopoinfo .so_box IMG {
+	WIDTH: 100%; HEIGHT: 100%
+}
+#review_btn {
+	POSITION: absolute; WIDTH: 152px; BOTTOM: 176px; DISPLAY: inline-block; BACKGROUND: url(http://st1.dbank.com/images/index/btns.png?v=2.6.1) no-repeat -2px -70px; HEIGHT: 50px; CURSOR: pointer; LEFT: 322px
+}
+.shopobg .btmkg {
+	BACKGROUND: url(http://st1.dbank.com/images/index/bg5.png?v=2.6.1) repeat-x 0px 0px; CLEAR: both; PADDING-TOP: 25px
+}
+#db_note_tags {
+	Z-INDEX: 999; BORDER-BOTTOM: #ccc 1px solid; POSITION: absolute; BORDER-LEFT: #ccc 1px solid; PADDING-BOTTOM: 0px; OVERFLOW-X: hidden; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 239px; PADDING-RIGHT: 0px; BACKGROUND: #fff; FONT-SIZE: 14px; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid; PADDING-TOP: 0px
+}
+#db_note_tags LI {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 0px; LINE-HEIGHT: 20px; LIST-STYLE-TYPE: none; MARGIN: 0px 1px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; HEIGHT: 20px; COLOR: #999; CURSOR: pointer; PADDING-TOP: 0px
+}
+#db_note_tags .sel {
+	BACKGROUND: #e8f4fc; COLOR: #000
+}
+.cbg {
+	POSITION: relative; WIDTH: 600px; BACKGROUND: url(http://st2.dbank.com/images/index/adbg.gif?v=2.6.1) #fff repeat-x left bottom; FLOAT: left; HEIGHT: 284px; OVERFLOW: hidden
+}
+.cbg UL {
+	LIST-STYLE-TYPE: none; MARGIN-TOP: 10px; FLOAT: left; HEIGHT: 273px
+}
+.cbg A:link {
+	TEXT-DECORATION: none
+}
+.cbg A:visited {
+	TEXT-DECORATION: none
+}
+.cbg IMG {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+#banner_bg {
+	Z-INDEX: 1000; POSITION: absolute; FILTER: Alpha(Opacity=30); BACKGROUND-COLOR: #000; WIDTH: 602px; BOTTOM: 15px; HEIGHT: 30px; CURSOR: default; opacity: 0.3
+}
+.p2pinfor {
+	POSITION: absolute; LINE-HEIGHT: 2em; COLOR: #fff; TOP: 8px; LEFT: 50px
+}
+.p2pinfor A {
+	OUTLINE-STYLE: none; COLOR: #ffe473; MARGIN-LEFT: 43px; FONT-SIZE: 14px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+.p2pinfor A:hover {
+	TEXT-DECORATION: underline
+}
+#DbankMarquee UL {
+	Z-INDEX: 1002; POSITION: absolute; FILTER: Alpha(Opacity=75); PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; BOTTOM: 18px; PADDING-RIGHT: 0px; HEIGHT: 21px; RIGHT: 0px; PADDING-TOP: 0px; opacity: 0.75
+}
+#DbankMarquee UL LI {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #000; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; DISPLAY: block; FLOAT: left; COLOR: #fff; CURSOR: pointer; MARGIN-RIGHT: 5px !important; PADDING-TOP: 0px
+}
+#DbankMarquee UL LI.on {
+	BACKGROUND: url(http://st2.dbank.com/images/index/nblistbg.gif?v=2.6.1) #fff repeat-x left bottom; COLOR: #000
+}
+#banner_info {
+	Z-INDEX: 1001; POSITION: absolute; LINE-HEIGHT: 30px; BOTTOM: 15px; COLOR: #fff; LEFT: 5px
+}
+.default_cursor {
+	CURSOR: default
+}
+#banner_list {
+	BACKGROUND: url(http://st2.dbank.com/netdisk/images/uploading.gif) #fff no-repeat center center
+}
+#banner_list A {
+	POSITION: absolute
+}
+#banner_list {
+	WIDTH: 415px; HEIGHT: 295px; OVERFLOW: hidden
+}
+#banner_list UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+#banner_list UL LI {
+	LIST-STYLE-TYPE: none
+}
+#banner_list UL.sliderImage LI {
+	DISPLAY: block
+}
+#banner_list UL.sliderList {
+	POSITION: absolute; TOP: 282px
+}
+#banner_list UL.sliderList LI {
+	BORDER-BOTTOM: #fff 1px solid; BORDER-LEFT: #fff 1px solid; MARGIN: 0px 1px; WIDTH: 10px; BACKGROUND: #ccc; FLOAT: left; HEIGHT: 6px; OVERFLOW: hidden; BORDER-TOP: #fff 1px solid; CURSOR: pointer; BORDER-RIGHT: #fff 1px solid
+}
+.qq_kf {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 16px; PADDING-RIGHT: 0px; BACKGROUND: url(http://st2.dbank.com/images/index/bgs01.png?v=2.6.1) no-repeat -90px -85px; PADDING-TOP: 2px
+}
+#banner_list UL.sliderList LI.selected {
+	BACKGROUND: #f90
+}
+#idx_login {
+	Z-INDEX: 99; POSITION: absolute; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 750px; PADDING-RIGHT: 0px; HEIGHT: 70px; RIGHT: 0px; PADDING-TOP: 0px; TOP: 0px
+}
