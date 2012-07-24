@@ -547,3 +547,16 @@ A.blue {
 #idx_login {
 	Z-INDEX: 99; POSITION: absolute; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 750px; PADDING-RIGHT: 0px; HEIGHT: 70px; RIGHT: 0px; PADDING-TOP: 0px; TOP: 0px
 }
+#bannerBox { height:295px; width:415px; overflow:hidden;  position:relative; border:#E7E7E7 solid 1px; background:#FFF; font-size:12px;}
+#bannerImgesBox { position:relative; height:270px;}
+#bannerImgesBox a { position:absolute; left:0; top:0; text-decoration: none; display:none;}
+#bannerImgesBox a img { border:0;}
+#bannerTextBox { height:14px; background:url(/images/bannerListBg.jpg) -2px 0; position:absolute; z-index:100; bottom:4px; right:4px; width:536px;}
+#bannerTextBox ul { list-style:none;height:16px; float:right;}
+#bannerTextBox ul li { float:left; display:inline; height:16px;  text-align:center; width:16px; overflow:hidden; margin-right:1px;}
+#bannerTextBox ul li  a {  border:#313131 solid 1px; display:block; color:#FFF;text-decoration:none; background:#666666; width:14px; height:14px; line-height:14px; margin:0 auto;}
+#bannerTextBox ul li  a:hover { background: #CA0068;}
+ 
+/*бЁжа*/
+#bannerTextBox ul li.thisHover  a{background: #CA0068; }
+/**/
