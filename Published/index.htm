@@ -5,76 +5,45 @@
 	<meta property="qc:admins" content="1510162237621116737646375" />
     <title>子杨软件</title>
     <style type="text/css">
-        .style1 {
-            width: 528px;
-            height: 387px;
-        }
-        .style2 {
-            width: 993px;
-            height: 688px;
-        }
-        .style3 {
-            width: 1090px;
-            height: 691px;
-        }
-        .style4
-        {
-            font-family: 微软雅黑;
-            font-size: x-large;
-        }
-        .style5
-        {
-            font-family: 幼圆;
-            font-size: x-small;
-        }
-        .style6
-        {
-            font-family: "Gill Sans Ultra Bold";
-            font-size: x-large;
-        }
     </style>
-	<script type="text/javascript"
-		src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="100289171" data-redirecturi="ziyangsoft.com/qc_back.html" charset="utf-8">
-	</script> 
+	<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc.js"></script>
+    <script type="text/javascript">
+	function checkUserLogin()
+	{
+		if(QC.Login.check()){//如果已登录
+		QC.Login.getMe(function(openId, accessToken){
+			alert(["当前登录用户的", "openId为："+openId, "accessToken为："+accessToken].join("\n"));
+		});
+	}
+	</script>
 </head>
 <body>
-    <p class="style4"><strong>子杨软件</strong></p>
-    <p class="style6">Zi Yang Soft</p>
-	<p>浦东信息港-2012-9-18前延期 http://www.pdxx.net</p>
-	<p>
-		<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=ziyangsoft.com&scope=get_user_info">
-			<img alt="使用QQ登陆" src="./image/Connect_logo_5.png" />
-		</a>
-		<span id="qq_login_btn"></span>
-		<script type="text/javascript">
-			QC.Login({//按默认样式插入QQ登录按钮
-			btnId:"qq_login_btn"	//插入按钮的节点id
-		});
-		</script>
-		<script type="text/javascript">
-		//从页面收集OpenAPI必要的参数。get_user_info不需要输入参数，因此paras中没有参数
-		var paras = {};
-
-		//用JS SDK调用OpenAPI
-		QC.api("get_user_info", paras)
-			//指定接口访问成功的接收函数，s为成功返回Response对象
-			.success(function(s){
-				//成功回调，通过s.data获取OpenAPI的返回数据
-				alert("获取用户信息成功！当前用户昵称为："+s.data.nickname);
-			})
-			//指定接口访问失败的接收函数，f为失败返回Response对象
-			.error(function(f){
-				//失败回调
-				alert("获取用户信息失败！");
-			})
-			//指定接口完成请求后的接收函数，c为完成请求返回Response对象
-			.complete(function(c){
-				//完成请求回调
-				alert("获取用户信息完成！");
-			});
-		</script>
+    <p><strong>子杨软件</strong></p>
+    <p>Zi Yang Soft</p>
+	<p>浦东信息港-2012-9-18前延期 http://www.pdxx.net
+	  <input type="submit" name="btnCheckLogin" id="btnCheckLogin" value="检查" onclick="checkUserLogin();" />
 	</p>
-    <p class="style5"><strong>版权所有:子杨软件</strong></p>
+<p>
+		<!--<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=ziyangsoft.com&scope=get_user_info">
+			<img alt="使用QQ登陆" src="./image/Connect_logo_5.png" />
+		</a>-->
+		<span id="qqLoginBtn"></span>
+		<script type="text/javascript">
+QC.Login.insertButton({
+	btnId : 'qqLoginBtn',//插入按钮的html标签id
+	size : 'A_XL',//按钮样式，A、B、C为三种样式， 
+		//S、M、L、XL为同一种样式的不同尺寸，支持如下 : 
+									//A_S, A_M, A_L, A_XL; 
+									//B_S, B_M, B_L; 
+									//C_S;
+
+	clientId : '100289171',//appId
+	scope : '',//授权范围，可选
+	'btnMode':'showUserAfterLogin'
+});
+</script>
+	</p>
+    <p><strong>版权所有:子杨软件</strong></p>
 	<!--https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=[100289171]&redirect_uri=[ziyangsoft.com]&scope=[get_user_info]-->
 </body>
 </html>

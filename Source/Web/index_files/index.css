@@ -200,10 +200,10 @@ A {
 	WIDTH: 414px; FLOAT: left; HEIGHT: 296px; PADDING-TOP: 12px
 }
 .noticekg {
-	WIDTH: 414px; FLOAT: left; PADDING-TOP: 23px
+	WIDTH: 414px; FLOAT: left; PADDING-TOP: 5px
 }
 .noticekg .notice {
-	PADDING-BOTTOM: 10px; WIDTH: 414px; BACKGROUND: url(News.jpg) no-repeat 0px 0px; FLOAT: left; HEIGHT: 36px
+	PADDING-BOTTOM: 5px; WIDTH: 414px; BACKGROUND: url(news.png) no-repeat 0px 0px; FLOAT: left; HEIGHT: 36px
 }
 .noticekg .notice A {
 	WIDTH: 129px; DISPLAY: inline-block; FONT: 12px/20 arial; HEIGHT: 36px; OVERFLOW: hidden
