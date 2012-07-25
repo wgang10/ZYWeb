@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4411D431-734D-41C9-A706-9AAD4FE59C11}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QQOauthWeb</RootNamespace>
+    <AssemblyName>QQOauthWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Jayrock">
+      <HintPath>..\..\src\packages\jayrock.0.9.12915\lib\net4\Jayrock.dll</HintPath>
+    </Reference>
+    <Reference Include="Jayrock.Json">
+      <HintPath>..\..\src\packages\jayrock-json.0.9.12915\lib\net4\Jayrock.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\src\packages\sqlite\System.Data.SQLite.DLL</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\LoginToQQ.aspx" />
+    <Content Include="Account\QQCallback.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="images\Connect_logo_4.png" />
+    <Content Include="Photo\addAlbum.aspx" />
+    <Content Include="Photo\PhotoList.aspx" />
+    <Content Include="Photo\UploadPic.aspx" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\ligerUI\js\ligerui.min.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerAccordion.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerButton.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerCheckBox.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerComboBox.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerDateEditor.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerDialog.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerDrag.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerEasyTab.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerForm.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerGrid.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerLayout.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerMenu.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerMenuBar.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerMessageBox.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerNoSelect.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerRadio.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerResizable.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerSpinner.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerTab.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerTextBox.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerToolBar.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerTree.js" />
+    <Content Include="Scripts\ligerUI\js\plugins\ligerWindow.js" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\css\ligerui-all.css" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-done.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-error.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-l-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-l.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-question.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-r-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-r.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn-warn.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-btn.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-close-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-close.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-lefttop.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-righttop.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\box-top.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\box\tabs-item-left-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\common\loading.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-panel-title-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-panel-title-pressed.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-panel-title.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-tab-title-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-tab-title-pressed.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-tab-title.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-text.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-text.jpg" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-trigger-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-trigger-pressed.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\bg-trigger.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\btn-l.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\btn-r.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\btn.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\button-bg-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\button-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\checkbox.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\checkboxandradio.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\dateeditor-bar-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\dateeditor-header-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\controls\radio.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dateeditor\icon-first.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dateeditor\icon-last.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dateeditor\icon-next.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dateeditor\icon-prev.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-bc.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-bl.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-br.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-button.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-button.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-cl.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-close.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-cr.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-done.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-error.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-icons.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-question.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-tc.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-title-icon.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-tl.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-tr.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\dialog-warn.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\ie6\dialog-bc.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\ie6\dialog-cl.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\ie6\dialog-cr.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\dialog\ie6\dialog-tc.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\box-lefttop.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\box-righttop.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\grid-checkbox-checked.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\grid-checkbox.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\grid-detail-close.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\grid-detail-open.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\grid-line.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\header-bg-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\header-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\header2-bg.jpg" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\loading.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\popup-line.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\popup-row-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\grid\popup-row-over.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\bar-button-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\checkbox-checked.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\checkbox.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-close-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-close.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-close18X18.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-done.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-down.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-drop.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-edited.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-first.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-last.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-line.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-load.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-load.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-milestone.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-next.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-prev.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-remark15X15.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-sort-asc.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-sort-desc.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-up.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\icon-warn.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\icon\magnifier.png" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\accordion-content.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\accordion-header-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\accordion-header.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\layout-header-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\layout-header.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\layout-sidebar-header.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\mini-bottom.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\mini-left.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\mini-right.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\mini-top.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\panel-content.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\panel-header-over.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\panel-header.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\tabs-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\tabs-item-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\tabs-item-left-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\tabs-item-over-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\tabs-item-right-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\tabs-tools.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\layout\togglebar.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\menu\menu-item-arrow.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\menu\menu-item-down.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\menu\menu-item-over-l.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\menu\menu-item-over-m.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\menu\menu-item-over-r.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\menu\menu-line-x.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\menu\menu-line-y.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\bar-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\header-bg.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\header-bg.jpg" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\header2-bg.jpg" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-btn-l.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-btn-r.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-btn.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-header.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-menu-item-down.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-menu.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-menu.jpg" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-toolbar.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-toolbar.jpg" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-tools-sprites.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\panel\panel-tools.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\folder-open.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\folder.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\loading.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\tree-leaf.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\tree-level.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\tree-noline.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\tree-status-close.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\tree-status-open.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\tree-status.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\tree.gif" />
+    <Content Include="Scripts\ligerUI\skins\Aqua\images\tree\tree.png" />
+    <Content Include="Styles\reg.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\LoginToQQ.aspx.cs">
+      <DependentUpon>LoginToQQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\LoginToQQ.aspx.designer.cs">
+      <DependentUpon>LoginToQQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\QQCallback.aspx.cs">
+      <DependentUpon>QQCallback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\QQCallback.aspx.designer.cs">
+      <DependentUpon>QQCallback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Database.cs" />
+    <Compile Include="Code\DataStoreAttribute.cs" />
+    <Compile Include="Code\Extensions.cs" />
+    <Compile Include="Code\Model\QzoneOauth.cs" />
+    <Compile Include="Code\Model\User.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Photo\addAlbum.aspx.cs">
+      <DependentUpon>addAlbum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Photo\addAlbum.aspx.designer.cs">
+      <DependentUpon>addAlbum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Photo\PhotoList.aspx.cs">
+      <DependentUpon>PhotoList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Photo\PhotoList.aspx.designer.cs">
+      <DependentUpon>PhotoList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Photo\UploadPic.aspx.cs">
+      <DependentUpon>UploadPic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Photo\UploadPic.aspx.designer.cs">
+      <DependentUpon>UploadPic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\QzoneSDK\QzoneSDK.csproj">
+      <Project>{D2B52243-B8C0-4CE9-B781-EB7776C3CE38}</Project>
+      <Name>QzoneSDK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Data\QQOAuthDB.db3" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4956</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://www.dotnetting.cn</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
