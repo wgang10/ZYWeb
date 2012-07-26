@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="QzoneSDK">
+      <HintPath>..\Comm\Lib\QzoneSDK.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -51,13 +54,18 @@
   <ItemGroup>
     <Content Include="ClientBin\SilverlightUI.xap" />
     <Content Include="Default.aspx" />
-    <Content Include="image\1.jpg" />
-    <Content Include="image\2.jpg" />
-    <Content Include="image\3.jpg" />
-    <Content Include="image\Connect_logo_5.png" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\2.jpg" />
+    <Content Include="images\3.jpg" />
+    <Content Include="images\Connect_logo_4.png" />
+    <Content Include="images\Connect_logo_5.png" />
     <Content Include="index.htm" />
+    <Content Include="LoginToQQ.aspx" />
+    <Content Include="QQCallback.aspx" />
     <Content Include="Silverlight.js" />
     <Content Include="indexSL.html" />
+    <Content Include="Styles\reg.css" />
+    <Content Include="Styles\Site.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -76,7 +84,21 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LoginToQQ.aspx.cs">
+      <DependentUpon>LoginToQQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginToQQ.aspx.designer.cs">
+      <DependentUpon>LoginToQQ.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QQCallback.aspx.cs">
+      <DependentUpon>QQCallback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QQCallback.aspx.designer.cs">
+      <DependentUpon>QQCallback.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
