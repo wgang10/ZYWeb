@@ -18,7 +18,7 @@ namespace ZYSoft.BLL
         /// <returns></returns>
         public string GetUaerName()
         {
-            string SQL = @"Select Top 1 Name From TUser";
+            string SQL = @"Select Top 1 Name From ExamPaper Order by UpdateDateTime desc";
             DataTable tb = new DataTable();
             using (SqlHelper helper = new SqlHelper())
             {
