@@ -47,6 +47,8 @@
     <Compile Include="Entity\ExamProcess.cs" />
     <Compile Include="Entity\ExamProcessShowModel.cs" />
     <Compile Include="Entity\ExamUser.cs" />
+    <Compile Include="Entity\HistoryOfMemberUpdate.cs" />
+    <Compile Include="Entity\Member.cs" />
     <Compile Include="Entity\PaperQuestions.cs" />
     <Compile Include="Entity\Option.cs" />
     <Compile Include="Entity\UserAnswer.cs" />
