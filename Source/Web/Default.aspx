@@ -17,9 +17,16 @@
     <form id="form1" runat="server">
     <p><strong>子杨软件</strong></p>
     <p>Zi Yang Soft</p>
-
+    <p><asp:Label ID="lbMessage" runat="server"/></p>
+    <p><asp:Label ID="lbMessage2" runat="server"/></p>
+    <p><asp:Label ID="lbMessage3" runat="server"/></p>
+    <p><asp:Label ID="lbMessage4" runat="server"/></p>
+    <p><asp:Label ID="lbMessage5" runat="server"/></p>
+    <p><asp:Label ID="lbMessage6" runat="server"/></p>
     <p>
-        <asp:Label ID="lbMessage" runat="server"></asp:Label>
+        <asp:Image ID="Image1" runat="server" />   
+        <asp:Image ID="Image2" runat="server" />   
+        <asp:Image ID="Image3" runat="server" />
     </p>
                 <div runat="server">                    
                     <ul>
