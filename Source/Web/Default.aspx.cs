@@ -128,6 +128,8 @@ namespace Web
                 response.Close();
 
             }
+
+            /*
             if (Request.QueryString["oauth_vericode"] != null)
             {
                 var requestTokenKey = Session["requesttokenkey"].ToString();
@@ -184,6 +186,7 @@ namespace Web
                 //}
                 //}
             }
+            */
         }
 
         private string GetData()

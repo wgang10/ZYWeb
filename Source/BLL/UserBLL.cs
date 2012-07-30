@@ -60,5 +60,36 @@ namespace ZYSoft.BLL
         {
             return ExamPaperOP.SaveExamPaper(model);
         }
+
+        /// <summary>
+        /// 会员登录
+        /// </summary>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool LoginMember(string OPID,ref string Msg)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// 会员登录
+        /// </summary>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool LoginMember(string ID,string PWD,ref string Msg)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// 保存会员信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool SaveMemberInfo(Member model,ref string Msg)
+        {
+            return true;
+        }
     }
 }

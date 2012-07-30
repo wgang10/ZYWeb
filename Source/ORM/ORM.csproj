@@ -67,6 +67,7 @@
     <Compile Include="Operation\ExamPaperOP.cs" />
     <Compile Include="Operation\ExamProcessOP.cs" />
     <Compile Include="Operation\ExamUserOP.cs" />
+    <Compile Include="Operation\MemberOP.cs" />
     <Compile Include="Operation\QuestionsOP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

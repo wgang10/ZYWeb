@@ -91,6 +91,18 @@ namespace ZYSoft.Comm.Entity
         public virtual string Anwser3 { get; set; }
 
         /// <summary>
+        /// 头像图片
+        /// </summary>
+        [DataMember]
+        public virtual byte[] Photo { get; set; }
+
+        /// <summary>
+        /// 头像URL
+        /// </summary>
+        [DataMember]
+        public virtual string PhotoURL { get; set; }
+
+        /// <summary>
         /// 登陆次数
         /// </summary>
         [DataMember]
