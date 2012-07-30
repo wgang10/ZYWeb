@@ -124,7 +124,7 @@ namespace ZYSoft.Comm.Entity
         /// 会员状态 0:正常 1:限制 2:删除
         /// </summary>
         [DataMember]
-        public virtual string Status { get; set; }
+        public virtual int Status { get; set; }
 
         /// <summary>
         /// 创建时间

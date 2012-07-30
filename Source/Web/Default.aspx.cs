@@ -99,6 +99,17 @@ namespace Web
                 openid = openid.Substring(0, openid.IndexOf("}") - 1);
                 lbMessage4.Text = "openid=" + openid;
 
+                //用户登录
+                string msg=string.Empty;
+                if (bll.LoginMember(openid, ref msg))
+                {
+                    gridMemberInfo.DataSource = bll.GetMemberByOpenID(openid);
+                }
+                else
+                {    
+                    lbMessageMember.Text = msg;
+                }
+
                 //以调用get_user_info接口为例：
                 //发送请求到get_user_info的URL（请将access_token，appid等参数值替换为你自己的）：
                 Url = string.Format("https://graph.qq.com/user/get_user_info?access_token={0}&oauth_consumer_key={1}&openid={2}", access_token, apppid, openid);
@@ -229,6 +240,12 @@ namespace Web
                 BindGridData();
                 TextBox1.Text = "";
             }
+        }
+
+        private bool LoginMember(string OpenID,ref string Msg)
+        {
+
+            return true;
         }
     }
 }

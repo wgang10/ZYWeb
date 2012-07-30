@@ -54,7 +54,11 @@
         <asp:GridView ID="GridView1" runat="server">
         </asp:GridView>
     </p>
-    <p<strong>版权所有:子杨软件</strong></p>
+    <p><asp:Label ID="lbMessageMember" runat="server"/>
+        <asp:GridView ID="gridMemberInfo" runat="server">
+        </asp:GridView>
+    </p>
+    <p><strong>版权所有:子杨软件</strong></p>
     </form>
 </body>
 </html>

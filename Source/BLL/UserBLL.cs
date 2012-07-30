@@ -66,9 +66,67 @@ namespace ZYSoft.BLL
         /// </summary>
         /// <param name="Msg"></param>
         /// <returns></returns>
-        public bool LoginMember(string OPID,ref string Msg)
+        public bool LoginMember(string OponID,ref string Msg)
         {
-            return true;
+            bool isSuccess = false;
+            try
+            {
+                IList<Member> list = MemberOP.GetMemberByOpenID(OponID);
+                if (list.Count > 0)
+                {
+                    list[0].LastLoginDateTime = DateTime.Now;
+                    list[0].LoginTimes += 1;
+                    //如果最后登录时间不是今天（也就是今天第一次登录）积分+10
+                    if (list[0].LastLoginDateTime.Date != DateTime.Now.Date)
+                    {
+                        list[0].Integral += 10;
+                    }
+                    list[0].UpdateTime = DateTime.Now;
+                    isSuccess=MemberOP.UpdateMember(list[0]);
+                    if (isSuccess)
+                    {
+                        HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
+                        modelHis.CreatTime = DateTime.Now;
+                        modelHis.UpdateMember = list[0];
+                        MemberOP.SaveHistoryOfMemberUpdate(modelHis);
+                    }
+                }
+                else
+                {
+                    Member model = new Member();
+                    model.OpenId = OponID;
+                    model.LastLoginDateTime = DateTime.Now;
+                    model.LoginTimes = 1;
+                    model.Integral = 100;
+                    model.Status = 0;
+                    model.UpdateTime = DateTime.Now;
+                    model.CreatTime = DateTime.Now;
+                    if (MemberOP.SaveMember(model) != -1)
+                    {
+                        HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
+                        modelHis.CreatTime = DateTime.Now;
+                        modelHis.UpdateMember = model;
+                        MemberOP.SaveHistoryOfMemberUpdate(modelHis);
+                        isSuccess = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Msg = ex.Message;
+                isSuccess = false;
+            }
+            return isSuccess;
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="OponID"></param>
+        /// <returns></returns>
+        public IList<Member> GetMemberByOpenID(string OponID)
+        {
+            return MemberOP.GetMemberByOpenID(OponID);
         }
 
         /// <summary>

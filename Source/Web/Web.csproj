@@ -62,7 +62,6 @@
     <Content Include="images\3.jpg" />
     <Content Include="images\Connect_logo_4.png" />
     <Content Include="images\Connect_logo_5.png" />
-    <Content Include="index.htm" />
     <Content Include="LoginToQQ.aspx" />
     <Content Include="QQCallback.aspx" />
     <Content Include="Silverlight.js" />
