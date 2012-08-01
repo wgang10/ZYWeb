@@ -73,39 +73,62 @@ namespace ZYSoft.BLL
             {
                 IList<Member> list = MemberOP.GetMemberByOpenID(OponID);
                 if (list.Count > 0)
-                {
-                    list[0].LastLoginDateTime = DateTime.Now;
+                {                    
                     list[0].LoginTimes += 1;
                     //如果最后登录时间不是今天（也就是今天第一次登录）积分+10
-                    if (list[0].LastLoginDateTime.Date != DateTime.Now.Date)
+                    if (list[0].LastLoginDateTime.Date != DateTime.Now.Date && list[0].LastLoginDateTime <DateTime.Now)
                     {
                         list[0].Integral += 10;
                     }
+                    list[0].LastLoginDateTime = DateTime.Now;
                     list[0].UpdateTime = DateTime.Now;
                     isSuccess=MemberOP.UpdateMember(list[0]);
-                    if (isSuccess)
-                    {
-                        HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
-                        modelHis.CreatTime = DateTime.Now;
-                        modelHis.UpdateMember = list[0];
-                        MemberOP.SaveHistoryOfMemberUpdate(modelHis);
-                    }
                 }
                 else
                 {
                     Member model = new Member();
+                    HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
                     model.OpenId = OponID;
                     model.LastLoginDateTime = DateTime.Now;
                     model.LoginTimes = 1;
                     model.Integral = 100;
+                    //model.Birthday = new DateTime(1800, 1, 1, 1, 1, 1);
+                    //model.VerifictionCodeLimit = new DateTime(1800, 1, 1, 1, 1, 1);
                     model.Status = 0;
                     model.UpdateTime = DateTime.Now;
                     model.CreatTime = DateTime.Now;
-                    if (MemberOP.SaveMember(model) != -1)
-                    {
-                        HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
+                    modelHis.MemberId = MemberOP.SaveMember(model);
+                    if (modelHis.MemberId != -1)
+                    {   
                         modelHis.CreatTime = DateTime.Now;
-                        modelHis.UpdateMember = model;
+
+                        #region 会员历史信息
+                        modelHis.OpenId = model.OpenId;
+                        modelHis.Nickname = model.Nickname;
+                        modelHis.Question1 = model.Question1;
+                        modelHis.Question2 = model.Question2;
+                        modelHis.Question3 = model.Question3;
+                        modelHis.Anwser1 = model.Anwser1;
+                        modelHis.Anwser2 = model.Anwser2;
+                        modelHis.Anwser3 = model.Anwser3;
+                        modelHis.Email = model.Email;
+                        modelHis.Phone = model.Phone;
+                        modelHis.LoginPWD = model.LoginPWD;
+                        modelHis.Type = model.Type;
+                        modelHis.Photo = model.Photo;
+                        modelHis.PhotoURL = model.PhotoURL;
+                        modelHis.Gender = model.Gender;
+                        modelHis.Birthday = model.Birthday;
+                        modelHis.Birthplace = model.Birthplace;
+                        modelHis.Education = model.Education;
+                        modelHis.Job = model.Job;
+                        modelHis.Address = model.Address;
+                        modelHis.LoginTimes = model.LoginTimes;
+                        modelHis.LastLoginDateTime = model.LastLoginDateTime;
+                        modelHis.Integral = model.Integral;
+                        modelHis.Status = model.Status;
+                        #endregion
+
                         MemberOP.SaveHistoryOfMemberUpdate(modelHis);
                         isSuccess = true;
                     }
@@ -127,6 +150,16 @@ namespace ZYSoft.BLL
         public IList<Member> GetMemberByOpenID(string OponID)
         {
             return MemberOP.GetMemberByOpenID(OponID);
+        }
+
+        /// <summary>
+        /// 获取用户修改历史信息
+        /// </summary>
+        /// <param name="OponID"></param>
+        /// <returns></returns>
+        public IList<HistoryOfMemberUpdate> GetHistoryOfMemberUpdateByOpenID(string OponID)
+        {
+            return MemberOP.GetHistoryOfMemberUpdateByOpenID(OponID);
         }
 
         /// <summary>

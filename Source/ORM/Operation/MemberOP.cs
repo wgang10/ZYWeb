@@ -32,6 +32,30 @@ namespace ZYSoft.ORM.Operation
             }
         }
 
+        public static IList<HistoryOfMemberUpdate> GetHistoryOfMemberUpdateByOpenID(string OponID)
+        {
+            ISession session = NHibernateHelper.GetSession();
+            //配置NHibernate
+            var conf = new Configuration().Configure();
+            //在Configuration中添加HbmMapping
+            conf.AddDeserializedMapping(NHibernateHelper.GetEntityMapping<HistoryOfMemberUpdate>(), "HistoryOfMemberUpdateXML");
+            //配置数据库架构元数据
+            SchemaMetadataUpdater.QuoteTableAndColumns(conf);
+
+            //建立SessionFactory
+            var factory = conf.BuildSessionFactory();
+            //打开Session做持久化数据
+            using (session = factory.OpenSession())
+            {
+                var query = session.QueryOver<HistoryOfMemberUpdate>()
+                    .Where(p => p.OpenId == OponID)
+                    //.Where("Name like '%我的测试'")
+                    .OrderBy(p => p.CreatTime).Desc
+                        .List();
+                return query;
+            }
+        }
+
         /// <summary>
         /// 保存会员信息
         /// </summary>

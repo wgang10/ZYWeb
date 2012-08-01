@@ -15,7 +15,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <p><strong>子杨软件</strong></p>
+    <p><strong>子杨软件1</strong></p>
     <p>Zi Yang Soft</p>
     <p><asp:Label ID="lbMessage" runat="server"/></p>
     <p><asp:Label ID="lbMessage2" runat="server"/></p>
@@ -55,8 +55,10 @@
         </asp:GridView>
     </p>
     <p><asp:Label ID="lbMessageMember" runat="server"/>
-        <asp:GridView ID="gridMemberInfo" runat="server">
-        </asp:GridView>
+        <asp:GridView ID="gridMemberInfo" runat="server"/>
+    </p>
+    <p>
+        <asp:GridView ID="gridMemberHistory" runat="server"/>
     </p>
     <p><strong>版权所有:子杨软件</strong></p>
     </form>

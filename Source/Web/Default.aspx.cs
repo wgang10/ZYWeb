@@ -104,6 +104,9 @@ namespace Web
                 if (bll.LoginMember(openid, ref msg))
                 {
                     gridMemberInfo.DataSource = bll.GetMemberByOpenID(openid);
+                    gridMemberInfo.DataBind();
+                    gridMemberHistory.DataSource = bll.GetHistoryOfMemberUpdateByOpenID(openid);
+                    gridMemberHistory.DataBind();
                 }
                 else
                 {    

@@ -103,6 +103,54 @@ namespace ZYSoft.Comm.Entity
         public virtual string PhotoURL { get; set; }
 
         /// <summary>
+        /// 性别
+        /// </summary>
+        [DataMember]
+        public virtual string Gender { get; set; }
+
+        /// <summary>
+        /// 生日
+        /// </summary>
+        [DataMember]
+        public virtual DateTime? Birthday { get; set; }
+
+        /// <summary>
+        /// 出生地
+        /// </summary>
+        [DataMember]
+        public virtual string Birthplace { get; set; }
+
+        /// <summary>
+        /// 教育背景
+        /// </summary>
+        [DataMember]
+        public virtual string Education { get; set; }
+
+        /// <summary>
+        /// 职业
+        /// </summary>
+        [DataMember]
+        public virtual string Job { get; set; }
+
+        /// <summary>
+        /// 居住地
+        /// </summary>
+        [DataMember]
+        public virtual string Address { get; set; }
+
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        [DataMember]
+        public virtual string VerifictionCode { get; set; }
+
+        /// <summary>
+        /// 严重码有效期
+        /// </summary>
+        [DataMember]
+        public virtual DateTime? VerifictionCodeLimit { get; set; }
+
+        /// <summary>
         /// 登陆次数
         /// </summary>
         [DataMember]
