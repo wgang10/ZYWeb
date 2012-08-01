@@ -35,7 +35,7 @@ namespace Web
                 BindGridData();
             }
             //GetRequestToken();
-            GetUserInfo();
+            //GetUserInfo();
         }
 
         private void GetRequestToken()

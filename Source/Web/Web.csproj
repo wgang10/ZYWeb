@@ -96,6 +96,7 @@
     <Content Include="index.htm" />
     <Content Include="index.html" />
     <Content Include="LoginToQQ.aspx" />
+    <Content Include="MemberInfo.aspx" />
     <Content Include="QQCallback.aspx" />
     <Content Include="Script\common-index.js" />
     <Content Include="Script\custom-index.js" />
@@ -131,6 +132,13 @@
     </Compile>
     <Compile Include="LoginToQQ.aspx.designer.cs">
       <DependentUpon>LoginToQQ.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MemberInfo.aspx.cs">
+      <DependentUpon>MemberInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MemberInfo.aspx.designer.cs">
+      <DependentUpon>MemberInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QQCallback.aspx.cs">
