@@ -21,7 +21,6 @@
 <script type="text/javascript" src="Script/jquery.js"></script>
 <script type="text/javascript" src="Script/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="Script/common-index.js"></script>
-<script type="text/javascript" src="Script/common-login.js"></script>
 <script type="text/javascript" src="Script/custom-index.js"></script>
 <script type="text/javascript" charset="gbk" src="Script/opensug.js"></script>
 <script type="text/javascript">
@@ -107,14 +106,17 @@
 					<a href="http://www.ziyangsoft.com/"><img style="float:none; MARGIN:0px 0px 15px 0px" title="子杨软件" alt="子杨软件" src="images/TopLogo.png"/></a> 
 					邮箱<asp:TextBox ID="txtLoginID" runat="server" />
 					网站密码<asp:TextBox ID="txtLoginPWD" TextMode="Password" runat="server" /><asp:CheckBox ID="ckRemberPWD" Text="记住密码" runat="server" />
-                    <asp:Button ID="btnLogin" runat="server" Text="登录" /> <a href="#">忘记密码？</a> 
+                    <asp:Button ID="btnLogin" runat="server" Text="登录" CausesValidation="False" 
+                        onclick="btnLogin_Click" /> <a href="#">忘记密码？</a> 
 					<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=www.ziyangsoft.com&scope=get_user_info,do_like&state=1150">
 					<img alt="使用QQ账号登陆" style="float:none; MARGIN:0px 0px 0px 10px" src="images/Connect_logo_3.png" /></a>
 				</div>
                 <div class="tphd" runat="server" id="divLogined" visible="false">
 					<a href="http://www.ziyangsoft.com/"><img style="float:none; MARGIN:0px 0px 15px 0px" title="子杨软件" alt="子杨软件" src="images/TopLogo.png"/></a> 
 					<asp:Label ID="lbMemberNickname" runat="server" Text="登陆用户昵称"/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">设置</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">注销</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="MemberInfo.aspx">设置</a>&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button 
+                        ID="btnLoginOut" runat="server" Text="注销" onclick="btnLoginOut_Click" 
+                        CausesValidation="False" />
 				</div>
 			</div>
             <div class="allctn">
@@ -176,10 +178,11 @@
                                           </li>
                                         </ul>
                                 	</div>
-                                    <div class="regkg" runat="server" id="divUserInfo" visible="false">
+                                    <div runat="server" id="divUserInfo" visible="false">
                                         欢迎您：<asp:Label ID="lbNickname" runat="server" Text=""/>
                                         <p>当前头像<asp:Image ID="imgPhoto" runat="server" /></p>
-                                        <p>这是您第&nbsp;<asp:Label ID="lbLoginTimes" runat="server" Text=""/>&nbsp;次登陆，上次登陆时间&nbsp;<asp:Label ID="lbLastLoginDateTime" runat="server" Text=""/></p>
+                                        <p>这是您第&nbsp;<asp:Label ID="lbLoginTimes" runat="server" Text=""/>&nbsp;次登陆</p>
+                                        <p><asp:Label ID="lbLastLoginDateTime" runat="server" Text=""/></p>
                                         <p>您的当前积分为&nbsp;<asp:Label ID="lbIntegral" runat="server" Text=""/></p>
                                         <p><asp:Label ID="Label1" runat="server" Text=""/></p>
                                 	</div>

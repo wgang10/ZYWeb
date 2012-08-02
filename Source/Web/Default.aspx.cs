@@ -21,6 +21,7 @@ namespace Web
     {
         private readonly UserBLL bll;
         private readonly ExamPaper model;
+        private Member modelMember;
 
         public Default()
         {
@@ -33,12 +34,26 @@ namespace Web
             if (!IsPostBack)
             {   
                 BindGridData();
-                GetUserInfo();
+                if (Session["MemberInfo"] == null )
+                {
+                    GetUserInfo();
+                }
+                else
+                {
+                    divLogin.Visible = false;
+                    divRegiste.Visible = false;
+                    divLogined.Visible = true;
+                    divUserInfo.Visible = true;
+                    SetMemberInfo();
+                }
             }
             //GetRequestToken();
             //GetUserInfo();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void GetRequestToken()
         {
             string key = ConfigurationManager.AppSettings["ConsumerKey"];
@@ -58,6 +73,9 @@ namespace Web
             //Response.Redirect(authenticationUrl);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void GetUserInfo()
         {
             //获取Authorization Code
@@ -138,12 +156,32 @@ namespace Web
                     IList<Member> members = bll.GetMemberByOpenID(openid);
                     if (members.Count > 0)
                     {
-                        lbMemberNickname.Text = lbNickname.Text = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
-                        lbLoginTimes.Text = members[0].LoginTimes.ToString();
-                        lbLastLoginDateTime.Text = members[0].LastLoginDateTime.ToString("yyyy-MM-dd HH:mm:ss");
-                        lbIntegral.Text = members[0].Integral.ToString();
-                        imgPhoto.ImageUrl = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
+                        modelMember = new Member();
+                        modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
+                        modelMember.LoginTimes = members[0].LoginTimes;
+                        modelMember.LastLoginDateTime = members[0].LastLoginDateTime;
+                        modelMember.Integral = members[0].Integral;
+                        modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1); 
+                        Session["MemberInfo"] = modelMember;
+
+
+                        lbNickname.Text = modelMember.Nickname;
+                        lbMemberNickname.Text = modelMember.Nickname;
+                        lbLoginTimes.Text = modelMember.LoginTimes.ToString();
+
+                        if (modelMember.LoginTimes<2)
+                        {
+                            lbLastLoginDateTime.Text = "";
+                        }
+                        else
+                        {
+                            lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                        }
+                        lbIntegral.Text = modelMember.Integral.ToString();
+                        imgPhoto.ImageUrl =modelMember.PhotoURL;
                     }
+                    
                 }
                 else
                 {
@@ -215,6 +253,26 @@ namespace Web
             */
         }
 
+        private void SetMemberInfo()
+        {
+            modelMember = (Member)Session["MemberInfo"];
+            lbNickname.Text = modelMember.Nickname;
+            lbMemberNickname.Text = modelMember.Nickname;
+            lbLoginTimes.Text = modelMember.LoginTimes.ToString();
+            if (modelMember.LoginTimes<2)
+            {
+                lbLastLoginDateTime.Text = "";
+            }
+            else
+            {
+                lbLastLoginDateTime.Text = "上次登陆时间:" + modelMember.LastLoginDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+            }
+            lbIntegral.Text = modelMember.Integral.ToString();
+            imgPhoto.ImageUrl = modelMember.PhotoURL;
+            Response.Redirect("default.aspx");
+        }
+
         private string GetData()
         {
             return bll.GetUaerName();
@@ -261,6 +319,32 @@ namespace Web
         {
 
             return true;
+        }
+
+        protected void btnLoginOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            System.Web.Security.FormsAuthentication.SignOut();
+            Response.Redirect("default.aspx");
+        }
+
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string msg=string.Empty;
+            if (bll.LoginMember(txtLoginID.Text, txtLoginPWD.Text, ref msg))
+            {
+                modelMember = new Member();
+                Session["MemberInfo"] = modelMember;
+            }
+            else
+            {
+                lbMessage.Text = msg;
+            }
         }
     }
 }

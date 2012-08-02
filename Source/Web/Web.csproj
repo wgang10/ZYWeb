@@ -93,13 +93,10 @@
     <Content Include="images\upbtnbottom.png" />
     <Content Include="images\upbtncenter.png" />
     <Content Include="images\uploading.gif" />
-    <Content Include="index.htm" />
-    <Content Include="index.html" />
     <Content Include="LoginToQQ.aspx" />
     <Content Include="MemberInfo.aspx" />
     <Content Include="QQCallback.aspx" />
     <Content Include="Script\common-index.js" />
-    <Content Include="Script\common-login.js" />
     <Content Include="Script\custom-index.js" />
     <Content Include="Script\jquery-1.4.2.min.js" />
     <Content Include="Script\jquery.js" />

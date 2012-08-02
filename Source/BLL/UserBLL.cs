@@ -91,6 +91,7 @@ namespace ZYSoft.BLL
                     HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
                     model.OpenId = OponID;
                     model.LastLoginDateTime = DateTime.Now;
+                    model.CurrentLoginDateTime = DateTime.Now;
                     model.LoginTimes = 1;
                     model.Integral = 100;
                     //model.Birthday = new DateTime(1800, 1, 1, 1, 1, 1);
@@ -126,6 +127,7 @@ namespace ZYSoft.BLL
                         modelHis.Address = model.Address;
                         modelHis.LoginTimes = model.LoginTimes;
                         modelHis.LastLoginDateTime = model.LastLoginDateTime;
+                        modelHis.CurrentLoginDateTime = model.CurrentLoginDateTime;
                         modelHis.Integral = model.Integral;
                         modelHis.Status = model.Status;
                         #endregion
