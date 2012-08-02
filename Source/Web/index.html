@@ -1,8 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Web.Default" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html lang="zh-cn" xml:lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
+﻿<html lang="zh-cn" xml:lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>子杨软件--Zi Yang Soft-值得信赖</title>
 <meta name="description" content="Zi Yang Soft,子杨软件。"/>
@@ -20,6 +16,7 @@
 <![endif]--><!-- google code -->
 <script type="text/javascript" src="Script/jquery.js"></script>
 <script type="text/javascript" src="Script/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="Script/common-login.js"></script>
 <script type="text/javascript" src="Script/common-index.js"></script>
 <script type="text/javascript" src="Script/custom-index.js"></script>
 <script type="text/javascript" charset="gbk" src="Script/opensug.js"></script>
@@ -103,8 +100,8 @@
 			<div class="tpkg">
 				<div class="tphd">
 					<a href="http://www.ziyangsoft.com/"><IMG style="float:none; MARGIN:0px 0px 15px 0px" title=子杨软件 alt=子杨软件 src="images/TopLogo.png"></a> 
-					登录名<INPUT id="LoginUserName" width="150px" onFocus="_gaq.push(['_trackEvent', 'Texts', 'Focus', 'RegNickname']);" name=userDomain.user.username maxLength=32>
-					密码<INPUT id="LoginUserPassword" width="150px" onFocus="_gaq.push(['_trackEvent', 'Texts', 'Focus', 'RegNickname']);" name=userDomain.user.username maxLength=32>
+					登录名<INPUT id="nsp_user" width="150px" onFocus="_gaq.push(['_trackEvent', 'Texts', 'Focus', 'RegNickname']);" name=userDomain.user.username maxLength=32>
+					密码<INPUT id="pass" width="150px" onFocus="_gaq.push(['_trackEvent', 'Texts', 'Focus', 'RegNickname']);" name=userDomain.user.username maxLength=32>
 					<input name="ckRemberPWD" type="checkbox" value="记住密码" title="记住密码">记住密码
 					<input type="submit" name="btn" id="btn" value="登录">忘记密码？ > 
 					<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=www.ziyangsoft.com&scope=get_user_info,do_like&state=1150">

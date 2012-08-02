@@ -159,10 +159,16 @@ namespace ZYSoft.Comm.Entity
         public virtual int LoginTimes { get; set; }
 
         /// <summary>
-        /// 最后登陆时间
+        /// 上次登陆时间
         /// </summary>
         [DataMember]
         public virtual DateTime LastLoginDateTime { get; set; }
+
+        /// <summary>
+        /// 本次登陆时间
+        /// </summary>
+        [DataMember]
+        public virtual DateTime CurrentLoginDateTime { get; set; }
 
         /// <summary>
         /// 会员积分

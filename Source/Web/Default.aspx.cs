@@ -33,6 +33,7 @@ namespace Web
             if (!IsPostBack)
             {   
                 BindGridData();
+                GetUserInfo();
             }
             //GetRequestToken();
             //GetUserInfo();
@@ -98,20 +99,7 @@ namespace Web
                 string openid = responseFromServer.Replace(@"\","").Substring(responseFromServer.IndexOf("openid") + 9);
                 openid = openid.Substring(0, openid.IndexOf("}") - 1);
                 lbMessage4.Text = "openid=" + openid;
-
-                //用户登录
-                string msg=string.Empty;
-                if (bll.LoginMember(openid, ref msg))
-                {
-                    gridMemberInfo.DataSource = bll.GetMemberByOpenID(openid);
-                    gridMemberInfo.DataBind();
-                    gridMemberHistory.DataSource = bll.GetHistoryOfMemberUpdateByOpenID(openid);
-                    gridMemberHistory.DataBind();
-                }
-                else
-                {    
-                    lbMessageMember.Text = msg;
-                }
+                
 
                 //以调用get_user_info接口为例：
                 //发送请求到get_user_info的URL（请将access_token，appid等参数值替换为你自己的）：
@@ -137,6 +125,30 @@ namespace Web
                        ...
                 }
                 */
+
+                divLogin.Visible = false;
+                divRegiste.Visible = false;
+                divLogined.Visible = true;
+                divUserInfo.Visible = true;
+
+                //用户登录
+                string msg = string.Empty;
+                if (bll.LoginMember(openid, ref msg))
+                {
+                    IList<Member> members = bll.GetMemberByOpenID(openid);
+                    if (members.Count > 0)
+                    {
+                        lbMemberNickname.Text = lbNickname.Text = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
+                        lbLoginTimes.Text = members[0].LoginTimes.ToString();
+                        lbLastLoginDateTime.Text = members[0].LastLoginDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                        lbIntegral.Text = members[0].Integral.ToString();
+                        imgPhoto.ImageUrl = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
+                    }
+                }
+                else
+                {
+                    lbMessageMember.Text = msg;
+                }
                 reader.Close();
                 dataStream.Close();
                 response.Close();

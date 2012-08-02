@@ -80,7 +80,8 @@ namespace ZYSoft.BLL
                     {
                         list[0].Integral += 10;
                     }
-                    list[0].LastLoginDateTime = DateTime.Now;
+                    list[0].LastLoginDateTime = list[0].CurrentLoginDateTime;
+                    list[0].CurrentLoginDateTime = DateTime.Now;
                     list[0].UpdateTime = DateTime.Now;
                     isSuccess=MemberOP.UpdateMember(list[0]);
                 }

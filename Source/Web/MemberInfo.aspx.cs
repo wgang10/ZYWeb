@@ -25,7 +25,7 @@ namespace Web
         {
             if (!IsPostBack)
             {
-                GetUserInfo();
+                //GetUserInfo();
             }
         }
 

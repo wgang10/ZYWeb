@@ -99,6 +99,7 @@
     <Content Include="MemberInfo.aspx" />
     <Content Include="QQCallback.aspx" />
     <Content Include="Script\common-index.js" />
+    <Content Include="Script\common-login.js" />
     <Content Include="Script\custom-index.js" />
     <Content Include="Script\jquery-1.4.2.min.js" />
     <Content Include="Script\jquery.js" />
