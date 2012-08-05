@@ -103,31 +103,31 @@ namespace Web {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRegiste;
         
         /// <summary>
-        /// uname 控件。
+        /// txtNickName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox uname;
+        protected global::System.Web.UI.WebControls.TextBox txtNickName;
         
         /// <summary>
-        /// uemail 控件。
+        /// txtEmail 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox uemail;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// uhard 控件。
+        /// txtPassWord 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox uhard;
+        protected global::System.Web.UI.WebControls.TextBox txtPassWord;
         
         /// <summary>
         /// regsubmit 控件。

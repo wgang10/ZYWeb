@@ -160,13 +160,13 @@ namespace ZYSoft.Comm.Entity
         /// 上次登陆时间
         /// </summary>
         [DataMember]
-        public virtual DateTime LastLoginDateTime { get; set; }
+        public virtual DateTime? LastLoginDateTime { get; set; }
 
         /// <summary>
         /// 本次登陆时间
         /// </summary>
         [DataMember]
-        public virtual DateTime CurrentLoginDateTime { get; set; }
+        public virtual DateTime? CurrentLoginDateTime { get; set; }
 
         /// <summary>
         /// 会员积分
@@ -175,7 +175,7 @@ namespace ZYSoft.Comm.Entity
         public virtual int Integral { get; set; }
 
         /// <summary>
-        /// 会员状态 0:正常 1:限制 2:删除
+        /// 会员状态 0:正常 1:限制 2:删除 3:刚注册未验证
         /// </summary>
         [DataMember]
         public virtual int Status { get; set; }

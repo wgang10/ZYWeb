@@ -190,7 +190,8 @@ namespace Web
                 reader.Close();
                 dataStream.Close();
                 response.Close();
-
+                //Random rdm = new Random(100);
+                //Response.Redirect("Default.aspx?x=" + rdm.Next().ToString());
             }
 
             /*
@@ -344,6 +345,25 @@ namespace Web
             else
             {
                 lbMessage.Text = msg;
+            }
+        }
+
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void regsubmit_Click(object sender, EventArgs e)
+        {
+            string msg=string.Empty;
+            if (bll.RegistMember(txtNickName.Text.Trim(), txtEmail.Text.Trim(), txtPassWord.Text.Trim(), ref msg))
+            {
+                //注册成功
+                //邮箱激活
+            }
+            else
+            {
+                //注册失败
             }
         }
     }

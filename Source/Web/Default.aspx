@@ -163,17 +163,20 @@
                                         <ul>
                                           <li><img title="快速注册" alt="快速注册" src="images/register.png"/> </li>
                                           <li class=mt8>
-                                              <asp:TextBox ID="uname" MaxLength="32" runat="server"/>
+                                              <asp:TextBox ID="txtNickName" MaxLength="32" runat="server"/>
                                             <span id="unametips"></span></li>
                                           <li>
-                                              <asp:TextBox ID="uemail" MaxLength="50" runat="server"/>
+                                              <asp:TextBox ID="txtEmail" MaxLength="50" runat="server"/>
                                             <span id="uemailtips"></span>
                                           </li>
                                           <li>
-                                              <asp:TextBox ID="uhard" MaxLength="32" autocomplete="off" runat="server"/>
+                                              <asp:TextBox ID="txtPassWord" MaxLength="32" autocomplete="off" runat="server"/>
                                             <span id="uhardtips"></span></li>
                                           <li class="mt18">
-                                              <asp:Button ID="regsubmit" runat="server" Text="" onMouseUp="this.className='btn1_over'" class=btn1 onMouseOver="this.className='btn1_over'" onMouseOut="this.className='btn1'" onMouseDown="this.className='btn1_press'"/>                                            
+                                              <asp:Button ID="regsubmit" runat="server" Text="" 
+                                                  onMouseUp="this.className='btn1_over'" class=btn1 
+                                                  onMouseOver="this.className='btn1_over'" onMouseOut="this.className='btn1'" 
+                                                  onMouseDown="this.className='btn1_press'" onclick="regsubmit_Click"/>                                            
                                             <H2><a href="#">《服务协议》</a></H2>
                                           </li>
                                         </ul>

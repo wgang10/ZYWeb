@@ -146,6 +146,16 @@ namespace ZYSoft.BLL
         }
 
         /// <summary>
+        /// 会员登录
+        /// </summary>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool LoginMember(string ID, string PWD, ref string Msg)
+        {
+            return true;
+        }
+
+        /// <summary>
         /// 获取用户信息
         /// </summary>
         /// <param name="OponID"></param>
@@ -166,16 +176,6 @@ namespace ZYSoft.BLL
         }
 
         /// <summary>
-        /// 会员登录
-        /// </summary>
-        /// <param name="Msg"></param>
-        /// <returns></returns>
-        public bool LoginMember(string ID,string PWD,ref string Msg)
-        {
-            return true;
-        }
-
-        /// <summary>
         /// 保存会员信息
         /// </summary>
         /// <param name="model"></param>
@@ -184,6 +184,62 @@ namespace ZYSoft.BLL
         public bool SaveMemberInfo(Member model,ref string Msg)
         {
             return true;
+        }
+
+        /// <summary>
+        /// 注册账号
+        /// </summary>
+        /// <param name="Nickname"></param>
+        /// <param name="Email"></param>
+        /// <param name="PassWord"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool RegistMember(string Nickname, string Email, string PassWord, ref string Msg)
+        {
+            IList<Member> list = MemberOP.GetMemberByEmail(Email);
+            if (list.Count > 0)
+            {
+                if (list[0].Status != 3)
+                {
+                    Msg = "邮箱已注册，请直接登录";
+                    return false;
+                }
+                else
+                {
+                    list[0].Nickname = Nickname;
+                    list[0].LoginPWD = PassWord;
+                    list[0].UpdateTime = DateTime.Now;
+                    list[0].CreatTime = DateTime.Now;
+                    list[0].VerifictionCode = Comm.GlobalMethod.GenerateVerifictionCode();
+                    list[0].VerifictionCodeLimit = DateTime.Now.AddMinutes(30);
+                    return MemberOP.UpdateMember(list[0]);
+                }
+            }
+            else
+            {
+                Member model = new Member();
+                
+                model.Nickname = Nickname;
+                model.Email = Email;
+                model.LoginPWD = PassWord;
+                model.Status = 3;//刚注册未验证
+                model.LoginTimes = 0;
+                model.Integral = 0;
+                model.UpdateTime = DateTime.Now;
+                model.CreatTime = DateTime.Now;
+                model.VerifictionCode = Comm.GlobalMethod.GenerateVerifictionCode();
+                model.VerifictionCodeLimit = DateTime.Now.AddMinutes(30);
+                model.Id = MemberOP.SaveMember(model);
+                if (model.Id != -1)
+                {
+                    Msg = "注册失败！";
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }
