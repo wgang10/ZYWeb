@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using ZYSoft.Comm.Entity;
 using ZYSoft.ORM.Operation;
+using System.Configuration;
 
 namespace ZYSoft.BLL
 {
@@ -76,7 +77,7 @@ namespace ZYSoft.BLL
                 {                    
                     list[0].LoginTimes += 1;
                     //如果最后登录时间不是今天（也就是今天第一次登录）积分+10
-                    if (list[0].LastLoginDateTime.Date != DateTime.Now.Date && list[0].LastLoginDateTime <DateTime.Now)
+                    if (list[0].LastLoginDateTime.Value.Date != DateTime.Now.Date && list[0].LastLoginDateTime <DateTime.Now)
                     {
                         list[0].Integral += 10;
                     }
@@ -207,11 +208,13 @@ namespace ZYSoft.BLL
                 else
                 {
                     list[0].Nickname = Nickname;
-                    list[0].LoginPWD = PassWord;
+                    list[0].LoginPWD = Comm.GlobalMethod.EncryptPWD(PassWord);
                     list[0].UpdateTime = DateTime.Now;
                     list[0].CreatTime = DateTime.Now;
                     list[0].VerifictionCode = Comm.GlobalMethod.GenerateVerifictionCode();
-                    list[0].VerifictionCodeLimit = DateTime.Now.AddMinutes(30);
+                    int limitMinutes = 30;
+                    int.TryParse(ConfigurationManager.AppSettings["VerifictionCodeLimitMinutes"], out limitMinutes);
+                    list[0].VerifictionCodeLimit = DateTime.Now.AddMinutes(limitMinutes);
                     return MemberOP.UpdateMember(list[0]);
                 }
             }
@@ -221,7 +224,7 @@ namespace ZYSoft.BLL
                 
                 model.Nickname = Nickname;
                 model.Email = Email;
-                model.LoginPWD = PassWord;
+                model.LoginPWD = Comm.GlobalMethod.EncryptPWD(PassWord);
                 model.Status = 3;//刚注册未验证
                 model.LoginTimes = 0;
                 model.Integral = 0;

@@ -162,13 +162,13 @@ namespace ZYSoft.Comm.Entity
         /// 上次登陆时间
         /// </summary>
         [DataMember]
-        public virtual DateTime LastLoginDateTime { get; set; }
+        public virtual DateTime? LastLoginDateTime { get; set; }
 
         /// <summary>
         /// 本次登陆时间
         /// </summary>
         [DataMember]
-        public virtual DateTime CurrentLoginDateTime { get; set; }
+        public virtual DateTime? CurrentLoginDateTime { get; set; }
 
         /// <summary>
         /// 会员积分

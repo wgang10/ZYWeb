@@ -175,7 +175,7 @@ namespace Web
                         }
                         else
                         {
-                            lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                            lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
                         }
                         lbIntegral.Text = modelMember.Integral.ToString();
@@ -266,7 +266,7 @@ namespace Web
             }
             else
             {
-                lbLastLoginDateTime.Text = "上次登陆时间:" + modelMember.LastLoginDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+                lbLastLoginDateTime.Text = "上次登陆时间:" + modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
             }
             lbIntegral.Text = modelMember.Integral.ToString();
@@ -355,15 +355,20 @@ namespace Web
         /// <param name="e"></param>
         protected void regsubmit_Click(object sender, EventArgs e)
         {
+            lbRegisterMsg.Text = "";
             string msg=string.Empty;
             if (bll.RegistMember(txtNickName.Text.Trim(), txtEmail.Text.Trim(), txtPassWord.Text.Trim(), ref msg))
             {
                 //注册成功
                 //邮箱激活
+                lbRegisterMsg.Text = "注册成功！请进入邮箱进行激活。";
+                lbRegisterMsg.DataBind();
             }
             else
             {
                 //注册失败
+                lbRegisterMsg.Text = msg;
+                lbRegisterMsg.DataBind();
             }
         }
     }

@@ -172,13 +172,15 @@
                                           <li>
                                               <asp:TextBox ID="txtPassWord" MaxLength="32" autocomplete="off" runat="server"/>
                                             <span id="uhardtips"></span></li>
-                                          <li class="mt18">
+                                          <li>
                                               <asp:Button ID="regsubmit" runat="server" Text="" 
                                                   onMouseUp="this.className='btn1_over'" class=btn1 
                                                   onMouseOver="this.className='btn1_over'" onMouseOut="this.className='btn1'" 
                                                   onMouseDown="this.className='btn1_press'" onclick="regsubmit_Click"/>                                            
                                             <H2><a href="#">《服务协议》</a></H2>
                                           </li>
+                                          <li>
+                                              <asp:Label ID="lbRegisterMsg" runat="server" Text="" /></li>
                                         </ul>
                                 	</div>
                                     <div runat="server" id="divUserInfo" visible="false">
