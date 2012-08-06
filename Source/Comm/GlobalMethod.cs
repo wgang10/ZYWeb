@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net.Mail;
 
 
 namespace ZYSoft.Comm
@@ -65,6 +66,44 @@ namespace ZYSoft.Comm
         public static string DecryptPWD(string password)
         {
             return string.Empty;
+        }
+
+        /// <summary>
+        /// 发送邮件
+        /// </summary>
+        /// <param name="strMailTo">收件人</param>
+        /// <param name="strTitle">主题</param>
+        /// <param name="strMailBody">内容</param>
+        /// <param name="strMessage"></param>
+        /// <returns></returns>
+        public static bool SendMail(string strMailTo, string strTitle, string strMailBody, out string strMessage)
+        {
+            strMessage = "";
+            System.Net.Mail.MailMessage objMailMessage = new System.Net.Mail.MailMessage();
+            objMailMessage.From = new MailAddress("server@ziyangsoft.com");
+            objMailMessage.To.Add(new MailAddress(strMailTo));
+            objMailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+            objMailMessage.Subject = strTitle;
+            objMailMessage.Body = strMailBody;
+            objMailMessage.IsBodyHtml = false;
+            SmtpClient objSmtpClient = new SmtpClient();
+            //objSmtpClient.Host = "smtp.qq.com";
+            objSmtpClient.Host = "smtp.exmail.qq.com";
+            objSmtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //objSmtpClient.Credentials = new System.Net.NetworkCredential("wgang10@foxmail.com", "wangang10");
+            objSmtpClient.Credentials = new System.Net.NetworkCredential("server@ziyangsoft.com", "q1w2e3r4``");
+            //objSmtpClient.EnableSsl = true;//SMTP 服务器要求安全连接需要设置此属性
+            try
+            {
+                objSmtpClient.Send(objMailMessage);
+                strMessage = "邮件发送成功！";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                strMessage = ex.Message;
+                return false;
+            }
         }
     }
 }

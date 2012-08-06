@@ -361,8 +361,39 @@ namespace Web
             {
                 //注册成功
                 //邮箱激活
-                lbRegisterMsg.Text = "注册成功！请进入邮箱进行激活。";
-                lbRegisterMsg.DataBind();
+                bool blFlag = false;
+                string strMessage = string.Empty;
+                string strTitle = "欢迎你注册子杨软件";
+                string strMailTo = txtEmail.Text.Trim();
+                string strMailBody = string.Format(@"亲爱的{0}：您好！
+	
+
+	欢迎你注册子杨软件。
+    
+	您的激活码为：{1}
+
+    请拷贝如下激活码进行激活。
+
+致
+	敬
+
+
+    子杨软件
+
+    本邮件为系统自动发送，请勿回复。",txtNickName.Text.Trim(),msg);
+                blFlag = ZYSoft.Comm.GlobalMethod.SendMail(strMailTo, strTitle, strMailBody, out strMessage);
+                if (blFlag)
+                {
+                    //XTHospital.BLL.BLL_Log.AddLog("用户[" + strUserName + "]使用了找回密码功能，将密码发送到了邮箱[" + strMailTo + "].", "1", Page.Request.UserHostAddress);//添加日志
+                    lbRegisterMsg.Text = String.Format("注册成功！已向邮箱{0}发送了一封激活邮件，请进入邮箱进行激活。", txtEmail.Text.Trim());
+                    lbRegisterMsg.DataBind();
+                }
+                else
+                {
+                    //XTHospital.BLL.BLL_Log.AddLog("用户[" + strUserName + "]使用了找回密码功能，发送到邮箱[" + strMailTo + "]时失败." + strMessage, "1", Page.Request.UserHostAddress);//添加日志
+                    lbRegisterMsg.Text = String.Format("发送到邮箱[{0}]时失败.", strMailTo);
+                    lbRegisterMsg.DataBind();
+                }
             }
             else
             {
