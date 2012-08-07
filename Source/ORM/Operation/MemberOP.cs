@@ -56,7 +56,31 @@ namespace ZYSoft.ORM.Operation
             }
         }
 
-        public static IList<Member> GetMemberByID(int ID)
+        public static IList<Member> GetNormalMemberByID(int ID)
+        {
+            ISession session = NHibernateHelper.GetSession();
+            //配置NHibernate
+            var conf = new Configuration().Configure();
+            //在Configuration中添加HbmMapping
+            conf.AddDeserializedMapping(NHibernateHelper.GetEntityMapping<Member>(), "MemberXML");
+            //配置数据库架构元数据
+            SchemaMetadataUpdater.QuoteTableAndColumns(conf);
+
+            //建立SessionFactory
+            var factory = conf.BuildSessionFactory();
+            //打开Session做持久化数据
+            using (session = factory.OpenSession())
+            {
+                var query = session.QueryOver<Member>()
+                    .Where(p => p.Id == ID)
+                    .Where(p => p.Status == 0)
+                    .OrderBy(p => p.CreatTime).Desc
+                        .List();
+                return query;
+            }
+        }
+
+        public static IList<Member> GetAllMemberByID(int ID)
         {
             ISession session = NHibernateHelper.GetSession();
             //配置NHibernate

@@ -178,7 +178,8 @@
                                             <H2><a href="#">《服务协议》</a></H2>
                                           </li>
                                           <li>
-                                              <asp:Label ID="lbRegisterMsg" runat="server" Text="" /><asp:HiddenField ID="HidMemberID" runat="server" />
+                                              <asp:Label ID="lbRegisterMsg" runat="server" Text="" />
+                                              <asp:HiddenField ID="HidMemberID" runat="server" />
                                           </li>
                                           <li></li>
                                           <li>

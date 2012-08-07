@@ -65,6 +65,7 @@ namespace ZYSoft.BLL
         /// <summary>
         /// 会员登录
         /// </summary>
+        /// <param name="OponID"></param>
         /// <param name="Msg"></param>
         /// <returns></returns>
         public bool LoginMember(string OponID,ref string Msg)
@@ -147,11 +148,44 @@ namespace ZYSoft.BLL
         /// <summary>
         /// 会员登录
         /// </summary>
+        /// <param name="LoginID"></param>
+        /// <param name="PWD"></param>
         /// <param name="Msg"></param>
         /// <returns></returns>
-        public bool LoginMember(string ID, string PWD, ref string Msg)
+        public bool LoginMember(string LoginID, string PWD, ref string Msg)
         {
             return true;
+        }
+        
+        /// <summary>
+        /// 会员登录
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool LoginMember(int ID, ref string Msg,ref Member model)
+        {
+            bool isSuccess = false;
+            IList<Member> list = MemberOP.GetNormalMemberByID(ID);
+            if (list.Count > 0)
+            {                    
+                list[0].LoginTimes += 1;
+                //如果最后登录时间不是今天（也就是今天第一次登录）积分+10
+                if (list[0].LastLoginDateTime.HasValue && list[0].LastLoginDateTime.Value.Date != DateTime.Now.Date && list[0].LastLoginDateTime <DateTime.Now)
+                {
+                    list[0].Integral += 10;
+                }
+                list[0].LastLoginDateTime = list[0].CurrentLoginDateTime;
+                list[0].CurrentLoginDateTime = DateTime.Now;
+                list[0].UpdateTime = DateTime.Now;
+                model = list[0];
+                return MemberOP.UpdateMember(list[0]);
+            }
+            else
+            {
+                Msg = "会员不存在";
+                return false;
+            }
         }
 
         /// <summary>
@@ -252,7 +286,7 @@ namespace ZYSoft.BLL
 
         public bool ActivatMember(int MemberID, string VerifictionCode,ref string Msg)
         {
-            IList<Member> list = MemberOP.GetMemberByID(MemberID);
+            IList<Member> list = MemberOP.GetAllMemberByID(MemberID);
             if (list.Count > 0)
             {
                 if (list[0].Status == 3)
