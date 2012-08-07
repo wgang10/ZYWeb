@@ -145,7 +145,7 @@ namespace ZYSoft.Comm.Entity
         public virtual string VerifictionCode { get; set; }
 
         /// <summary>
-        /// 严重码有效期
+        /// 验证码有效期
         /// </summary>
         [DataMember]
         public virtual DateTime? VerifictionCodeLimit { get; set; }

@@ -95,8 +95,6 @@ namespace ZYSoft.BLL
                     model.CurrentLoginDateTime = DateTime.Now;
                     model.LoginTimes = 1;
                     model.Integral = 100;
-                    //model.Birthday = new DateTime(1800, 1, 1, 1, 1, 1);
-                    //model.VerifictionCodeLimit = new DateTime(1800, 1, 1, 1, 1, 1);
                     model.Status = 0;
                     model.UpdateTime = DateTime.Now;
                     model.CreatTime = DateTime.Now;
@@ -195,7 +193,7 @@ namespace ZYSoft.BLL
         /// <param name="PassWord"></param>
         /// <param name="Msg"></param>
         /// <returns></returns>
-        public bool RegistMember(string Nickname, string Email, string PassWord, ref string Msg)
+        public bool RegistMember(string Nickname, string Email, string PassWord, ref string Msg ,ref int ID)
         {
             IList<Member> list = MemberOP.GetMemberByEmail(Email);
             if (list.Count > 0)
@@ -203,6 +201,7 @@ namespace ZYSoft.BLL
                 if (list[0].Status != 3)
                 {
                     Msg = "邮箱已注册，请直接登录";
+                    ID = list[0].Id;
                     return false;
                 }
                 else
@@ -215,6 +214,8 @@ namespace ZYSoft.BLL
                     int limitMinutes = 30;
                     int.TryParse(ConfigurationManager.AppSettings["VerifictionCodeLimitMinutes"], out limitMinutes);
                     list[0].VerifictionCodeLimit = DateTime.Now.AddMinutes(limitMinutes);
+                    Msg = String.Format("{0} [过期时间：{1:yyyy/MM/dd HH:mm:ss}]", list[0].VerifictionCode, list[0].VerifictionCodeLimit.Value);
+                    ID = list[0].Id;
                     return MemberOP.UpdateMember(list[0]);
                 }
             }
@@ -231,17 +232,111 @@ namespace ZYSoft.BLL
                 model.UpdateTime = DateTime.Now;
                 model.CreatTime = DateTime.Now;
                 model.VerifictionCode = Comm.GlobalMethod.GenerateVerifictionCode();
-                model.VerifictionCodeLimit = DateTime.Now.AddMinutes(30);
+                int limitMinutes = 30;
+                int.TryParse(ConfigurationManager.AppSettings["VerifictionCodeLimitMinutes"], out limitMinutes);
+                model.VerifictionCodeLimit = DateTime.Now.AddMinutes(limitMinutes);
                 model.Id = MemberOP.SaveMember(model);
-                if (model.Id != -1)
+                if (model.Id == -1)
                 {
                     Msg = "注册失败！";
-                    return true;
+                    return false;
                 }
                 else
                 {
+                    Msg = String.Format("{0} [过期时间:{1:yyyy/MM/dd HH:mm:ss}]", model.VerifictionCode, model.VerifictionCodeLimit.Value);
+                    ID = model.Id;
+                    return true;
+                }
+            }
+        }
+
+        public bool ActivatMember(int MemberID, string VerifictionCode,ref string Msg)
+        {
+            IList<Member> list = MemberOP.GetMemberByID(MemberID);
+            if (list.Count > 0)
+            {
+                if (list[0].Status == 3)
+                {
+                    if (list[0].VerifictionCodeLimit < DateTime.Now)
+                    {
+                        Msg = "验证码有效期已过，请重新发送验证码";
+                        return false;
+                    }
+                    else
+                    {
+                        if (list[0].VerifictionCode.Trim().Equals(VerifictionCode.Trim()))
+                        {
+                            //修改用户状态为正常
+                            list[0].Status = 0;
+                            list[0].UpdateTime = DateTime.Now;
+                            bool isSuccess = MemberOP.UpdateMember(list[0]);
+                            //添加用户历史信息
+                            if (isSuccess)
+                            {
+                                #region 会员历史信息
+                                HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
+                                modelHis.CreatTime = DateTime.Now;
+                                modelHis.MemberId = list[0].Id;
+                                modelHis.OpenId = list[0].OpenId;
+                                modelHis.Nickname = list[0].Nickname;
+                                modelHis.Question1 = list[0].Question1;
+                                modelHis.Question2 = list[0].Question2;
+                                modelHis.Question3 = list[0].Question3;
+                                modelHis.Anwser1 = list[0].Anwser1;
+                                modelHis.Anwser2 = list[0].Anwser2;
+                                modelHis.Anwser3 = list[0].Anwser3;
+                                modelHis.Email = list[0].Email;
+                                modelHis.Phone = list[0].Phone;
+                                modelHis.LoginPWD = list[0].LoginPWD;
+                                modelHis.Type = list[0].Type;
+                                modelHis.Photo = list[0].Photo;
+                                modelHis.PhotoURL = list[0].PhotoURL;
+                                modelHis.Gender = list[0].Gender;
+                                modelHis.Birthday = list[0].Birthday;
+                                modelHis.Birthplace = list[0].Birthplace;
+                                modelHis.Education = list[0].Education;
+                                modelHis.Job = list[0].Job;
+                                modelHis.Address = list[0].Address;
+                                modelHis.LoginTimes = list[0].LoginTimes;
+                                modelHis.LastLoginDateTime = list[0].LastLoginDateTime;
+                                modelHis.CurrentLoginDateTime = list[0].CurrentLoginDateTime;
+                                modelHis.Integral = list[0].Integral;
+                                modelHis.Status = list[0].Status;
+                                #endregion
+
+                                if (MemberOP.SaveHistoryOfMemberUpdate(modelHis) == -1)
+                                {
+                                    Msg = "保存会员历史信息发生错误";
+                                    return false;
+                                }
+                                else
+                                {
+                                    return true;
+                                }
+                            }
+                            else
+                            {
+                                Msg = "保存会员信息发生错误";
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            Msg = "验证码错误";
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    Msg = "已经激活，请直接登录。";
                     return false;
                 }
+            }
+            else
+            {
+                Msg = "没有找到本会员信息";
+                return false;
             }
         }
     }

@@ -357,7 +357,8 @@ namespace Web
         {
             lbRegisterMsg.Text = "";
             string msg=string.Empty;
-            if (bll.RegistMember(txtNickName.Text.Trim(), txtEmail.Text.Trim(), txtPassWord.Text.Trim(), ref msg))
+            int ID = -1;
+            if (bll.RegistMember(txtNickName.Text.Trim(), txtEmail.Text.Trim(), txtPassWord.Text.Trim(), ref msg,ref ID))
             {
                 //注册成功
                 //邮箱激活
@@ -368,25 +369,25 @@ namespace Web
                 string strMailBody = string.Format(@"亲爱的{0}：您好！
 	
 
-	欢迎你注册子杨软件。
+	感谢您注册子杨软件。
     
 	您的激活码为：{1}
 
-    请拷贝如下激活码进行激活。
+    请拷贝以上激活码进行激活。
 
-致
-	敬
+    本邮件为系统自动发送，请勿回复。
 
+    谢谢！
 
-    子杨软件
-
-    本邮件为系统自动发送，请勿回复。",txtNickName.Text.Trim(),msg);
+    子杨软件|www.ziyangsoft.com", txtNickName.Text.Trim(),msg);
                 blFlag = ZYSoft.Comm.GlobalMethod.SendMail(strMailTo, strTitle, strMailBody, out strMessage);
                 if (blFlag)
                 {
                     //XTHospital.BLL.BLL_Log.AddLog("用户[" + strUserName + "]使用了找回密码功能，将密码发送到了邮箱[" + strMailTo + "].", "1", Page.Request.UserHostAddress);//添加日志
-                    lbRegisterMsg.Text = String.Format("注册成功！已向邮箱{0}发送了一封激活邮件，请进入邮箱进行激活。", txtEmail.Text.Trim());
+                    lbRegisterMsg.Text = String.Format("注册成功！已将激活码发送到了邮箱{0}，请进入邮箱查收进行激活。", txtEmail.Text.Trim());
                     lbRegisterMsg.DataBind();
+                    divActivat.Visible = true;
+                    HidMemberID.Value = ID.ToString();
                 }
                 else
                 {
@@ -400,6 +401,25 @@ namespace Web
                 //注册失败
                 lbRegisterMsg.Text = msg;
                 lbRegisterMsg.DataBind();
+            }
+        }
+
+        /// <summary>
+        /// 激活
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnActivat_Click(object sender, EventArgs e)
+        {
+            string msg =string.Empty;
+            if (bll.ActivatMember(Int32.Parse(HidMemberID.Value), txtActivat.Text, ref msg))
+            {
+                lbRegisterMsg.Text = "激活成功，请登录";
+                divActivat.Visible = false;
+            }
+            else
+            {
+                lbRegisterMsg.Text = msg;
             }
         }
     }

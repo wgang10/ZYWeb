@@ -161,17 +161,15 @@
                                     </div>
                                     <div class="regkg" runat="server" id="divRegiste" visible="true">
                                         <ul>
-                                          <li><img title="快速注册" alt="快速注册" src="images/register.png"/> </li>
-                                          <li class=mt8>
-                                              <asp:TextBox ID="txtNickName" MaxLength="32" runat="server"/>
-                                            <span id="unametips"></span></li>
+                                          <li><img title="快速注册" alt="快速注册" src="images/register.png"/></li>
                                           <li>
-                                              <asp:TextBox ID="txtEmail" MaxLength="50" runat="server"/>
-                                            <span id="uemailtips"></span>
+                                              <asp:TextBox ID="txtNickName" MaxLength="32" runat="server"/><span id="unametips"></span>
                                           </li>
                                           <li>
-                                              <asp:TextBox ID="txtPassWord" MaxLength="32" autocomplete="off" runat="server"/>
-                                            <span id="uhardtips"></span></li>
+                                              <asp:TextBox ID="txtEmail" MaxLength="50" runat="server"/><span id="uemailtips"></span>
+                                          </li>
+                                          <li>
+                                              <asp:TextBox ID="txtPassWord" MaxLength="32" autocomplete="off" runat="server"/><span id="uhardtips"></span></li>
                                           <li>
                                               <asp:Button ID="regsubmit" runat="server" Text="" 
                                                   onMouseUp="this.className='btn1_over'" class=btn1 
@@ -180,7 +178,16 @@
                                             <H2><a href="#">《服务协议》</a></H2>
                                           </li>
                                           <li>
-                                              <asp:Label ID="lbRegisterMsg" runat="server" Text="" /></li>
+                                              <asp:Label ID="lbRegisterMsg" runat="server" Text="" /><asp:HiddenField ID="HidMemberID" runat="server" />
+                                          </li>
+                                          <li></li>
+                                          <li>
+                                              <div id="divActivat" runat="server" visible="false">
+                                                  <asp:TextBox ID="txtActivat" Width="200px" runat="server"/>
+                                                  <asp:Button ID="btnActivat" runat="server"
+                                                      Text="激活" onclick="btnActivat_Click" />
+                                              </div>
+                                          </li>
                                         </ul>
                                 	</div>
                                     <div runat="server" id="divUserInfo" visible="false">
