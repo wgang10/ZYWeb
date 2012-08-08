@@ -65,18 +65,19 @@ namespace ZYSoft.BLL
         /// <summary>
         /// 会员登录
         /// </summary>
-        /// <param name="OponID"></param>
+        /// <param name="Member"></param>
         /// <param name="Msg"></param>
         /// <returns></returns>
-        public bool LoginMember(string OponID,ref string Msg)
+        public bool LoginMember(Member modelMember,ref string Msg)
         {
             bool isSuccess = false;
             try
             {
-                IList<Member> list = MemberOP.GetMemberByOpenID(OponID);
+                IList<Member> list = MemberOP.GetMemberByOpenID(modelMember.OpenId);
                 if (list.Count > 0)
                 {                    
                     list[0].LoginTimes += 1;
+                    list[0].Nickname = modelMember.Nickname;
                     //如果最后登录时间不是今天（也就是今天第一次登录）积分+10
                     if (list[0].LastLoginDateTime.Value.Date != DateTime.Now.Date && list[0].LastLoginDateTime <DateTime.Now)
                     {
@@ -85,13 +86,15 @@ namespace ZYSoft.BLL
                     list[0].LastLoginDateTime = list[0].CurrentLoginDateTime;
                     list[0].CurrentLoginDateTime = DateTime.Now;
                     list[0].UpdateTime = DateTime.Now;
+                    list[0].PhotoURL = modelMember.PhotoURL;
                     isSuccess=MemberOP.UpdateMember(list[0]);
                 }
                 else
                 {
                     Member model = new Member();
                     HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
-                    model.OpenId = OponID;
+                    model.OpenId = modelMember.OpenId;
+                    model.Nickname = modelMember.Nickname;
                     model.LastLoginDateTime = DateTime.Now;
                     model.CurrentLoginDateTime = DateTime.Now;
                     model.LoginTimes = 1;
@@ -99,6 +102,7 @@ namespace ZYSoft.BLL
                     model.Status = 0;
                     model.UpdateTime = DateTime.Now;
                     model.CreatTime = DateTime.Now;
+                    model.PhotoURL = modelMember.PhotoURL;
                     modelHis.MemberId = MemberOP.SaveMember(model);
                     if (modelHis.MemberId != -1)
                     {   
@@ -310,6 +314,139 @@ namespace ZYSoft.BLL
             }
         }
 
+        /// <summary>
+        /// 绑定新邮箱
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <param name="PassWord"></param>
+        /// <param name="ID"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool BindNewEmail(string Email,string PassWord, int ID, ref string Msg)
+        {
+            IList<Member> list = MemberOP.GetAllMemberByEmail(Email);
+            if (list.Count > 0)
+            {
+                if (list[0].Status != 3)
+                {
+                    Msg = "邮箱已被注册";
+                    return false;
+                }
+            }
+            list = MemberOP.GetAllMemberByID(ID);
+            if (list.Count > 0)
+            {
+                list[0].Email = Email;
+                list[0].LoginPWD = Comm.GlobalMethod.EncryptPWD(PassWord);
+                list[0].UpdateTime = DateTime.Now;
+                list[0].VerifictionCode = Comm.GlobalMethod.GenerateVerifictionCode();
+                int limitMinutes = 30;
+                int.TryParse(ConfigurationManager.AppSettings["VerifictionCodeLimitMinutes"], out limitMinutes);
+                list[0].VerifictionCodeLimit = DateTime.Now.AddMinutes(limitMinutes);
+                Msg = String.Format("{0} [过期时间：{1:yyyy/MM/dd HH:mm:ss}]", list[0].VerifictionCode, list[0].VerifictionCodeLimit.Value);
+                return MemberOP.UpdateMember(list[0]);
+            }
+            else
+            {
+                Msg = "会员不存在";
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 绑定旧邮箱
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <param name="PassWord"></param>
+        /// <param name="ID"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool BindOldEmail(string Email, string PassWord, int ID, ref string Msg)
+        {
+            bool isSuccess = false;
+            IList<Member> listEmail = MemberOP.GetNormalMemberByEmail(Email);
+            if (listEmail.Count < 1)
+            {
+                Msg = "账户不存在";
+                return false;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(listEmail[0].OpenId))
+                {
+                    Msg = "此账户已与QQ账号绑定";
+                    return false;
+                }
+                if (!listEmail[0].LoginPWD.Trim().Equals(Comm.GlobalMethod.EncryptPWD(PassWord)))
+                {
+                    Msg = "用户名或密码错误";
+                    return false;
+                }
+
+                IList<Member> listQQ = MemberOP.GetAllMemberByID(ID);
+                if (listQQ.Count > 0)
+                {
+                    listEmail[0].OpenId = listQQ[0].OpenId;
+                    listEmail[0].Nickname = listQQ[0].Nickname;
+                    listEmail[0].UpdateTime = DateTime.Now;
+                    isSuccess = MemberOP.UpdateMember(listEmail[0]);
+                    if (isSuccess)
+                    {
+                        //删除listQQ记录
+                        isSuccess = MemberOP.DeleteMember(listQQ[0]);
+                        //删除listQQ历史记录
+                        //添加listEmail历史记录
+                        #region 会员历史信息
+                        HistoryOfMemberUpdate modelHis = new HistoryOfMemberUpdate();
+                        modelHis.CreatTime = DateTime.Now;
+                        modelHis.MemberId = listEmail[0].Id;
+                        modelHis.OpenId = listEmail[0].OpenId;
+                        modelHis.Nickname = listEmail[0].Nickname;
+                        modelHis.Question1 = listEmail[0].Question1;
+                        modelHis.Question2 = listEmail[0].Question2;
+                        modelHis.Question3 = listEmail[0].Question3;
+                        modelHis.Anwser1 = listEmail[0].Anwser1;
+                        modelHis.Anwser2 = listEmail[0].Anwser2;
+                        modelHis.Anwser3 = listEmail[0].Anwser3;
+                        modelHis.Email = listEmail[0].Email;
+                        modelHis.Phone = listEmail[0].Phone;
+                        modelHis.LoginPWD = listEmail[0].LoginPWD;
+                        modelHis.Type = listEmail[0].Type;
+                        modelHis.Photo = listEmail[0].Photo;
+                        modelHis.PhotoURL = listEmail[0].PhotoURL;
+                        modelHis.Gender = listEmail[0].Gender;
+                        modelHis.Birthday = listEmail[0].Birthday;
+                        modelHis.Birthplace = listEmail[0].Birthplace;
+                        modelHis.Education = listEmail[0].Education;
+                        modelHis.Job = listEmail[0].Job;
+                        modelHis.Address = listEmail[0].Address;
+                        modelHis.LoginTimes = listEmail[0].LoginTimes;
+                        modelHis.LastLoginDateTime = listEmail[0].LastLoginDateTime;
+                        modelHis.CurrentLoginDateTime = listEmail[0].CurrentLoginDateTime;
+                        modelHis.Integral = listEmail[0].Integral;
+                        modelHis.Status = listEmail[0].Status;
+                        #endregion
+                        if (MemberOP.SaveHistoryOfMemberUpdate(modelHis) == -1)
+                        {
+                            Msg = "保存会员历史信息发生错误";
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+
+                    }
+                    return isSuccess;
+                }
+                else
+                {
+                    Msg = "会员不存在";
+                    return false;
+                }
+            }
+        }
+
         public bool ActivatMember(int MemberID, string VerifictionCode,ref string Msg)
         {
             IList<Member> list = MemberOP.GetAllMemberByID(MemberID);
@@ -328,6 +465,7 @@ namespace ZYSoft.BLL
                         {
                             //修改用户状态为正常
                             list[0].Status = 0;
+                            list[0].Integral = 100;
                             list[0].UpdateTime = DateTime.Now;
                             bool isSuccess = MemberOP.UpdateMember(list[0]);
                             //添加用户历史信息

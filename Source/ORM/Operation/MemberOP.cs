@@ -218,6 +218,40 @@ namespace ZYSoft.ORM.Operation
         }
 
         /// <summary>
+        /// 删除会员
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static bool DeleteMember(Member model)
+        {
+            bool isSuccess = false;
+            if (model != null)
+            {
+                var conf = new Configuration().Configure();
+                ISession session = NHibernateHelper.GetSession();
+                //配置NHibernate
+                //在Configuration中添加HbmMapping
+                conf.AddDeserializedMapping(NHibernateHelper.GetEntityMapping<Member>(), "MemberXML");
+                //配置数据库架构元数据
+                SchemaMetadataUpdater.QuoteTableAndColumns(conf);
+
+                //建立SessionFactory
+                var factory = conf.BuildSessionFactory();
+                //打开Session做持久化数据
+                using (session = factory.OpenSession())
+                {
+                    using (var tx = session.BeginTransaction())
+                    {
+                        session.Delete(model);
+                        tx.Commit();
+                        isSuccess = true;
+                    }
+                }
+            }
+            return isSuccess;
+        }
+
+        /// <summary>
         /// 保存会员历史信息(在每次创建会员及更新会员信息时产生一条历史信息)
         /// </summary>
         /// <param name="model"></param>

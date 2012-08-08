@@ -21,8 +21,6 @@
 <script type="text/javascript" src="Script/jquery.js"></script>
 <script type="text/javascript" src="Script/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="Script/common-index.js"></script>
-<script type="text/javascript" src="Script/custom-index.js"></script>
-<script type="text/javascript" charset="gbk" src="Script/opensug.js"></script>
 <script type="text/javascript">
     function openQQ() {
         var A = window.open("/logintoqq.aspx", "TencentLogin", "width=450,height=320,menubar=0,scrollbars=0, status=1,titlebar=0,toolbar=0,location=1");
@@ -94,183 +92,147 @@
         var t1 = setInterval(changeBanner, '3500');
     })
 </script>
-<meta name="GENERATOR" content="MSHTML 9.00.8112.16447">
+<meta name="GENERATOR" content="MSHTML 9.00.8112.16447"/>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="allscroll" class="allkg">
-	<div id="scrollctn" class="scrollctn bg1">
-		<div class="allscn">
-			<div class="tpkg">
-				<div class="tphd" runat="server" id="divLogin" visible="true">
-					<a href="http://www.ziyangsoft.com/"><img style="float:none; MARGIN:0px 0px 15px 0px" title="子杨软件" alt="子杨软件" src="images/TopLogo.png"/></a> 
-					邮箱<asp:TextBox ID="txtLoginID" runat="server" />
-					网站密码<asp:TextBox ID="txtLoginPWD" TextMode="Password" runat="server" /><asp:CheckBox ID="ckRemberPWD" Text="记住密码" runat="server" />
-                    <asp:Button ID="btnLogin" runat="server" Text="登录" CausesValidation="False" 
-                        onclick="btnLogin_Click" /> <a href="#">忘记密码？</a> 
-					<a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=www.ziyangsoft.com&scope=get_user_info,do_like&state=1150">
-					<img alt="使用QQ账号登陆" style="float:none; MARGIN:0px 0px 0px 10px" src="images/Connect_logo_3.png" /></a>
-				</div>
-                <div class="tphd" runat="server" id="divLogined" visible="false">
-					<a href="http://www.ziyangsoft.com/"><img style="float:none; MARGIN:0px 0px 15px 0px" title="子杨软件" alt="子杨软件" src="images/TopLogo.png"/></a> 
-					<asp:Label ID="lbMemberNickname" runat="server" Text="登陆用户昵称"/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a href="MemberInfo.aspx">设置</a>&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button 
-                        ID="btnLoginOut" runat="server" Text="注销" onclick="btnLoginOut_Click" 
-                        CausesValidation="False" />
-				</div>
-			</div>
-            <div class="allctn">
-                <div class="ctnwkg">
-                    <div class="ctnkg">
-                        <div class="ctnlinebg">
-                            <div class="ctnwzkg">
-                                <div class="introbg">
-                                    <div class="leftkg">
-                                        <div class="moviekg">
-                                            <div id="barScroll" class="mrwm_slide">
-                                                <div id="bannerBox">
-                                                    <div id="bannerImgesBox"> 
-                                                        <a href="#" style="display:block;"><img src="images/1.png"></a> 
-                                                        <a href="#"><img src="images/2.png"/></a> 
-                                                        <a href="#"><img src="images/3.png"/></a>
-                                                        <a href="#"><img src="images/4.jpg"/></a>
-                                                        <a href="#"><img src="images/5.jpg"/></a>
+        <div id="allscroll" class="allkg">
+	        <div id="scrollctn" class="scrollctn bg1">
+		        <div class="allscn">
+			        <div class="tpkg">
+				        <div class="tphd" runat="server" id="divLogin" visible="true">
+					        <a href="http://www.ziyangsoft.com/"><img style="float:none; MARGIN:0px 0px 15px 0px" title="子杨软件" alt="子杨软件" src="images/TopLogo.png"/></a> 
+					        邮箱<asp:TextBox ID="txtLoginID" runat="server" />
+					        网站密码<asp:TextBox ID="txtLoginPWD" TextMode="Password" runat="server" /><asp:CheckBox ID="ckRemberPWD" Text="记住密码" runat="server" />
+                            <asp:Button ID="btnLogin" runat="server" Text="登录" CausesValidation="False" 
+                                onclick="btnLogin_Click" /> <a href="#">忘记密码？</a> 
+					        <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=www.ziyangsoft.com&scope=get_user_info,do_like&state=1150">
+					        <img alt="使用QQ账号登陆" style="float:none; MARGIN:0px 0px 0px 10px" src="images/Connect_logo_3.png" /></a>
+				        </div>
+                        <div class="tphd" runat="server" id="divLogined" visible="false">
+					        <a href="http://www.ziyangsoft.com/"><img style="float:none; MARGIN:0px 0px 15px 0px" title="子杨软件" alt="子杨软件" src="images/TopLogo.png"/></a> 
+					        <asp:Label ID="lbMemberNickname" runat="server" Text="登陆用户昵称"/>
+					        &nbsp;&nbsp;&nbsp;&nbsp;<a href="MemberInfo.aspx">设置</a>&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button 
+                                ID="btnLoginOut" runat="server" Text="注销" onclick="btnLoginOut_Click" 
+                                CausesValidation="False" />
+				        </div>
+                        <asp:Label ID="lbMessage" runat="server" ForeColor="Red" />
+			        </div>
+                    <div class="allctn">
+                        <div class="ctnwkg">
+                            <div class="ctnkg">
+                                <div class="ctnlinebg">
+                                    <div class="ctnwzkg">
+                                        <div class="introbg">
+                                            <div class="leftkg">
+                                                <div class="moviekg">
+                                                    <div id="barScroll" class="mrwm_slide">
+                                                        <div id="bannerBox">
+                                                            <div id="bannerImgesBox"> 
+                                                                <a href="#" style="display:block;"><img src="images/1.png"></a> 
+                                                                <a href="#"><img src="images/2.png"/></a> 
+                                                                <a href="#"><img src="images/3.png"/></a>
+                                                                <a href="#"><img src="images/4.jpg"/></a>
+                                                                <a href="#"><img src="images/5.jpg"/></a>
+                                                            </div>
+                                                            <div id="bannerTextBox">
+                                                            <ul>
+                                                                <li class="thisHover" set="0"><a href="###">1</a></li>
+                                                                <li set="1"><a href="###">2</a></li>
+                                                                <li set="2"><a href="###">3</a></li>
+                                                                <li set="3"><a href="###">4</a></li>
+                                                                <li set="4"><a href="###">5</a></li>
+                                                            </ul>
+                                                          </div>
+                                                      </div>
                                                     </div>
-                                                    <div id="bannerTextBox">
+                                                </div>
+                                                <div class="noticekg">
+                                                    <span class="notice"><a title="最新新闻" href="#/">最新新闻</a></span> 
                                                     <ul>
-                                                        <li class="thisHover" set="0"><a href="###">1</a></li>
-                                                        <li set="1"><a href="###">2</a></li>
-                                                        <li set="2"><a href="###">3</a></li>
-                                                        <li set="3"><a href="###">4</a></li>
-                                                        <li set="4"><a href="###">5</a></li>
+                                            	        <li><a title="子杨软件网站开始试运行" href="#">子杨软件网站开始试运行【2012.8.01】</a></li>
+                                            	        <li><a title="子杨软件成功接入QQ账号登陆" href="#">子杨软件成功接入QQ账号登陆【2012.7.26】</a></li>
+                                                        <li><a title="子杨软件空间申请成功" href="#">子杨软件空间申请成功【2012.7.18】</a></li>
+                                                        <li><a title="子杨软件域名申请成功www.ziyangsoft.com【2012.7.16】" href="#">子杨软件域名申请成功www.ziyangsoft.com【2012.7.16】</a></li>
+                                                        <li><a title="热烈祝贺子杨软件创立！！！【2012.7.16】" href="#">热烈祝贺子杨软件创立！！！【2012.7.16】</a></li>
                                                     </ul>
-                                                  </div>
-                                              </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="noticekg">
-                                            <span class="notice"><a title="最新新闻" href="#/">最新新闻</a></span> 
-                                            <ul>
-                                            	<li><a title="子杨软件网站开始试运行" href="#">子杨软件网站开始试运行【2012.8.01】</a></li>
-                                            	<li><a title="子杨软件成功接入QQ账号登陆" href="#">子杨软件成功接入QQ账号登陆【2012.7.26】</a></li>
-                                                <li><a title="子杨软件空间申请成功" href="#">子杨软件空间申请成功【2012.7.18】</a></li>
-                                                <li><a title="子杨软件域名申请成功www.ziyangsoft.com【2012.7.16】" href="#">子杨软件域名申请成功www.ziyangsoft.com【2012.7.16】</a></li>
-                                                <li><a title="热烈祝贺子杨软件创立！！！【2012.7.16】" href="#">热烈祝贺子杨软件创立！！！【2012.7.16】</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="regkg" runat="server" id="divRegiste" visible="true">
-                                        <ul>
-                                          <li><img title="快速注册" alt="快速注册" src="images/register.png"/></li>
-                                          <li>
-                                              <asp:TextBox ID="txtNickName" MaxLength="32" runat="server"/><span id="unametips"></span>
-                                          </li>
-                                          <li>
-                                              <asp:TextBox ID="txtEmail" MaxLength="50" runat="server"/><span id="uemailtips"></span>
-                                          </li>
-                                          <li>
-                                              <asp:TextBox ID="txtPassWord" MaxLength="32" autocomplete="off" runat="server"/><span id="uhardtips"></span></li>
-                                          <li>
-                                              <asp:Button ID="regsubmit" runat="server" Text="" 
-                                                  onMouseUp="this.className='btn1_over'" class=btn1 
-                                                  onMouseOver="this.className='btn1_over'" onMouseOut="this.className='btn1'" 
-                                                  onMouseDown="this.className='btn1_press'" onclick="regsubmit_Click"/>                                            
-                                            <H2><a href="#">《服务协议》</a></H2>
-                                          </li>
-                                          <li>
-                                              <asp:Label ID="lbRegisterMsg" runat="server" Text="" />
-                                              <asp:HiddenField ID="HidMemberID" runat="server" />
-                                          </li>
-                                          <li></li>
-                                          <li>
-                                              <div id="divActivat" runat="server" visible="false">
-                                                  <asp:TextBox ID="txtActivat" Width="200px" runat="server"/>
-                                                  <asp:Button ID="btnActivat" runat="server"
-                                                      Text="激活" onclick="btnActivat_Click" />
-                                              </div>
-                                          </li>
-                                        </ul>
-                                	</div>
-                                    <div runat="server" id="divUserInfo" visible="false">
-                                        欢迎您：<asp:Label ID="lbNickname" runat="server" Text=""/>
-                                        <p>当前头像<asp:Image ID="imgPhoto" runat="server" /></p>
-                                        <p>这是您第&nbsp;<asp:Label ID="lbLoginTimes" runat="server" Text=""/>&nbsp;次登陆</p>
-                                        <p><asp:Label ID="lbLastLoginDateTime" runat="server" Text=""/></p>
-                                        <p>您的当前积分为&nbsp;<asp:Label ID="lbIntegral" runat="server" Text=""/></p>
-                                        <p><asp:Label ID="Label1" runat="server" Text=""/></p>
-                                	</div>
-                            	</div>
-							</div>
-						</div>
-					</div>
+                                            <div class="regkg" runat="server" id="divRegiste" visible="true">
+                                                <ul>
+                                                  <li><img title="快速注册" alt="快速注册" src="images/register.png"/></li>
+                                                  <li>
+                                                      <asp:TextBox ID="txtNickName" MaxLength="32" runat="server"/><span id="unametips"></span>
+                                                  </li>
+                                                  <li>
+                                                      <asp:TextBox ID="txtEmail" MaxLength="50" runat="server"/><span id="uemailtips"></span>
+                                                  </li>
+                                                  <li>
+                                                      <asp:TextBox ID="txtPassWord" MaxLength="32" autocomplete="off" runat="server" 
+                                                          TextMode="Password"/><span id="uhardtips"></span></li>
+                                                  <li>
+                                                      <asp:Button ID="regsubmit" runat="server" Text="" 
+                                                          onMouseUp="this.className='btn1_over'" class=btn1 
+                                                          onMouseOver="this.className='btn1_over'" onMouseOut="this.className='btn1'" 
+                                                          onMouseDown="this.className='btn1_press'" onclick="regsubmit_Click"/>                                            
+                                                    <H2><a href="#">《服务协议》</a></H2>
+                                                  </li>
+                                                  <li>
+                                                      <asp:Label ID="lbRegisterMsg" runat="server" Text="" />
+                                                      <asp:HiddenField ID="HidMemberID" runat="server" />
+                                                  </li>
+                                                  <li></li>
+                                                  <li>
+                                                      <div id="divActivat" runat="server" visible="false">
+                                                          <asp:TextBox ID="txtActivat" Width="200px" runat="server"/>
+                                                          <asp:Button ID="btnActivat" runat="server"
+                                                              Text="激活" onclick="btnActivat_Click" />
+                                                      </div>
+                                                  </li>
+                                                </ul>
+                                	        </div>
+                                            <div runat="server" id="divUserInfo" visible="false">
+                                                欢迎您：<asp:Label ID="lbNickname" runat="server" Text=""/>
+                                                <p>当前头像<asp:Image ID="imgPhoto" runat="server" /></p>
+                                                <p>这是您第&nbsp;<asp:Label ID="lbLoginTimes" runat="server" Text=""/>&nbsp;次登陆</p>
+                                                <p><asp:Label ID="lbLastLoginDateTime" runat="server" Text=""/></p>
+                                                <p>您的当前积分为&nbsp;<asp:Label ID="lbIntegral" runat="server" Text=""/></p>
+                                                <p><asp:Label ID="Label1" runat="server" Text=""/></p>
+                                	        </div>
+                            	        </div>
+							        </div>
+						        </div>
+					        </div>
+                        </div>
+					        <div class="btlist">
+                                <div class="btctn">
+                                    <ul>
+                                      <LI class="wd1"><a href="#"><IMG title=产品一 alt=产品一 src="images/icon1.jpg"></a> </li>
+                                      <LI class="wd2"><a href="#"><FONT class="font14wz b">产品一</FONT><BR>产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介。</a> 
+                                      </li>
+                                    </ul>
+                                    <ul>
+                                        <LI class="wd1"><a href="#"><IMG title=产品二 alt=产品二 src="images/icon2.jpg"></a> </li>
+                                        <LI class="wd2"><a href="#"><FONT class="font14wz b">产品二</FONT><BR>产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介。</a> </li>
+                                    </ul>
+                                    <ul>
+                                      <LI class="wd1"><a href="#"><IMG title=产品三 alt=产品三 src="images/icon3.jpg"></a> </li>
+                                      <LI class="wd2"><a href="#"><FONT class="font14wz b enwz1">产品三</FONT><BR>产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介。</a> 
+                                      </li>
+                                    </ul>
+						        </div>
+					        </div>
+				        </div>
+			        </div>
+    	        </div>
+            
+            <div class="scrollctn bg2">
+                <div class="btmkg"><a href="Help.aspx">网站介绍</a>· <a href="Help.aspx" rel="nofollow">帮助中心</a>· <a href="#" rel=nofollow>法律声明</a>· <a href="#">论坛</a>· <a href="#">开放平台</a>· <a href="#">招聘</a>· <a href="#">客服QQ</a>
+                <br><br>陕<font class="enwz1">ICP</font>备<font class=enwz1>12082682</font>号 <a href="#" rel=nofollow>
+                <font class="enwz">©2012-2017</font> <font class="enwz">Zi Yang Soft</font>子杨软件</a> 
                 </div>
-					<div class="btlist">
-                        <div class="btctn">
-                            <ul>
-                              <LI class="wd1"><a href="#"><IMG title=产品一 alt=产品一 src="images/icon1.jpg"></a> </li>
-                              <LI class="wd2"><a href="#"><FONT class="font14wz b">产品一</FONT><BR>产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介。</a> 
-                              </li>
-                            </ul>
-                            <ul>
-                                <LI class="wd1"><a href="#"><IMG title=产品二 alt=产品二 src="images/icon2.jpg"></a> </li>
-                                <LI class="wd2"><a href="#"><FONT class="font14wz b">产品二</FONT><BR>产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介。</a> </li>
-                            </ul>
-                            <ul>
-                              <LI class="wd1"><a href="#"><IMG title=产品三 alt=产品三 src="images/icon3.jpg"></a> </li>
-                              <LI class="wd2"><a href="#"><FONT class="font14wz b enwz1">产品三</FONT><BR>产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介产品简介。</a> 
-                              </li>
-                            </ul>
-						</div>
-					</div>
-				</div>
-			</div>
-    	</div>
-        <div>
-    <p><asp:Label ID="lbMessage" runat="server"/></p>
-    <p><asp:Label ID="lbMessage2" runat="server"/></p>
-    <p><asp:Label ID="lbMessage3" runat="server"/></p>
-    <p><asp:Label ID="lbMessage4" runat="server"/></p>
-    <p><asp:Label ID="lbMessage5" runat="server"/></p>
-    <p><asp:Label ID="lbMessage6" runat="server"/></p>
-    <p>
-        <asp:Image ID="Image1" runat="server" />   
-        <asp:Image ID="Image2" runat="server" />   
-        <asp:Image ID="Image3" runat="server" />
-    </p>
-                <div id="Div1" runat="server">                    
-                    <ul>
-                        <li>
-                            <div>
-                                <img src="./images/Connect_logo_4.png" alt="使用腾讯QQ登录" onclick="openQQ();return false;" />
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-    <p>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        <asp:Button ID="btnAdd" runat="server" onclick="btnAdd_Click" Text="添加" />
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-            ControlToValidate="TextBox1" ErrorMessage="必须输入"></asp:RequiredFieldValidator>
-    </p>
-    <p>
-        <asp:GridView ID="GridView1" runat="server">
-        </asp:GridView>
-    </p>
-    <p><asp:Label ID="lbMessageMember" runat="server"/>
-        <asp:GridView ID="gridMemberInfo" runat="server"/>
-    </p>
-    <p>
-        <asp:GridView ID="gridMemberHistory" runat="server"/>
-</div>
-        <div class="scrollctn bg2">
-          <div class="btmkg"><a href="#">网站介绍</a>· <a href="#" rel="nofollow">帮助中心</a>· <a href="#" rel=nofollow>法律声明</a>· <a href="#">论坛</a>· <a href="#">开放平台</a>· <a href="#">招聘</a>· <a href="#">客服QQ</a>
-            <br><br>陕<font class="enwz1">ICP</font>备<font class=enwz1>12082682</font>号 <a href="#" rel=nofollow>
-            <font class="enwz">©2012-2017</font> <font class="enwz">Zi Yang Soft</font>子杨软件</a> 
-          </div>
+            </div>
         </div>
-    </div>
-</div>
-
     </form>
 </body>
 </html>

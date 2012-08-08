@@ -34,99 +34,30 @@ namespace Web
             }
         }
 
-        private void GetUserInfo()
-        {
-            //获取Authorization Code
-            if (Request.QueryString["code"] != null)
-            {
-                string apppid = ConfigurationManager.AppSettings["ConsumerKey"];
-                string appkey = ConfigurationManager.AppSettings["ConsumerSecret"];
-                string code = Request.QueryString["code"].ToString();
-                string callbackUrl = ConfigurationManager.AppSettings["callbackUrl"];
-                string state = ConfigurationManager.AppSettings["state"];
-                string Url = string.Format("https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={0}&client_secret={1}&code={2}&state={3}&redirect_uri={4}"
-                    , apppid, appkey, code, state, callbackUrl);
-
-                WebRequest request = WebRequest.Create(Url);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                Stream dataStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
-                //发送后会得到如下信息
-                //access_token=AEE7091E761C2A571991234AD280E6BA&expires_in=7776000
-
-                string access_token = responseFromServer.Substring(responseFromServer.IndexOf("=") + 1);
-                access_token = access_token.Substring(0, access_token.IndexOf("&"));
-                Url = string.Format("https://graph.qq.com/oauth2.0/me?access_token={0}", access_token);
-                //请求https://graph.qq.com/oauth2.0/me?access_token=AEE7091E761C2A571991234AD280E6BA
-                request = WebRequest.Create(Url);
-                response = (HttpWebResponse)request.GetResponse();
-                dataStream = response.GetResponseStream();
-                reader = new StreamReader(dataStream);
-                responseFromServer = reader.ReadToEnd();
-                //得到如下信息
-                //callback( {"client_id":"100289171","openid":"1AC83BAA19BB2E892033E0C07C27AC24"} ); 
-                string openid = responseFromServer.Replace(@"\", "").Substring(responseFromServer.IndexOf("openid") + 9);
-                openid = openid.Substring(0, openid.IndexOf("}") - 1);
-
-                
-
-                //以调用get_user_info接口为例：
-                //发送请求到get_user_info的URL（请将access_token，appid等参数值替换为你自己的）：
-                Url = string.Format("https://graph.qq.com/user/get_user_info?access_token={0}&oauth_consumer_key={1}&openid={2}", access_token, apppid, openid);
-                request = WebRequest.Create(Url);
-                response = (HttpWebResponse)request.GetResponse();
-                dataStream = response.GetResponseStream();
-                reader = new StreamReader(dataStream);
-                responseFromServer = reader.ReadToEnd();
-                //lbMessage5.Text = responseFromServer;
-                string[] UserInfo = responseFromServer.Split(',');
-                //lbMessage6.Text = "昵称：" + UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
-                //Image1.ImageUrl = UserInfo[3].Substring(UserInfo[3].IndexOf("http"), UserInfo[3].Length - UserInfo[3].IndexOf("http") - 1);
-                //Image2.ImageUrl = UserInfo[4].Substring(UserInfo[4].IndexOf("http"), UserInfo[4].Length - UserInfo[4].IndexOf("http") - 1);
-                //Image3.ImageUrl = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
-
-                //（2）成功返回后，即可获取到用户数据：
-                /*
-                {
-                       "ret":0,
-                       "msg":"",
-                       "nickname":"YOUR_NICK_NAME",
-                       ...
-                }
-                */
-
-                //用户登录
-                string msg = string.Empty;
-                if (bll.LoginMember(openid, ref msg))
-                {
-                    IList<Member> members = bll.GetMemberByOpenID(openid);
-                    if (members.Count > 0)
-                    {
-                        lbMemberNickname.Text = lbNickname.Text = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
-                        lbLoginTimes.Text = members[0].LoginTimes.ToString();
-                        lbLastLoginDateTime.Text = members[0].LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                        lbIntegral.Text = members[0].Integral.ToString();
-                        imgPhoto.ImageUrl = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
-                    }
-                }
-                else
-                {
-                    lbMessageMember.Text = msg;
-                }
-                reader.Close();
-                dataStream.Close();
-                response.Close();
-
-            }
-        }
-
         private void SetMemberInfo()
         {
             Member modelMember = (Member)Session["MemberInfo"];
-            lbNickname.Text = modelMember.Nickname;
+            if (!string.IsNullOrEmpty(modelMember.Email))
+            {
+                lbLoginID.Text = String.Format("邮箱/登录账号:<strong>{0}</strong>", modelMember.Email);
+            }
+            else
+            {
+                divBindEmail.Visible = true;
+            }
+
+            if (string.IsNullOrEmpty(modelMember.OpenId))
+            {
+                divBingQQ.Visible = true;
+            }
+            else
+            {
+                lbBindQQ.Text = "已经绑定QQ账号       <a href='#'>解除绑定</a>";
+            }
+
             lbMemberNickname.Text = modelMember.Nickname;
-            lbLoginTimes.Text = modelMember.LoginTimes.ToString();
+            lbNickname.Text = String.Format("欢迎您:<strong>{0}</strong>", modelMember.Nickname);
+            lbLoginTimes.Text = String.Format("这是您第 {0} 次登录", modelMember.LoginTimes);
             if (modelMember.LoginTimes < 2)
             {
                 lbLastLoginDateTime.Text = "";
@@ -136,8 +67,77 @@ namespace Web
                 lbLastLoginDateTime.Text = "上次登陆时间:" + modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
             }
-            lbIntegral.Text = modelMember.Integral.ToString();
+            lbIntegral.Text ="您的当前积分为:"+modelMember.Integral.ToString();
             imgPhoto.ImageUrl = modelMember.PhotoURL;
+        }
+
+        /// <summary>
+        /// 注销
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnLoginOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            System.Web.Security.FormsAuthentication.SignOut();
+            Response.Redirect("default.aspx");
+        }
+
+
+        protected void rdbNotExist_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbNotExist.Checked)
+            {
+                btnVerify.Text = "验证";
+                btnVerify.DataBind();
+            }
+        }
+
+        protected void rdbExist_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbExist.Checked)
+            {
+                btnVerify.Text = "登录";
+                btnVerify.DataBind();
+            }
+        }
+
+        /// <summary>
+        /// 验证邮箱/绑定已有账号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnVerify_Click(object sender, EventArgs e)
+        {
+            Member modelMember = (Member)Session["MemberInfo"];
+            string strMsg=string.Empty;
+            if (rdbNotExist.Checked)
+            {
+                //邮箱激活
+                if (bll.BindNewEmail(txtEmail.Text, txtPassWord.Text, modelMember.Id, ref strMsg))
+                {
+                    //显示已经激活，QQ账号登录后确实是已经激活状态
+                    //输入正确激活码后应该直接登录显示绑定的邮箱
+                    //另外现在没有添加历史记录
+                    Response.Redirect(String.Format("ActivatMember.aspx?LoginID={0}&NickName={1}&LimitTime={2}&ID={3}", txtEmail.Text.Trim(), modelMember.Nickname, strMsg, modelMember.Id));
+                }
+                else
+                {
+                    lbMessage.Text = strMsg;
+                }
+            }
+            else
+            {
+                if (bll.BindOldEmail(txtEmail.Text, txtPassWord.Text, modelMember.Id, ref strMsg))
+                {
+                    lbLoginID.Text = txtEmail.Text;
+                    lbMessage.Text = "邮箱绑定成功";
+                }
+                else
+                {
+                    lbMessage.Text = strMsg;
+                }
+            }
         }
     }
 }

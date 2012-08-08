@@ -29,18 +29,15 @@ namespace Web
                 HidMemberID.Value = Request["ID"];
                 string strNickName = Request["NickName"];
                 string strLimitTime = Request["LimitTime"];
-                string strMailBody = string.Format(@"亲爱的{0}：您好！
-	
+                string strMailBody = string.Format(@"亲爱的{0}：您好！	
 
-	感谢您注册子杨软件。
+    感谢您注册子杨软件。
     
-	您的激活码为：{1}
+    您的激活码为：{1}
 
     请拷贝以上激活码进行激活。
 
-    本邮件为系统自动发送，请勿回复。
-
-    谢谢！
+    本邮件为系统自动发送，请勿回复。谢谢！
 
     子杨软件|www.ziyangsoft.com", strNickName, strLimitTime);
                 blFlag = ZYSoft.Comm.GlobalMethod.SendMail(strMailTo, strTitle, strMailBody, out strMessage);

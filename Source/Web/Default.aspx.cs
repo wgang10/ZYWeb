@@ -33,10 +33,14 @@ namespace Web
         {
             if (!IsPostBack)
             {   
-                BindGridData();
-                if (Session["MemberInfo"] == null )
+                //BindGridData();
+                if (Session["MemberInfo"] == null)
                 {
                     GetUserInfo();
+                }
+                else
+                {
+                    Response.Redirect("MemberInfo.aspx");
                 }
                 //else
                 //{
@@ -81,123 +85,138 @@ namespace Web
             //获取Authorization Code
             if (Request.QueryString["code"] != null)
             {
-                string apppid = ConfigurationManager.AppSettings["ConsumerKey"];
-                string appkey = ConfigurationManager.AppSettings["ConsumerSecret"];
-                string code = Request.QueryString["code"].ToString();
-                string callbackUrl = ConfigurationManager.AppSettings["callbackUrl"];
-                string state = ConfigurationManager.AppSettings["state"];
-                string Url = string.Format("https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={0}&client_secret={1}&code={2}&state={3}&redirect_uri={4}"
-                    , apppid, appkey, code, state, callbackUrl);
-                
-                
-                //Response.Redirect(Url);
-
-
-                WebRequest request = WebRequest.Create(Url);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                Stream dataStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
-                lbMessage2.Text = responseFromServer;
-                //发送后会得到如下信息
-                //access_token=AEE7091E761C2A571991234AD280E6BA&expires_in=7776000
-
-                string access_token = responseFromServer.Substring(responseFromServer.IndexOf("=")+1);
-                access_token = access_token.Substring(0, access_token.IndexOf("&"));
-                Url = string.Format("https://graph.qq.com/oauth2.0/me?access_token={0}",access_token);
-                //请求https://graph.qq.com/oauth2.0/me?access_token=AEE7091E761C2A571991234AD280E6BA
-                request = WebRequest.Create(Url);
-                response = (HttpWebResponse)request.GetResponse();
-                dataStream = response.GetResponseStream();
-                reader = new StreamReader(dataStream);
-                responseFromServer = reader.ReadToEnd();
-                lbMessage3.Text = responseFromServer;
-                //得到如下信息
-                //callback( {"client_id":"100289171","openid":"1AC83BAA19BB2E892033E0C07C27AC24"} ); 
-                string openid = responseFromServer.Replace(@"\","").Substring(responseFromServer.IndexOf("openid") + 9);
-                openid = openid.Substring(0, openid.IndexOf("}") - 1);
-                lbMessage4.Text = "openid=" + openid;
-                
-
-                //以调用get_user_info接口为例：
-                //发送请求到get_user_info的URL（请将access_token，appid等参数值替换为你自己的）：
-                Url = string.Format("https://graph.qq.com/user/get_user_info?access_token={0}&oauth_consumer_key={1}&openid={2}", access_token, apppid, openid);
-                request = WebRequest.Create(Url);
-                response = (HttpWebResponse)request.GetResponse();
-                dataStream = response.GetResponseStream();
-                reader = new StreamReader(dataStream);
-                responseFromServer = reader.ReadToEnd();
-                reader.Close();
-                dataStream.Close();
-                response.Close();
-
-
-                lbMessage5.Text = responseFromServer;
-                string[] UserInfo = responseFromServer.Split(',');
-                lbMessage6.Text = "昵称：" + UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
-                Image1.ImageUrl = UserInfo[3].Substring(UserInfo[3].IndexOf("http"), UserInfo[3].Length - UserInfo[3].IndexOf("http") - 1);
-                Image2.ImageUrl = UserInfo[4].Substring(UserInfo[4].IndexOf("http"), UserInfo[4].Length - UserInfo[4].IndexOf("http") - 1);
-                Image3.ImageUrl = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
-
-                //（2）成功返回后，即可获取到用户数据：
-                /*
+                #region QQ登录
+                try
                 {
-                       "ret":0,
-                       "msg":"",
-                       "nickname":"YOUR_NICK_NAME",
-                       ...
-                }
-                */
-
-                divLogin.Visible = false;
-                divRegiste.Visible = false;
-                divLogined.Visible = true;
-                divUserInfo.Visible = true;
+                    string apppid = ConfigurationManager.AppSettings["ConsumerKey"];
+                    string appkey = ConfigurationManager.AppSettings["ConsumerSecret"];
+                    string code = Request.QueryString["code"].ToString();
+                    string callbackUrl = ConfigurationManager.AppSettings["callbackUrl"];
+                    string state = ConfigurationManager.AppSettings["state"];
+                    string Url = string.Format("https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={0}&client_secret={1}&code={2}&state={3}&redirect_uri={4}"
+                        , apppid, appkey, code, state, callbackUrl);
 
 
-                //用户登录
-                string msg = string.Empty;
-                if (bll.LoginMember(openid, ref msg))
-                {
-                    IList<Member> members = bll.GetMemberByOpenID(openid);
-                    if (members.Count > 0)
+                    //Response.Redirect(Url);
+
+
+                    WebRequest request = WebRequest.Create(Url);
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    Stream dataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(dataStream);
+                    string responseFromServer = reader.ReadToEnd();
+                    //lbMessage2.Text = responseFromServer;
+                    //发送后会得到如下信息
+                    //access_token=AEE7091E761C2A571991234AD280E6BA&expires_in=7776000
+
+                    string access_token = responseFromServer.Substring(responseFromServer.IndexOf("=") + 1);
+                    access_token = access_token.Substring(0, access_token.IndexOf("&"));
+                    Url = string.Format("https://graph.qq.com/oauth2.0/me?access_token={0}", access_token);
+                    //请求https://graph.qq.com/oauth2.0/me?access_token=AEE7091E761C2A571991234AD280E6BA
+                    request = WebRequest.Create(Url);
+                    response = (HttpWebResponse)request.GetResponse();
+                    dataStream = response.GetResponseStream();
+                    reader = new StreamReader(dataStream);
+                    responseFromServer = reader.ReadToEnd();
+                    //lbMessage3.Text = responseFromServer;
+                    //得到如下信息
+                    //callback( {"client_id":"100289171","openid":"1AC83BAA19BB2E892033E0C07C27AC24"} ); 
+                    string openid = responseFromServer.Replace(@"\", "").Substring(responseFromServer.IndexOf("openid") + 9);
+                    openid = openid.Substring(0, openid.IndexOf("}") - 1);
+                    //lbMessage4.Text = "openid=" + openid;
+
+
+                    //以调用get_user_info接口为例：
+                    //发送请求到get_user_info的URL（请将access_token，appid等参数值替换为你自己的）：
+                    Url = string.Format("https://graph.qq.com/user/get_user_info?access_token={0}&oauth_consumer_key={1}&openid={2}", access_token, apppid, openid);
+                    request = WebRequest.Create(Url);
+                    response = (HttpWebResponse)request.GetResponse();
+                    dataStream = response.GetResponseStream();
+                    reader = new StreamReader(dataStream);
+                    responseFromServer = reader.ReadToEnd();
+                    reader.Close();
+                    dataStream.Close();
+                    response.Close();
+
+
+                    //lbMessage5.Text = responseFromServer;
+                    string[] UserInfo = responseFromServer.Split(',');
+                    //lbMessage6.Text = "昵称：" + UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
+                    //Image1.ImageUrl = UserInfo[3].Substring(UserInfo[3].IndexOf("http"), UserInfo[3].Length - UserInfo[3].IndexOf("http") - 1);
+                    //Image2.ImageUrl = UserInfo[4].Substring(UserInfo[4].IndexOf("http"), UserInfo[4].Length - UserInfo[4].IndexOf("http") - 1);
+                    //Image3.ImageUrl = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
+
+                    //（2）成功返回后，即可获取到用户数据：
+                    /*
                     {
-                        Member modelMember = new Member();
-                        modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
-                        modelMember.LoginTimes = members[0].LoginTimes;
-                        modelMember.LastLoginDateTime = members[0].LastLoginDateTime;
-                        modelMember.Integral = members[0].Integral;
-                        modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1); 
-                        Session["MemberInfo"] = modelMember;
-
-                        Response.Redirect("MemberInfo.aspx", true);
-
-                        //lbNickname.Text = modelMember.Nickname;
-                        //lbMemberNickname.Text = modelMember.Nickname;
-                        //lbLoginTimes.Text = modelMember.LoginTimes.ToString();
-
-                        //if (modelMember.LoginTimes<2)
-                        //{
-                        //    lbLastLoginDateTime.Text = "";
-                        //}
-                        //else
-                        //{
-                        //    lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-
-                        //}
-                        //lbIntegral.Text = modelMember.Integral.ToString();
-                        //imgPhoto.ImageUrl =modelMember.PhotoURL;
+                           "ret":0,
+                           "msg":"",
+                           "nickname":"YOUR_NICK_NAME",
+                           ...
                     }
-                    
+                    */
+
+                    divLogin.Visible = false;
+                    divRegiste.Visible = false;
+                    divLogined.Visible = true;
+                    divUserInfo.Visible = true;
+
+
+                    //用户登录
+                    string msg = string.Empty;
+                    Member modelMember = new Member();
+                    modelMember.OpenId = openid;
+                    modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
+                    modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
+                    if (bll.LoginMember(modelMember, ref msg))
+                    {
+                        IList<Member> members = bll.GetMemberByOpenID(openid);
+                        if (members.Count > 0)
+                        {
+                            //modelMember.OpenId = openid;
+                            //modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
+                            //modelMember.LoginTimes = members[0].LoginTimes;
+                            //modelMember.LastLoginDateTime = members[0].LastLoginDateTime;
+                            //modelMember.Integral = members[0].Integral;
+                            //modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
+                            Session["MemberInfo"] = members[0];
+
+                            Response.Redirect("MemberInfo.aspx", true);
+
+                            //lbNickname.Text = modelMember.Nickname;
+                            //lbMemberNickname.Text = modelMember.Nickname;
+                            //lbLoginTimes.Text = modelMember.LoginTimes.ToString();
+
+                            //if (modelMember.LoginTimes<2)
+                            //{
+                            //    lbLastLoginDateTime.Text = "";
+                            //}
+                            //else
+                            //{
+                            //    lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+
+                            //}
+                            //lbIntegral.Text = modelMember.Integral.ToString();
+                            //imgPhoto.ImageUrl =modelMember.PhotoURL;
+                        }
+
+                    }
+                    else
+                    {
+                        lbMessage.Text = msg;
+                    }
+
+                    //Random rdm = new Random(100);
+                    //Response.Redirect("Default.aspx?x=" + rdm.Next().ToString());
                 }
-                else
+                catch (Exception ex)
                 {
-                    lbMessageMember.Text = msg;
+                    lbMessage.Text = ex.Message;
                 }
-                
-                //Random rdm = new Random(100);
-                //Response.Redirect("Default.aspx?x=" + rdm.Next().ToString());
+                #endregion
             }
+
+            #region 使用第三方组件
 
             /*
             if (Request.QueryString["oauth_vericode"] != null)
@@ -257,6 +276,7 @@ namespace Web
                 //}
             }
             */
+            #endregion
         }
 
         private void SetMemberInfo()
@@ -285,39 +305,41 @@ namespace Web
 
         private void BindGridData()
         {
-            try
-            {
-                this.lbMessage.Text = String.Format("{0} 获取时间 {1:yyyy-MM-dd HH:mm:ss}", GetData(), DateTime.Now);
-                this.GridView1.DataSource = bll.GetExamPapersList();
-            }
-            catch (Exception ex)
-            {
-                this.GridView1.DataSource = null;
-                lbMessage.Text = ex.Message;
-                lbMessage.DataBind();
-            }
-            finally
-            {
-                this.GridView1.DataBind();
-            }
+
+            //try
+            //{
+            //    this.lbMessage.Text = String.Format("{0} 获取时间 {1:yyyy-MM-dd HH:mm:ss}", GetData(), DateTime.Now);
+            //    this.GridView1.DataSource = bll.GetExamPapersList();
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.GridView1.DataSource = null;
+            //    lbMessage.Text = ex.Message;
+            //    lbMessage.DataBind();
+            //}
+            //finally
+            //{
+            //    this.GridView1.DataBind();
+            //}
+            
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            model.Name = this.TextBox1.Text.Trim();
-            model.CreatDateTime = DateTime.Now;
-            model.UpdateDateTime = DateTime.Now;
-            model.Status = "1";
-            if (bll.SaveOrUpdateExamPaper(model) == -1)
-            {
-                lbMessage.Text = "添加失败";
-                lbMessage.DataBind();
-            }
-            else
-            {
-                BindGridData();
-                TextBox1.Text = "";
-            }
+            //model.Name = this.TextBox1.Text.Trim();
+            //model.CreatDateTime = DateTime.Now;
+            //model.UpdateDateTime = DateTime.Now;
+            //model.Status = "1";
+            //if (bll.SaveOrUpdateExamPaper(model) == -1)
+            //{
+            //    lbMessage.Text = "添加失败";
+            //    lbMessage.DataBind();
+            //}
+            //else
+            //{
+            //    BindGridData();
+            //    TextBox1.Text = "";
+            //}
         }
 
         private bool LoginMember(string OpenID,ref string Msg)
