@@ -25,12 +25,12 @@ namespace Web
         {
             if (Session["MemberInfo"] == null)
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Default.aspx",true);
                 return;
             }
             if (!IsPostBack)
             {
-                //GetUserInfo();
+                SetMemberInfo();
             }
         }
 
@@ -119,6 +119,25 @@ namespace Web
                 response.Close();
 
             }
+        }
+
+        private void SetMemberInfo()
+        {
+            Member modelMember = (Member)Session["MemberInfo"];
+            lbNickname.Text = modelMember.Nickname;
+            lbMemberNickname.Text = modelMember.Nickname;
+            lbLoginTimes.Text = modelMember.LoginTimes.ToString();
+            if (modelMember.LoginTimes < 2)
+            {
+                lbLastLoginDateTime.Text = "";
+            }
+            else
+            {
+                lbLastLoginDateTime.Text = "上次登陆时间:" + modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+
+            }
+            lbIntegral.Text = modelMember.Integral.ToString();
+            imgPhoto.ImageUrl = modelMember.PhotoURL;
         }
     }
 }

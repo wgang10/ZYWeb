@@ -152,9 +152,35 @@ namespace ZYSoft.BLL
         /// <param name="PWD"></param>
         /// <param name="Msg"></param>
         /// <returns></returns>
-        public bool LoginMember(string LoginID, string PWD, ref string Msg)
+        public bool LoginMember(string LoginID, string PWD, ref string Msg,ref Member model)
         {
-            return true;
+            bool isSuccess = false;
+            IList<Member> list = MemberOP.GetNormalMemberByEmail(LoginID);
+            if (list.Count > 0)
+            {
+                if (!list[0].LoginPWD.Trim().Equals(Comm.GlobalMethod.EncryptPWD(PWD)))
+                {
+                    Msg = "用户名或密码错误";
+                    return false;
+                }
+
+                list[0].LoginTimes += 1;
+                //如果最后登录时间不是今天（也就是今天第一次登录）积分+10
+                if (list[0].LastLoginDateTime.HasValue && list[0].LastLoginDateTime.Value.Date != DateTime.Now.Date && list[0].LastLoginDateTime < DateTime.Now)
+                {
+                    list[0].Integral += 10;
+                }
+                list[0].LastLoginDateTime = list[0].CurrentLoginDateTime;
+                list[0].CurrentLoginDateTime = DateTime.Now;
+                list[0].UpdateTime = DateTime.Now;
+                model = list[0];
+                return MemberOP.UpdateMember(list[0]);
+            }
+            else
+            {
+                Msg = "会员不存在";
+                return false;
+            }
         }
         
         /// <summary>
@@ -229,7 +255,7 @@ namespace ZYSoft.BLL
         /// <returns></returns>
         public bool RegistMember(string Nickname, string Email, string PassWord, ref string Msg ,ref int ID)
         {
-            IList<Member> list = MemberOP.GetMemberByEmail(Email);
+            IList<Member> list = MemberOP.GetAllMemberByEmail(Email);
             if (list.Count > 0)
             {
                 if (list[0].Status != 3)

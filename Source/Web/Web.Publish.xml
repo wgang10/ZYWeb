@@ -5,13 +5,12 @@
     <file relUrl="bin/NHibernate.dll" publishTime="09/02/2011 09:54:02" />
     <file relUrl="Default.aspx" publishTime="08/08/2012 00:00:03" />
     <file relUrl="images/allicon.png" publishTime="07/31/2012 23:54:31" />
-    <file relUrl="bin/ZYSoft.Comm.pdb" publishTime="08/08/2012 00:57:55" />
     <file relUrl="images/Connect_logo_3.png" publishTime="07/31/2012 23:54:37" />
     <file relUrl="images/upbtnbottom.png" publishTime="07/31/2012 23:54:37" />
     <file relUrl="images/bg3.png" publishTime="07/31/2012 23:54:31" />
     <file relUrl="images/3.png" publishTime="07/31/2012 23:54:31" />
     <file relUrl="indexSL.html" publishTime="07/19/2012 21:27:24" />
-    <file relUrl="Web.config" publishTime="08/08/2012 00:58:14" />
+    <file relUrl="Web.config" publishTime="08/08/2012 08:38:30" />
     <file relUrl="images/pwdbg.png" publishTime="07/31/2012 23:54:37" />
     <file relUrl="images/upbtncenter.png" publishTime="07/31/2012 23:54:31" />
     <file relUrl="Script/jquery-1.4.2.min.js" publishTime="07/31/2012 23:52:58" />
@@ -19,30 +18,31 @@
     <file relUrl="images/searbtntop.png" publishTime="07/31/2012 23:54:37" />
     <file relUrl="images/bg5.png" publishTime="07/31/2012 23:54:31" />
     <file relUrl="Script/jquery.js" publishTime="07/31/2012 23:52:58" />
+    <file relUrl="images/register.png" publishTime="07/31/2012 23:54:37" />
     <file relUrl="images/icon6.png" publishTime="07/31/2012 23:54:37" />
     <file relUrl="bin/QzoneSDK.dll" publishTime="07/26/2012 20:18:41" />
     <file relUrl="images/2.png" publishTime="07/31/2012 23:54:31" />
-    <file relUrl="ClientBin/SilverlightUI.xap" publishTime="08/08/2012 00:57:58" />
+    <file relUrl="ClientBin/SilverlightUI.xap" publishTime="08/08/2012 08:38:06" />
     <file relUrl="images/2.jpg" publishTime="07/26/2012 20:18:41" />
     <file relUrl="images/news.png" publishTime="07/31/2012 23:54:37" />
     <file relUrl="images/5.jpg" publishTime="07/31/2012 23:54:31" />
     <file relUrl="images/icon1.jpg" publishTime="07/31/2012 23:54:31" />
     <file relUrl="MemberInfo.aspx" publishTime="08/01/2012 23:22:26" />
     <file relUrl="images/bgscroll.png" publishTime="07/31/2012 23:54:31" />
-    <file relUrl="bin/ZYSoft.ORM.pdb" publishTime="08/08/2012 00:57:59" />
+    <file relUrl="bin/ZYSoft.ORM.pdb" publishTime="08/08/2012 08:38:07" />
     <file relUrl="images/Connect_logo_5.png" publishTime="07/26/2012 20:18:41" />
     <file relUrl="bin/NHibernate.ByteCode.LinFu.dll" publishTime="09/02/2011 09:54:02" />
     <file relUrl="bin/Iesi.Collections.dll" publishTime="09/02/2011 09:54:00" />
     <file relUrl="images/icon9.jpg" publishTime="07/31/2012 23:54:31" />
-    <file relUrl="bin/Web.pdb" publishTime="08/08/2012 00:58:04" />
+    <file relUrl="bin/Web.pdb" publishTime="08/08/2012 08:38:11" />
     <file relUrl="images/bg.jpg" publishTime="07/31/2012 23:54:31" />
     <file relUrl="images/icon10.jpg" publishTime="07/31/2012 23:54:31" />
     <file relUrl="hibernate.cfg.xml" publishTime="07/30/2012 19:35:48" />
     <file relUrl="images/icon2.jpg" publishTime="07/31/2012 23:54:31" />
     <file relUrl="bin/Iesi.Collections.xml" publishTime="09/02/2011 09:54:02" />
     <file relUrl="Styles/Site.css" publishTime="07/26/2012 20:18:41" />
-    <file relUrl="images/register.png" publishTime="07/31/2012 23:54:37" />
-    <file relUrl="bin/ZYSoft.Comm.dll" publishTime="08/08/2012 00:57:55" />
+    <file relUrl="bin/ZYSoft.Comm.pdb" publishTime="08/08/2012 08:38:03" />
+    <file relUrl="bin/ZYSoft.Comm.dll" publishTime="08/08/2012 08:38:04" />
     <file relUrl="images/Connect_logo_4.png" publishTime="07/26/2012 20:18:41" />
     <file relUrl="bin/LinFu.DynamicProxy.dll" publishTime="09/02/2011 09:54:02" />
     <file relUrl="Styles/reg.css" publishTime="07/27/2012 00:20:31" />
@@ -61,16 +61,16 @@
     <file relUrl="bin/NHibernate.ByteCode.LinFu.xml" publishTime="09/02/2011 09:54:02" />
     <file relUrl="images/icon6.jpg" publishTime="07/31/2012 23:54:31" />
     <file relUrl="LoginToQQ.aspx" publishTime="07/26/2012 20:18:41" />
-    <file relUrl="bin/ZYSoft.SQLDAL.dll" publishTime="08/08/2012 00:57:56" />
+    <file relUrl="bin/ZYSoft.SQLDAL.dll" publishTime="08/08/2012 08:38:04" />
     <file relUrl="images/1.jpg" publishTime="07/26/2012 20:18:41" />
-    <file relUrl="bin/ZYSoft.BLL.dll" publishTime="08/08/2012 00:58:01" />
-    <file relUrl="bin/ZYSoft.ORM.dll" publishTime="08/08/2012 00:57:59" />
+    <file relUrl="bin/ZYSoft.BLL.dll" publishTime="08/08/2012 08:38:10" />
+    <file relUrl="bin/ZYSoft.ORM.dll" publishTime="08/08/2012 08:38:08" />
     <file relUrl="Styles/index.css" publishTime="08/01/2012 00:39:58" />
-    <file relUrl="bin/ZYSoft.SQLDAL.pdb" publishTime="08/08/2012 00:57:55" />
+    <file relUrl="bin/ZYSoft.SQLDAL.pdb" publishTime="08/08/2012 08:38:04" />
     <file relUrl="images/uploading.gif" publishTime="07/31/2012 23:54:31" />
-    <file relUrl="bin/Web.dll" publishTime="08/08/2012 00:58:05" />
+    <file relUrl="bin/Web.dll" publishTime="08/08/2012 08:38:12" />
     <file relUrl="ActivatMember.aspx" publishTime="08/08/2012 00:29:01" />
-    <file relUrl="bin/ZYSoft.BLL.pdb" publishTime="08/08/2012 00:58:00" />
+    <file relUrl="bin/ZYSoft.BLL.pdb" publishTime="08/08/2012 08:38:09" />
     <file relUrl="images/1.png" publishTime="07/31/2012 23:54:31" />
     <file relUrl="images/4.jpg" publishTime="07/31/2012 23:54:31" />
     <file relUrl="bin/hibernate.cfg.xml" publishTime="07/30/2012 19:35:48" />

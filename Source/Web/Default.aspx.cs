@@ -21,7 +21,7 @@ namespace Web
     {
         private readonly UserBLL bll;
         private readonly ExamPaper model;
-        private Member modelMember;
+        //private Member modelMember;
 
         public Default()
         {
@@ -38,14 +38,14 @@ namespace Web
                 {
                     GetUserInfo();
                 }
-                else
-                {
-                    divLogin.Visible = false;
-                    divRegiste.Visible = false;
-                    divLogined.Visible = true;
-                    divUserInfo.Visible = true;
-                    SetMemberInfo();
-                }
+                //else
+                //{
+                //    divLogin.Visible = false;
+                //    divRegiste.Visible = false;
+                //    divLogined.Visible = true;
+                //    divUserInfo.Visible = true;
+                //    SetMemberInfo();
+                //}
             }
             //GetRequestToken();
             //GetUserInfo();
@@ -127,6 +127,11 @@ namespace Web
                 dataStream = response.GetResponseStream();
                 reader = new StreamReader(dataStream);
                 responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+
+
                 lbMessage5.Text = responseFromServer;
                 string[] UserInfo = responseFromServer.Split(',');
                 lbMessage6.Text = "昵称：" + UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
@@ -149,6 +154,7 @@ namespace Web
                 divLogined.Visible = true;
                 divUserInfo.Visible = true;
 
+
                 //用户登录
                 string msg = string.Empty;
                 if (bll.LoginMember(openid, ref msg))
@@ -156,7 +162,7 @@ namespace Web
                     IList<Member> members = bll.GetMemberByOpenID(openid);
                     if (members.Count > 0)
                     {
-                        modelMember = new Member();
+                        Member modelMember = new Member();
                         modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
                         modelMember.LoginTimes = members[0].LoginTimes;
                         modelMember.LastLoginDateTime = members[0].LastLoginDateTime;
@@ -164,22 +170,23 @@ namespace Web
                         modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1); 
                         Session["MemberInfo"] = modelMember;
 
+                        Response.Redirect("MemberInfo.aspx", true);
 
-                        lbNickname.Text = modelMember.Nickname;
-                        lbMemberNickname.Text = modelMember.Nickname;
-                        lbLoginTimes.Text = modelMember.LoginTimes.ToString();
+                        //lbNickname.Text = modelMember.Nickname;
+                        //lbMemberNickname.Text = modelMember.Nickname;
+                        //lbLoginTimes.Text = modelMember.LoginTimes.ToString();
 
-                        if (modelMember.LoginTimes<2)
-                        {
-                            lbLastLoginDateTime.Text = "";
-                        }
-                        else
-                        {
-                            lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                        //if (modelMember.LoginTimes<2)
+                        //{
+                        //    lbLastLoginDateTime.Text = "";
+                        //}
+                        //else
+                        //{
+                        //    lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        }
-                        lbIntegral.Text = modelMember.Integral.ToString();
-                        imgPhoto.ImageUrl =modelMember.PhotoURL;
+                        //}
+                        //lbIntegral.Text = modelMember.Integral.ToString();
+                        //imgPhoto.ImageUrl =modelMember.PhotoURL;
                     }
                     
                 }
@@ -187,9 +194,7 @@ namespace Web
                 {
                     lbMessageMember.Text = msg;
                 }
-                reader.Close();
-                dataStream.Close();
-                response.Close();
+                
                 //Random rdm = new Random(100);
                 //Response.Redirect("Default.aspx?x=" + rdm.Next().ToString());
             }
@@ -256,7 +261,7 @@ namespace Web
 
         private void SetMemberInfo()
         {
-            modelMember = (Member)Session["MemberInfo"];
+            Member modelMember = (Member)Session["MemberInfo"];
             lbNickname.Text = modelMember.Nickname;
             lbMemberNickname.Text = modelMember.Nickname;
             lbLoginTimes.Text = modelMember.LoginTimes.ToString();
@@ -271,7 +276,6 @@ namespace Web
             }
             lbIntegral.Text = modelMember.Integral.ToString();
             imgPhoto.ImageUrl = modelMember.PhotoURL;
-            Response.Redirect("default.aspx");
         }
 
         private string GetData()
@@ -337,10 +341,11 @@ namespace Web
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             string msg=string.Empty;
-            if (bll.LoginMember(txtLoginID.Text, txtLoginPWD.Text, ref msg))
-            {
-                modelMember = new Member();
+            Member modelMember = new Member();
+            if (bll.LoginMember(txtLoginID.Text, txtLoginPWD.Text, ref msg,ref modelMember))
+            {   
                 Session["MemberInfo"] = modelMember;
+                Response.Redirect("MemberInfo.aspx", true);
             }
             else
             {

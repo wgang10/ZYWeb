@@ -2,6 +2,7 @@
 bin
 obj
 Published
+*.suo
 # !/Published/bin
 # mstest test results
 TestResults
