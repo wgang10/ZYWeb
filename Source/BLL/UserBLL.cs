@@ -371,18 +371,17 @@ namespace ZYSoft.BLL
                 return false;
             }
             else
-            {
-                if (string.IsNullOrEmpty(listEmail[0].OpenId))
-                {
-                    Msg = "此账户已与QQ账号绑定";
-                    return false;
-                }
+            {   
                 if (!listEmail[0].LoginPWD.Trim().Equals(Comm.GlobalMethod.EncryptPWD(PassWord)))
                 {
                     Msg = "用户名或密码错误";
                     return false;
                 }
-
+                if (!string.IsNullOrEmpty(listEmail[0].OpenId))
+                {
+                    Msg = "此账户已与QQ账号绑定";
+                    return false;
+                }
                 IList<Member> listQQ = MemberOP.GetAllMemberByID(ID);
                 if (listQQ.Count > 0)
                 {
@@ -452,8 +451,8 @@ namespace ZYSoft.BLL
             IList<Member> list = MemberOP.GetAllMemberByID(MemberID);
             if (list.Count > 0)
             {
-                if (list[0].Status == 3)
-                {
+                //if (list[0].Status == 3)
+                //{
                     if (list[0].VerifictionCodeLimit < DateTime.Now)
                     {
                         Msg = "验证码有效期已过，请重新发送验证码";
@@ -524,12 +523,12 @@ namespace ZYSoft.BLL
                             return false;
                         }
                     }
-                }
-                else
-                {
-                    Msg = "已经激活，请直接登录。";
-                    return false;
-                }
+                //}
+                //else
+                //{
+                //    Msg = "已经激活，请直接登录。";
+                //    return true;
+                //}
             }
             else
             {

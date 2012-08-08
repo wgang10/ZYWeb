@@ -43,7 +43,7 @@ namespace Web
                 blFlag = ZYSoft.Comm.GlobalMethod.SendMail(strMailTo, strTitle, strMailBody, out strMessage);
                 if (blFlag)
                 {
-                    lbMsg1.Text = String.Format("注册成功！您的账号<h>{0}</h>。", strMailTo);
+                    lbMsg1.Text = String.Format("注册成功！您的账号<strong>{0}</strong>。", strMailTo);
                     lbMsg2.Text = "请登录您的邮箱！找到我们给您发送的验证码进行激活。";
                     lbMsg3.Text = @"如果没有收到验证邮件：
 <br/>1、确认邮箱地址有没有写错。

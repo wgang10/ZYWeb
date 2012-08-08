@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Configuration;
-using System.Net;
-using System.IO;
 using ZYSoft.BLL;
 using ZYSoft.Comm.Entity;
 
@@ -16,11 +8,19 @@ namespace Web
     {
         private readonly UserBLL bll;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public MemberInfo()
         {
             bll = new UserBLL();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["MemberInfo"] == null)
@@ -34,6 +34,9 @@ namespace Web
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetMemberInfo()
         {
             Member modelMember = (Member)Session["MemberInfo"];
@@ -83,7 +86,11 @@ namespace Web
             Response.Redirect("default.aspx");
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void rdbNotExist_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbNotExist.Checked)
@@ -93,6 +100,11 @@ namespace Web
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void rdbExist_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbExist.Checked)
@@ -130,8 +142,9 @@ namespace Web
             {
                 if (bll.BindOldEmail(txtEmail.Text, txtPassWord.Text, modelMember.Id, ref strMsg))
                 {
-                    lbLoginID.Text = txtEmail.Text;
+                    lbLoginID.Text = String.Format("邮箱/登录账号:<strong>{0}</strong>", txtEmail.Text);
                     lbMessage.Text = "邮箱绑定成功";
+                    divBindEmail.Visible = false;
                 }
                 else
                 {
