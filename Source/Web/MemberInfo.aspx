@@ -47,15 +47,18 @@
                                 </div>
                             </div>
                             <div class="regkg1">
+                                <br/><asp:Image ID="imgPhoto" runat="server" />
                                 <br/><asp:Label ID="lbNickname" runat="server" Text=""/>
                                 <br/><asp:Label ID="lbLoginID" runat="server" Text=""/>
-                                <br/>当前头像<asp:Image ID="imgPhoto" runat="server" />
                                 <br/><asp:Label ID="lbLoginTimes" runat="server" Text=""/>
                                 <br/><asp:Label ID="lbLastLoginDateTime" runat="server" Text=""/>
                                 <br/><asp:Label ID="lbIntegral" runat="server" Text=""/>
                                 <br/><asp:Label ID="lbBindQQ" runat="server" Text=""/>
                                 <br/><asp:Label ID="lbMessageMember" runat="server" Text=""/>
                                 <div id="divBindEmail" runat="server" visible="false">
+                                <asp:ScriptManager ID="ScriptManager1" runat="server"/>
+                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                <ContentTemplate>
                                     <br/><strong>请绑定您的邮箱</strong>
                                     <br/>
                                     <asp:RadioButton ID="rdbNotExist" runat="server" Text="没有网站账号" 
@@ -68,6 +71,8 @@
                                     <br/>网站密码:<asp:TextBox ID="txtPassWord" Width="200px" runat="server" TextMode="Password" />
                                     <br/><asp:Button ID="btnVerify" Width="100px" runat="server" Text="验证" 
                                         onclick="btnVerify_Click" />
+                                </ContentTemplate>
+                                </asp:UpdatePanel>
                                 </div>
                                 <div id="divBingQQ" runat="server" visible="false">
                                     <br/><strong>绑定QQ账号</strong>

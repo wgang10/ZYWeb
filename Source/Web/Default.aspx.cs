@@ -82,6 +82,8 @@ namespace Web
         /// </summary>
         private void GetUserInfo()
         {
+            lbLoginMessage.Text = "";
+            lbLoginMessage.Visible = false;
             //获取Authorization Code
             if (Request.QueryString["code"] != null)
             {
@@ -203,7 +205,8 @@ namespace Web
                     }
                     else
                     {
-                        lbMessage.Text = msg;
+                        lbLoginMessage.Text = msg;
+                        lbLoginMessage.Visible = true;
                     }
 
                     //Random rdm = new Random(100);
@@ -211,7 +214,8 @@ namespace Web
                 }
                 catch (Exception ex)
                 {
-                    lbMessage.Text = ex.Message;
+                    lbLoginMessage.Text = ex.Message;
+                    lbLoginMessage.Visible = true;
                 }
                 #endregion
             }
@@ -362,6 +366,16 @@ namespace Web
         /// <param name="e"></param>
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            lbLoginMessage.Visible = false;
+            lbLoginMessage.Text = "";
+
+            if (string.IsNullOrEmpty(txtLoginID.Text.Trim()) || string.IsNullOrEmpty(txtLoginPWD.Text.Trim()))
+            {
+                lbLoginMessage.Text = "账号和密码不能为空。";
+                lbLoginMessage.Visible = true;
+                return;
+            }
+
             string msg=string.Empty;
             Member modelMember = new Member();
             if (bll.LoginMember(txtLoginID.Text, txtLoginPWD.Text, ref msg,ref modelMember))
@@ -371,7 +385,8 @@ namespace Web
             }
             else
             {
-                lbMessage.Text = msg;
+                lbLoginMessage.Text = msg;
+                lbLoginMessage.Visible = true;
             }
         }
 
@@ -383,51 +398,38 @@ namespace Web
         protected void regsubmit_Click(object sender, EventArgs e)
         {
             lbRegisterMsg.Text = "";
-            string msg=string.Empty;
+            lbRegisterMsg.Visible = false;
+            string msg = string.Empty;
+
+            //密码验证
+            if (!txtPassWord.Text.Trim().Equals(txtPassWordVerify.Text.Trim()))
+            {
+                lbRegisterMsg.Visible = true;
+                lbRegisterMsg.Text = "两次输入密码不一致。";
+                lbRegisterMsg.DataBind();
+                return;
+            }
+
+            //邮箱验证
+            if (!bll.CheckEmail(txtEmail.Text.Trim(), ref msg))
+            {
+                lbRegisterMsg.Visible = true;
+                lbRegisterMsg.Text = msg;
+                lbRegisterMsg.DataBind();
+                return;
+            }
+            
             int ID = -1;
             if (bll.RegistMember(txtNickName.Text.Trim(), txtEmail.Text.Trim(), txtPassWord.Text.Trim(), ref msg,ref ID))
             {
                 //注册成功
                 //邮箱激活
                 Response.Redirect(String.Format("ActivatMember.aspx?LoginID={0}&NickName={1}&LimitTime={2}&ID={3}", txtEmail.Text.Trim(), txtNickName.Text.Trim(), msg, ID));
-
-//                bool blFlag = false;
-//                string strMessage = string.Empty;
-//                string strTitle = "欢迎你注册子杨软件";
-//                string strMailTo = txtEmail.Text.Trim();
-//                string strMailBody = string.Format(@"亲爱的{0}：您好！
-//	
-//
-//	感谢您注册子杨软件。
-//    
-//	您的激活码为：{1}
-//
-//    请拷贝以上激活码进行激活。
-//
-//    本邮件为系统自动发送，请勿回复。
-//
-//    谢谢！
-//
-//    子杨软件|www.ziyangsoft.com", txtNickName.Text.Trim(),msg);
-//                blFlag = ZYSoft.Comm.GlobalMethod.SendMail(strMailTo, strTitle, strMailBody, out strMessage);
-//                if (blFlag)
-//                {
-//                    //XTHospital.BLL.BLL_Log.AddLog("用户[" + strUserName + "]使用了找回密码功能，将密码发送到了邮箱[" + strMailTo + "].", "1", Page.Request.UserHostAddress);//添加日志
-//                    lbRegisterMsg.Text = String.Format("注册成功！已将激活码发送到了邮箱{0}，请进入邮箱查收进行激活。", txtEmail.Text.Trim());
-//                    lbRegisterMsg.DataBind();
-//                    divActivat.Visible = true;
-//                    HidMemberID.Value = ID.ToString();
-//                }
-//                else
-//                {
-//                    //XTHospital.BLL.BLL_Log.AddLog("用户[" + strUserName + "]使用了找回密码功能，发送到邮箱[" + strMailTo + "]时失败." + strMessage, "1", Page.Request.UserHostAddress);//添加日志
-//                    lbRegisterMsg.Text = String.Format("发送到邮箱[{0}]时失败.", strMailTo);
-//                    lbRegisterMsg.DataBind();
-//                }
             }
             else
             {
                 //注册失败
+                lbRegisterMsg.Visible = true;
                 lbRegisterMsg.Text = msg;
                 lbRegisterMsg.DataBind();
             }

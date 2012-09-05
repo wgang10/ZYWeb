@@ -96,14 +96,17 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"/>
         <div id="allscroll" class="allkg">
 	        <div id="scrollctn" class="scrollctn bg1">
 		        <div class="allscn">
 			        <div class="tpkg">
 				        <div class="tphd" runat="server" id="divLogin" visible="true">
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                <ContentTemplate>
 					        <a href="http://www.ziyangsoft.com/"><img style="float:none; MARGIN:0px 0px 15px 0px" title="子杨软件" alt="子杨软件" src="images/TopLogo.png"/></a> 
-					        邮箱<asp:TextBox ID="txtLoginID" runat="server" />
-					        网站密码<asp:TextBox ID="txtLoginPWD" TextMode="Password" runat="server" /><asp:CheckBox ID="ckRemberPWD" Text="记住密码" runat="server" />
+					        账号<asp:TextBox ID="txtLoginID" autocomplete="off" runat="server" />
+					        密码<asp:TextBox ID="txtLoginPWD" TextMode="Password" runat="server" /><asp:CheckBox ID="ckRemberPWD" Text="记住密码" runat="server" />
                             <asp:Button ID="btnLogin" runat="server" Text="登录" CausesValidation="False" 
                                 onclick="btnLogin_Click" /> <a href="#">忘记密码？</a> 
 					        <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=www.ziyangsoft.com&scope=get_user_info,do_like&state=1150">
@@ -116,7 +119,9 @@
                                 ID="btnLoginOut" runat="server" Text="注销" onclick="btnLoginOut_Click" 
                                 CausesValidation="False" />
 				        </div>
-                        <asp:Label ID="lbMessage" runat="server" ForeColor="Red" />
+                        <br/><asp:Label ID="lbLoginMessage" runat="server" ForeColor="White" Visible="false" BackColor="Red"/>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
 			        </div>
                     <div class="allctn">
                         <div class="ctnwkg">
@@ -158,27 +163,38 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                <ContentTemplate>                                                      
                                             <div class="regkg" runat="server" id="divRegiste" visible="true">
                                                 <ul>
-                                                  <li><img title="快速注册" alt="快速注册" src="images/register.png"/></li>
-                                                  <li>
-                                                      <asp:TextBox ID="txtNickName" MaxLength="32" runat="server"/><span id="unametips"></span>
-                                                  </li>
-                                                  <li>
-                                                      <asp:TextBox ID="txtEmail" MaxLength="50" runat="server"/><span id="uemailtips"></span>
-                                                  </li>
-                                                  <li>
-                                                      <asp:TextBox ID="txtPassWord" MaxLength="32" autocomplete="off" runat="server" 
-                                                          TextMode="Password"/><span id="uhardtips"></span></li>
-                                                  <li>
-                                                      <asp:Button ID="regsubmit" runat="server" Text="" 
-                                                          onMouseUp="this.className='btn1_over'" class=btn1 
+                                                  <li><img title="快速注册" alt="快速注册" src="images/register.png"/>
+                                                    </li>
+                                                  
+                                                  <li>设置您的昵称：<br/><asp:TextBox ID="txtNickName" MaxLength="32" autocomplete="off" runat="server" Width="150px"/>
+                                                      <asp:RequiredFieldValidator ID="rfvNickName" runat="server" 
+                                                          ControlToValidate="txtNickName" Display="Dynamic" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                                    </li>
+                                                  <li>填写您的常用邮箱：<br/><asp:TextBox ID="txtEmail" MaxLength="50" autocomplete="off" runat="server" Width="150px"/>
+                                                      <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="*" />
+                                                      <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="请输入正确的邮箱地址" 
+                                                          ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                                    </li>
+                                                  <li>设置您的网站密码：<br/><asp:TextBox ID="txtPassWord" MaxLength="32" autocomplete="off" runat="server" TextMode="Password" Width="150px"/>
+                                                      <asp:RequiredFieldValidator ID="rfvPassWord" runat="server" 
+                                                          ControlToValidate="txtPassWord" Display="Dynamic" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                                    </li>
+                                                  <li>确认您的网站密码：<br/><asp:TextBox ID="txtPassWordVerify" MaxLength="32" autocomplete="off" runat="server" TextMode="Password" Width="150px"/>
+                                                      <asp:RequiredFieldValidator ID="rfvPassWordVerify" runat="server" 
+                                                          ControlToValidate="txtPassWordVerify" Display="Dynamic" ErrorMessage="*"></asp:RequiredFieldValidator>                                                      
+                                                    </li>
+                                                  <li><asp:Button ID="regsubmit" runat="server" Text="" 
+                                                          onMouseUp="this.className='btn1_over'" class="btn1" 
                                                           onMouseOver="this.className='btn1_over'" onMouseOut="this.className='btn1'" 
                                                           onMouseDown="this.className='btn1_press'" onclick="regsubmit_Click"/>                                            
-                                                    <H2><a href="#">《服务协议》</a></H2>
+                                                    <h2><a href="#">《服务协议》</a></h2>
                                                   </li>
                                                   <li>
-                                                      <asp:Label ID="lbRegisterMsg" runat="server" Text="" />
+                                                      <asp:Label ID="lbRegisterMsg" runat="server" BackColor="Red" ForeColor="White" Visible="false" />
                                                       <asp:HiddenField ID="HidMemberID" runat="server" />
                                                   </li>
                                                   <li></li>
@@ -191,6 +207,8 @@
                                                   </li>
                                                 </ul>
                                 	        </div>
+                                            </ContentTemplate>
+                                            </asp:UpdatePanel>
                                             <div runat="server" id="divUserInfo" visible="false">
                                                 欢迎您：<asp:Label ID="lbNickname" runat="server" Text=""/>
                                                 <p>当前头像<asp:Image ID="imgPhoto" runat="server" /></p>

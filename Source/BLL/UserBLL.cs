@@ -164,7 +164,7 @@ namespace ZYSoft.BLL
             {
                 if (!list[0].LoginPWD.Trim().Equals(Comm.GlobalMethod.EncryptPWD(PWD)))
                 {
-                    Msg = "用户名或密码错误";
+                    Msg = "账号或密码错误";
                     return false;
                 }
 
@@ -182,7 +182,7 @@ namespace ZYSoft.BLL
             }
             else
             {
-                Msg = "会员不存在";
+                Msg = "账号或密码错误";//账号不存在
                 return false;
             }
         }
@@ -213,7 +213,7 @@ namespace ZYSoft.BLL
             }
             else
             {
-                Msg = "会员不存在";
+                Msg = "会员不存在";//会员不存在
                 return false;
             }
         }
@@ -367,19 +367,19 @@ namespace ZYSoft.BLL
             IList<Member> listEmail = MemberOP.GetNormalMemberByEmail(Email);
             if (listEmail.Count < 1)
             {
-                Msg = "账户不存在";
+                Msg = "账号不存在";
                 return false;
             }
             else
             {   
                 if (!listEmail[0].LoginPWD.Trim().Equals(Comm.GlobalMethod.EncryptPWD(PassWord)))
                 {
-                    Msg = "用户名或密码错误";
+                    Msg = "账号或密码错误";
                     return false;
                 }
                 if (!string.IsNullOrEmpty(listEmail[0].OpenId))
                 {
-                    Msg = "此账户已与QQ账号绑定";
+                    Msg = "此账号已与QQ账号绑定";
                     return false;
                 }
                 IList<Member> listQQ = MemberOP.GetAllMemberByID(ID);
@@ -446,6 +446,13 @@ namespace ZYSoft.BLL
             }
         }
 
+        /// <summary>
+        /// 会员激活
+        /// </summary>
+        /// <param name="MemberID"></param>
+        /// <param name="VerifictionCode"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
         public bool ActivatMember(int MemberID, string VerifictionCode,ref string Msg)
         {
             IList<Member> list = MemberOP.GetAllMemberByID(MemberID);
@@ -535,6 +542,26 @@ namespace ZYSoft.BLL
                 Msg = "没有找到本会员信息";
                 return false;
             }
+        }
+
+        /// <summary>
+        /// 检查邮箱是否已注册
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool CheckEmail(string Email, ref string Msg)
+        {
+            IList<Member> list = MemberOP.GetAllMemberByEmail(Email);
+            if (list.Count > 0)
+            {
+                if (list[0].Status != 3)
+                {
+                    Msg = "邮箱已注册，请直接登录";
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

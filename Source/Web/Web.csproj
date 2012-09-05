@@ -86,6 +86,7 @@
     <Content Include="images\icon7.png" />
     <Content Include="images\icon9.jpg" />
     <Content Include="images\news.png" />
+    <Content Include="images\photo.jpg" />
     <Content Include="images\pwdbg.png" />
     <Content Include="images\register.png" />
     <Content Include="images\searbtnbottom.png" />

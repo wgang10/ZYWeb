@@ -71,7 +71,14 @@ namespace Web
 
             }
             lbIntegral.Text ="您的当前积分为:"+modelMember.Integral.ToString();
-            imgPhoto.ImageUrl = modelMember.PhotoURL;
+            if (string.IsNullOrEmpty(modelMember.PhotoURL))
+            {
+                imgPhoto.ImageUrl = @"~/images/photo.jpg";
+            }
+            else
+            {
+                imgPhoto.ImageUrl = modelMember.PhotoURL;
+            }
         }
 
         /// <summary>
