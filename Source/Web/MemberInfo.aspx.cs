@@ -53,7 +53,7 @@ namespace Web
             {
                 divBingQQ.Visible = true;
             }
-            else
+            if (!string.IsNullOrEmpty(modelMember.OpenId) && !string.IsNullOrEmpty(modelMember.Email))
             {
                 lbBindQQ.Text = "已经绑定QQ账号       <a href='#'>解除绑定</a>";
             }
@@ -102,8 +102,13 @@ namespace Web
         {
             if (rdbNotExist.Checked)
             {
-                btnVerify.Text = "验证";
-                btnVerify.DataBind();
+                lbMessage.Text = "";
+                lbMessage.Visible = false;
+                lbMessage.DataBind();
+                lbEmail.Text = "邮箱地址:";
+                lbPassWord.Text = "设置密码:";
+                btnVerify.Text = "开始绑定";
+                //btnVerify.DataBind();
             }
         }
 
@@ -116,8 +121,13 @@ namespace Web
         {
             if (rdbExist.Checked)
             {
-                btnVerify.Text = "登录";
-                btnVerify.DataBind();
+                lbMessage.Text = "";
+                lbMessage.Visible = false;
+                lbMessage.DataBind();
+                lbEmail.Text = "登陆账号:";
+                lbPassWord.Text = "登录密码:";
+                btnVerify.Text = "登录绑定";
+                //btnVerify.DataBind();
             }
         }
 
@@ -128,6 +138,9 @@ namespace Web
         /// <param name="e"></param>
         protected void btnVerify_Click(object sender, EventArgs e)
         {
+            lbMessage.Text = "";
+            lbMessage.Visible = false;
+
             Member modelMember = (Member)Session["MemberInfo"];
             string strMsg=string.Empty;
             if (rdbNotExist.Checked)
@@ -142,6 +155,7 @@ namespace Web
                 }
                 else
                 {
+                    lbMessage.Visible = true;
                     lbMessage.Text = strMsg;
                 }
             }
@@ -150,11 +164,15 @@ namespace Web
                 if (bll.BindOldEmail(txtEmail.Text, txtPassWord.Text, modelMember.Id, ref strMsg))
                 {
                     lbLoginID.Text = String.Format("邮箱/登录账号:<strong>{0}</strong>", txtEmail.Text);
+                    modelMember.Email = txtEmail.Text;
+                    Session["MemberInfo"] = modelMember;
+                    lbMessage.Visible = true;
                     lbMessage.Text = "邮箱绑定成功";
                     divBindEmail.Visible = false;
                 }
                 else
                 {
+                    lbMessage.Visible = true;
                     lbMessage.Text = strMsg;
                 }
             }

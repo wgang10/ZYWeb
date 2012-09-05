@@ -399,6 +399,7 @@ namespace Web
         {
             lbRegisterMsg.Text = "";
             lbRegisterMsg.Visible = false;
+            lbRegisterMsg.DataBind();
             string msg = string.Empty;
 
             //密码验证
