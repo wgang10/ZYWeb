@@ -4,7 +4,7 @@ namespace ZYSoft.Comm
 {
     public sealed class UtilityLog
     {
-        private static string strClsName = "UtilityLog";
+        private static string strClsName = "ApplicationInfoLog";
         private static log4net.ILog logger = log4net.LogManager.GetLogger(strClsName);
 
         #region  Method

@@ -58,7 +58,7 @@ namespace Web
                     }
                     else
                     {
-                        lbMsg1.Text = String.Format("发送到邮箱[{0}]时失败.", strMailTo);
+                        lbMsg1.Text = String.Format("发送到邮箱[{0}]时失败.{1}", strMailTo, strMessage);
                         lbMsg1.DataBind();
                     }
                 }
