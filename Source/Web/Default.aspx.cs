@@ -32,8 +32,7 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {   
-                //BindGridData();
+            { 
                 if (Session["MemberInfo"] == null)
                 {
                     GetUserInfo();
@@ -42,17 +41,7 @@ namespace Web
                 {
                     Response.Redirect("MemberInfo.aspx");
                 }
-                //else
-                //{
-                //    divLogin.Visible = false;
-                //    divRegiste.Visible = false;
-                //    divLogined.Visible = true;
-                //    divUserInfo.Visible = true;
-                //    SetMemberInfo();
-                //}
             }
-            //GetRequestToken();
-            //GetUserInfo();
         }
 
         /// <summary>
@@ -182,7 +171,7 @@ namespace Web
                             //modelMember.Integral = members[0].Integral;
                             //modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
                             Session["MemberInfo"] = members[0];
-
+                            ZYSoft.Comm.UtilityLog.WriteInfo(string.Format("QQ账号 {0} 登录。{1}",members[0].Nickname,members[1].OpenId));
                             Response.Redirect("MemberInfo.aspx", true);
 
                             //lbNickname.Text = modelMember.Nickname;
@@ -214,6 +203,7 @@ namespace Web
                 }
                 catch (Exception ex)
                 {
+                    ZYSoft.Comm.UtilityLog.WriteError(ex.Message);
                     lbLoginMessage.Text = ex.Message;
                     lbLoginMessage.Visible = true;
                 }
@@ -379,12 +369,14 @@ namespace Web
             string msg=string.Empty;
             Member modelMember = new Member();
             if (bll.LoginMember(txtLoginID.Text, txtLoginPWD.Text, ref msg,ref modelMember))
-            {   
+            {
+                ZYSoft.Comm.UtilityLog.WriteInfo(string.Format("账号 {0} 登陆成功。",txtLoginID.Text));
                 Session["MemberInfo"] = modelMember;
                 Response.Redirect("MemberInfo.aspx", true);
             }
             else
             {
+                ZYSoft.Comm.UtilityLog.WriteInfo(string.Format("账号 {0} 登陆失败。{1}",txtLoginID.Text,msg));
                 lbLoginMessage.Text = msg;
                 lbLoginMessage.Visible = true;
             }

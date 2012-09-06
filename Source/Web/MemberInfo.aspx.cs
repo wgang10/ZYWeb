@@ -49,10 +49,16 @@ namespace Web
                 divBindEmail.Visible = true;
             }
 
+            if (modelMember.Status.Equals(4))
+            {
+                lbLoginID.Text = String.Format("已绑定邮箱:<strong>{0}</strong>,但还未进行激活！     <a href='#'>进行激活</a>", modelMember.Email);
+            }
+
             if (string.IsNullOrEmpty(modelMember.OpenId))
             {
                 divBingQQ.Visible = true;
             }
+
             if (!string.IsNullOrEmpty(modelMember.OpenId) && !string.IsNullOrEmpty(modelMember.Email))
             {
                 lbBindQQ.Text = "已经绑定QQ账号       <a href='#'>解除绑定</a>";
@@ -88,6 +94,8 @@ namespace Web
         /// <param name="e"></param>
         protected void btnLoginOut_Click(object sender, EventArgs e)
         {
+            Member modelMember = (Member)Session["MemberInfo"];
+            ZYSoft.Comm.UtilityLog.WriteInfo(string.Format("{0} 退出|注销 {1}", modelMember.Nickname, modelMember.OpenId));
             Session.Abandon();
             System.Web.Security.FormsAuthentication.SignOut();
             Response.Redirect("default.aspx");

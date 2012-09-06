@@ -101,6 +101,7 @@ namespace ZYSoft.Comm
             }
             catch (Exception ex)
             {
+                Comm.UtilityLog.WriteError(ex.Message);
                 strMessage = ex.Message;
                 return false;
             }

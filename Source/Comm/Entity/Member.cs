@@ -175,7 +175,7 @@ namespace ZYSoft.Comm.Entity
         public virtual int Integral { get; set; }
 
         /// <summary>
-        /// 会员状态 0:正常 1:限制 2:删除 3:刚注册未验证
+        /// 会员状态 0:正常 1:限制 2:删除 3:刚注册未验证 4:绑定邮箱未验证
         /// </summary>
         [DataMember]
         public virtual int Status { get; set; }
