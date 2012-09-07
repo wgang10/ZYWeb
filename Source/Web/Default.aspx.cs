@@ -31,6 +31,7 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Button1.Text = Server.MapPath("~/");
             if (!IsPostBack)
             { 
                 if (Session["MemberInfo"] == null)
@@ -445,6 +446,11 @@ namespace Web
             {
                 lbRegisterMsg.Text = msg;
             }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            ZYSoft.Comm.UtilityLog.WriteInfo(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
         }
     }
 }

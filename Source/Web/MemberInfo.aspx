@@ -57,6 +57,8 @@
                                 <br/><asp:Label ID="lbLastLoginDateTime" runat="server" Text=""/>
                                 <br/><asp:Label ID="lbIntegral" runat="server" Text=""/>
                                 <br/><asp:Label ID="lbBindQQ" runat="server" Text=""/>
+                                <br/><asp:Button ID="btnBindQQ" Visible="false" runat="server" Text="解除绑定" 
+                                        onclick="btnBindQQ_Click" />
                                 <br/><asp:Label ID="lbMessageMember" runat="server" Text=""/>
                                 <div id="divBindEmail" runat="server" visible="false">
                                     <br/><strong>请绑定您的邮箱</strong>

@@ -168,6 +168,8 @@
                                             <div class="regkg" runat="server" id="divRegiste" visible="true">
                                                 <ul>
                                                   <li><img title="快速注册" alt="快速注册" src="images/register.png"/>
+                                                      <br/><asp:Button ID="Button1" runat="server" Text="Button" 
+                                                          CausesValidation="False" onclick="Button1_Click" />
                                                     </li>
                                                   
                                                   <li>设置您的昵称：<br/><asp:TextBox ID="txtNickName" MaxLength="32" autocomplete="off" runat="server" Width="150px"/>

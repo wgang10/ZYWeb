@@ -346,6 +346,7 @@ namespace ZYSoft.BLL
                 list[0].VerifictionCodeLimit = DateTime.Now.AddMinutes(limitMinutes);
                 Msg = String.Format("{0} [过期时间：{1:yyyy/MM/dd HH:mm:ss}]", list[0].VerifictionCode, list[0].VerifictionCodeLimit.Value);
                 return MemberOP.UpdateMember(list[0]);
+                //添加历史信息
             }
             else
             {
@@ -555,6 +556,28 @@ namespace ZYSoft.BLL
                 }
             }
             return true;
+        }
+
+        /// <summary>
+        /// 解除QQ绑定
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public bool RemoveBindQQ(int ID, ref string Msg)
+        {
+            IList<Member> list = MemberOP.GetAllMemberByID(ID);
+            if (list.Count > 0)
+            {
+                list[0].OpenId = "";
+                return MemberOP.UpdateMember(list[0]);
+                //添加历史信息
+            }
+            else
+            {
+                Msg = "会员不存在";
+                return false;
+            }
         }
     }
 }

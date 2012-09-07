@@ -61,7 +61,8 @@ namespace Web
 
             if (!string.IsNullOrEmpty(modelMember.OpenId) && !string.IsNullOrEmpty(modelMember.Email))
             {
-                lbBindQQ.Text = "已经绑定QQ账号       <a href='#'>解除绑定</a>";
+                lbBindQQ.Text = "已经绑定QQ账号";
+                btnBindQQ.Visible = true;
             }
 
             lbMemberNickname.Text = modelMember.Nickname;
@@ -183,6 +184,28 @@ namespace Web
                     lbMessage.Visible = true;
                     lbMessage.Text = strMsg;
                 }
+            }
+        }
+
+        /// <summary>
+        /// 解除QQ绑定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnBindQQ_Click(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+            Member modelMember = (Member)Session["MemberInfo"];
+
+            if (bll.RemoveBindQQ(modelMember.Id, ref msg))
+            {
+                //解绑成功
+                modelMember.OpenId = "";
+                Session["MemberInfo"] = modelMember;
+            }
+            else
+            {
+                //解绑失败
             }
         }
     }
