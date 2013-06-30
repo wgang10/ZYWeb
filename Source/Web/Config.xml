@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <Type Name="XTHospatal">
+    <Item Name ="WebServicesURL" Value="http://www.ziyangsoft.com"/>
+    <Item Name ="UpdataURL" Value="http://www.ziyangsoft.com/App/Update"/>
+    <Item Name ="InstallURL" Value="http://www.ziyangsoft.com/App/Install"/>
+    <Item Name ="LastAppNo" Value="2.5@23jsdfjlf452lj423"/>
+   </Type>
+</Config>
