@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml;
+using System.Collections;
 
 namespace Web
 {
@@ -15,24 +16,42 @@ namespace Web
     public void ProcessRequest(HttpContext context)
     {
       context.Response.ContentType = "text/plain";
-      string type=context.Request.QueryString["Type"];
-      string name=context.Request.QueryString["Name"];
-      string filePath = context.Server.MapPath("Config.xml");
       string value = string.Empty;
-      XmlDocument doc = new XmlDocument();
-      doc.Load(filePath);
-      if (!string.IsNullOrEmpty(type))
+      try
       {
-        XmlElement nodeList = doc.ChildNodes (type);
-        for (int i = 0; i < nodeList.ChildNodes.Count; i++)
-        {
-          if (nodeList.ChildNodes[i].Name.Equals(name))
+          string type = context.Request.QueryString["SystemName"];
+          string name = context.Request.QueryString["ConfigName"];
+          string filePath = context.Server.MapPath("Config.xml");
+          XmlDocument doc = new XmlDocument();
+          doc.Load(filePath);
+          XmlNode root = doc.DocumentElement;
+          IEnumerator ienum = root.GetEnumerator();
+          XmlNode node;
+          bool isFound = false;
+          while (ienum.MoveNext())
           {
-            value = nodeList.ChildNodes[i].Value;
-            break;
+              node = (XmlNode)ienum.Current;
+              if (node.Attributes["Name"].Value.Equals(type))
+              {
+                  for (int i = 0; i < node.ChildNodes.Count; i++)
+                  {
+                      if (node.ChildNodes[i].Name.Equals(name))
+                      {
+                          value = node.ChildNodes[i].InnerXml;
+                          isFound = true;
+                          break;
+                      }
+                      break;
+                  }
+                  if (isFound)
+                  {
+                      break;
+                  }
+              }
           }
-        }
       }
+      catch { }
+      finally { }
       context.Response.Write(value);
     }
 
