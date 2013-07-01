@@ -151,6 +151,9 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FileList.ashx.cs">
+      <DependentUpon>FileList.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Help.aspx.cs">
       <DependentUpon>Help.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -204,7 +207,13 @@
   <ItemGroup>
     <Content Include="Config.ashx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="FileList.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App\Install\" />
+    <Folder Include="App\Update\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

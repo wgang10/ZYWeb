@@ -41,7 +41,6 @@ namespace Web
                           isFound = true;
                           break;
                       }
-                      break;
                   }
                   if (isFound)
                   {
