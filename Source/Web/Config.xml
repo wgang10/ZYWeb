@@ -2,10 +2,10 @@
 <Config>
   <System Name ="XTHospatal">
     <WebServicesURL>http://localhost</WebServicesURL>
-    <UpdataURL>http://www.ziyangsoft.com/App/Update/Update.zip</UpdataURL>
+    <UpdataURL>http://www.ziyangsoft.com/App/Update</UpdataURL>
     <InstallURL>http://www.ziyangsoft.com/App/Install</InstallURL>
     <InstallFileName>Install.zip</InstallFileName>
     <InstallPath>C:\XTHospatal</InstallPath>
-    <LastAppNo>2.5@md51234567890</LastAppNo>
+    <LastAppNo>2.6@2ef86a047ced6a8d6cd7d2affffc4ec2</LastAppNo>
   </System>
 </Config>

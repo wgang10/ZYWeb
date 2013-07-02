@@ -208,11 +208,11 @@
     <Content Include="Config.ashx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FileList.ashx" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App\Install\" />
     <Folder Include="App\Update\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FileList.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
