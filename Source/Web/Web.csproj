@@ -154,6 +154,9 @@
     <Compile Include="FileList.ashx.cs">
       <DependentUpon>FileList.ashx</DependentUpon>
     </Compile>
+    <Compile Include="GetFileMD5.ashx.cs">
+      <DependentUpon>GetFileMD5.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Help.aspx.cs">
       <DependentUpon>Help.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -213,6 +216,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FileList.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GetFileMD5.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
