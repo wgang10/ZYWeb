@@ -132,6 +132,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="ZiYangWebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivatMember.aspx.cs">
@@ -192,6 +193,10 @@
     </Compile>
     <Compile Include="QQCallback.aspx.designer.cs">
       <DependentUpon>QQCallback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ZiYangWebService.asmx.cs">
+      <DependentUpon>ZiYangWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

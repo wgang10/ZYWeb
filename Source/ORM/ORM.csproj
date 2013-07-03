@@ -64,6 +64,7 @@
     <Compile Include="NHibernateMappingsExtensions.cs" />
     <Compile Include="Operation\AdminUserOP.cs" />
     <Compile Include="Operation\AnswersOP.cs" />
+    <Compile Include="Operation\BiochemistryOP.cs" />
     <Compile Include="Operation\ExamPaperOP.cs" />
     <Compile Include="Operation\ExamProcessOP.cs" />
     <Compile Include="Operation\ExamUserOP.cs" />

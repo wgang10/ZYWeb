@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Entity\AdminUser.cs" />
     <Compile Include="Entity\Answers.cs" />
+    <Compile Include="Entity\Biochemistry.cs" />
     <Compile Include="Entity\ExamPaper.cs" />
     <Compile Include="Entity\ExamProcess.cs" />
     <Compile Include="Entity\ExamProcessShowModel.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="GlobalMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\Questions.cs" />
+    <Compile Include="ReturnValue.cs" />
     <Compile Include="SysEnum.cs" />
     <Compile Include="UtilityLog.cs" />
   </ItemGroup>
