@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSetSurrogate.cs" />
+    <Compile Include="DataSetZip.cs" />
     <Compile Include="Entity\AdminUser.cs" />
     <Compile Include="Entity\Answers.cs" />
     <Compile Include="Entity\Biochemistry.cs" />
