@@ -208,6 +208,10 @@
       <Project>{2550689E-2AC0-4BA8-B73B-DD0278E6AD0D}</Project>
       <Name>Comm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ORM\ORM.csproj">
+      <Project>{c2bc5d16-2132-415f-b6a5-0db02a28a157}</Project>
+      <Name>ORM</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
