@@ -6,3 +6,10 @@ Published
 # !/Published/bin
 # mstest test results
 TestResults
+Source/Web/App/Install.exe
+Source/Web/App/Install/ICSharpCode.SharpZipLib.dll.zip
+Source/Web/App/Install/Install.zip
+Source/Web/App/Install/UnZip.exe.zip
+Source/Web/App/Update/Update.zip
+Source/Web/ClientBin/SilverlightUI.xap
+Source/ZYSoft.suo
