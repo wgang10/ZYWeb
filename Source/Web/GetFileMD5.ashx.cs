@@ -16,21 +16,24 @@ namespace Web
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
-            string md5Code = string.Empty;
+            string md5Code = "NoUpdate";
             try
             {
                 string fileName = context.Request.QueryString["FileName"];
                 string filePath = context.Server.MapPath("App/Update/"+fileName);
-                FileStream file = new FileStream(filePath, FileMode.Open);
-                System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-                byte[] retVal = md5.ComputeHash(file);
-                file.Close();
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < retVal.Length; i++)
+                if (File.Exists(filePath))
                 {
-                    sb.Append(retVal[i].ToString("x2"));
+                    FileStream file = new FileStream(filePath, FileMode.Open);
+                    System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                    byte[] retVal = md5.ComputeHash(file);
+                    file.Close();
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < retVal.Length; i++)
+                    {
+                        sb.Append(retVal[i].ToString("x2"));
+                    }
+                    md5Code = sb.ToString();
                 }
-                md5Code = sb.ToString();
             }
             catch { }
             context.Response.Write(md5Code);
