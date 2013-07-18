@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Comm\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="QzoneSDK">
       <HintPath>..\Comm\Lib\QzoneSDK.dll</HintPath>
     </Reference>

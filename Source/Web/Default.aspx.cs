@@ -14,6 +14,7 @@ using QzoneSDK.OAuth.Signature;
 using System.Collections.Specialized;
 using System.Text;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Web
 {
@@ -31,7 +32,7 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Button1.Text = Server.MapPath("~/");
+            Button1.Text = "path:"+Server.MapPath("~/");
             if (!IsPostBack)
             { 
                 if (Session["MemberInfo"] == null)
@@ -80,44 +81,59 @@ namespace Web
                 #region QQ登录
                 try
                 {
-                    string apppid = ConfigurationManager.AppSettings["ConsumerKey"];
-                    string appkey = ConfigurationManager.AppSettings["ConsumerSecret"];
+                    //参考地址 http://wiki.connect.qq.com/%E4%BD%BF%E7%94%A8authorization_code%E8%8E%B7%E5%8F%96access_token
+                    //Step1：获取Authorization Code
+                    //如果用户成功登录并授权，则会跳转到指定的回调地址，并在redirect_uri地址后带上Authorization Code和原始的state值
                     string code = Request.QueryString["code"].ToString();
+                    string apppid = ConfigurationManager.AppSettings["appid"];
+                    string appkey = ConfigurationManager.AppSettings["appkey"];
                     string callbackUrl = ConfigurationManager.AppSettings["callbackUrl"];
                     string state = ConfigurationManager.AppSettings["state"];
-                    string Url = string.Format("https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={0}&client_secret={1}&code={2}&state={3}&redirect_uri={4}"
-                        , apppid, appkey, code, state, callbackUrl);
+                    string Url = string.Format("https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={0}&client_secret={1}&code={2}&redirect_uri={3}"
+                        , apppid, appkey, code, callbackUrl);
 
 
                     //Response.Redirect(Url);
 
-
+                    //Step2：通过Authorization Code获取Access Token
                     WebRequest request = WebRequest.Create(Url);
                     HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                     Stream dataStream = response.GetResponseStream();
                     StreamReader reader = new StreamReader(dataStream);
                     string responseFromServer = reader.ReadToEnd();
                     //lbMessage2.Text = responseFromServer;
-                    //发送后会得到如下信息
+                    //如果成功返回，即可在返回包中获取到Access Token
+                    //access_token=FE04************************CCE2&expires_in=7776000&refresh_token=88E4************************BE
+                    /*
+                     * access_token	授权令牌，Access_Token。
+                     * expires_in	该access token的有效期，单位为秒。
+                     * refresh_token	在授权自动续期步骤中，获取新的Access_Token时需要提供的参数。
+                     */
                     //access_token=AEE7091E761C2A571991234AD280E6BA&expires_in=7776000
 
                     string access_token = responseFromServer.Substring(responseFromServer.IndexOf("=") + 1);
                     access_token = access_token.Substring(0, access_token.IndexOf("&"));
+                    //Step3：使用Access Token来获取用户的OpenID
                     Url = string.Format("https://graph.qq.com/oauth2.0/me?access_token={0}", access_token);
-                    //请求https://graph.qq.com/oauth2.0/me?access_token=AEE7091E761C2A571991234AD280E6BA
                     request = WebRequest.Create(Url);
                     response = (HttpWebResponse)request.GetResponse();
                     dataStream = response.GetResponseStream();
                     reader = new StreamReader(dataStream);
                     responseFromServer = reader.ReadToEnd();
                     //lbMessage3.Text = responseFromServer;
-                    //得到如下信息
+                    //获取到用户OpenID，返回包如下：
+                    //callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} );
                     //callback( {"client_id":"100289171","openid":"1AC83BAA19BB2E892033E0C07C27AC24"} ); 
-                    string openid = responseFromServer.Replace(@"\", "").Substring(responseFromServer.IndexOf("openid") + 9);
-                    openid = openid.Substring(0, openid.IndexOf("}") - 1);
+                    responseFromServer = responseFromServer.Replace("callback(", "").Replace(" );", "");
+                    string openid=string.Empty;
+                    var opid = JsonConvert.DeserializeObject<ObjOpenID>(responseFromServer);
+                    if (opid != null)
+                        openid = opid.openid;
+                    //openid = responseFromServer.Replace(@"\", "").Substring(responseFromServer.IndexOf("openid") + 9);
+                    //openid = openid.Substring(0, openid.IndexOf("}") - 1);
                     //lbMessage4.Text = "openid=" + openid;
 
-
+                    //Step4：使用Access Token以及OpenID来访问和修改用户数据
                     //以调用get_user_info接口为例：
                     //发送请求到get_user_info的URL（请将access_token，appid等参数值替换为你自己的）：
                     Url = string.Format("https://graph.qq.com/user/get_user_info?access_token={0}&oauth_consumer_key={1}&openid={2}", access_token, apppid, openid);
@@ -130,75 +146,79 @@ namespace Web
                     dataStream.Close();
                     response.Close();
 
-
-                    //lbMessage5.Text = responseFromServer;
-                    string[] UserInfo = responseFromServer.Split(',');
-                    //lbMessage6.Text = "昵称：" + UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
-                    //Image1.ImageUrl = UserInfo[3].Substring(UserInfo[3].IndexOf("http"), UserInfo[3].Length - UserInfo[3].IndexOf("http") - 1);
-                    //Image2.ImageUrl = UserInfo[4].Substring(UserInfo[4].IndexOf("http"), UserInfo[4].Length - UserInfo[4].IndexOf("http") - 1);
-                    //Image3.ImageUrl = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
-
-                    //（2）成功返回后，即可获取到用户数据：
-                    /*
+                    var Juser = JsonConvert.DeserializeObject<ObjUser>(responseFromServer);
+                    if (Juser != null)
                     {
-                           "ret":0,
-                           "msg":"",
-                           "nickname":"YOUR_NICK_NAME",
-                           ...
-                    }
-                    */
+                        //lbMessage5.Text = responseFromServer;
+                        //string[] UserInfo = responseFromServer.Split(',');
+                        //lbMessage6.Text = "昵称：" + UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
+                        //Image1.ImageUrl = UserInfo[3].Substring(UserInfo[3].IndexOf("http"), UserInfo[3].Length - UserInfo[3].IndexOf("http") - 1);
+                        //Image2.ImageUrl = UserInfo[4].Substring(UserInfo[4].IndexOf("http"), UserInfo[4].Length - UserInfo[4].IndexOf("http") - 1);
+                        //Image3.ImageUrl = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
 
-                    divLogin.Visible = false;
-                    divRegiste.Visible = false;
-                    divLogined.Visible = true;
-                    divUserInfo.Visible = true;
-
-
-                    //用户登录
-                    string msg = string.Empty;
-                    Member modelMember = new Member();
-                    modelMember.OpenId = openid;
-                    modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
-                    modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
-                    if (bll.LoginMember(modelMember, ref msg))
-                    {
-                        IList<Member> members = bll.GetMemberByOpenID(openid);
-                        if (members.Count > 0)
+                        //（2）成功返回后，即可获取到用户数据：
+                        /*
                         {
-                            //modelMember.OpenId = openid;
-                            //modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
-                            //modelMember.LoginTimes = members[0].LoginTimes;
-                            //modelMember.LastLoginDateTime = members[0].LastLoginDateTime;
-                            //modelMember.Integral = members[0].Integral;
-                            //modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
-                            Session["MemberInfo"] = members[0];
-                            ZYSoft.Comm.UtilityLog.WriteInfo(string.Format("QQ账号 {0} 登录。{1}",members[0].Nickname,members[1].OpenId));
-                            Response.Redirect("MemberInfo.aspx", true);
-
-                            //lbNickname.Text = modelMember.Nickname;
-                            //lbMemberNickname.Text = modelMember.Nickname;
-                            //lbLoginTimes.Text = modelMember.LoginTimes.ToString();
-
-                            //if (modelMember.LoginTimes<2)
-                            //{
-                            //    lbLastLoginDateTime.Text = "";
-                            //}
-                            //else
-                            //{
-                            //    lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-
-                            //}
-                            //lbIntegral.Text = modelMember.Integral.ToString();
-                            //imgPhoto.ImageUrl =modelMember.PhotoURL;
+                               "ret":0,
+                               "msg":"",
+                               "nickname":"YOUR_NICK_NAME",
+                               ...
                         }
+                        */
 
-                    }
-                    else
-                    {
-                        lbLoginMessage.Text = msg;
-                        lbLoginMessage.Visible = true;
-                    }
+                        divLogin.Visible = false;
+                        divRegiste.Visible = false;
+                        divLogined.Visible = true;
+                        divUserInfo.Visible = true;
 
+
+                        //用户登录
+                        string msg = string.Empty;
+                        Member modelMember = new Member();
+                        modelMember.OpenId = openid;
+                        //modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
+                        modelMember.Nickname = Juser.nickname;
+                        //modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
+                        modelMember.PhotoURL = Juser.figureurl;
+                        if (bll.LoginMember(modelMember, ref msg))
+                        {
+                            IList<Member> members = bll.GetMemberByOpenID(openid);
+                            if (members.Count > 0)
+                            {
+                                //modelMember.OpenId = openid;
+                                //modelMember.Nickname = UserInfo[2].Substring(UserInfo[2].IndexOf(":") + 2, UserInfo[2].Length - UserInfo[3].IndexOf(":") - 2);
+                                //modelMember.LoginTimes = members[0].LoginTimes;
+                                //modelMember.LastLoginDateTime = members[0].LastLoginDateTime;
+                                //modelMember.Integral = members[0].Integral;
+                                //modelMember.PhotoURL = UserInfo[5].Substring(UserInfo[5].IndexOf("http"), UserInfo[5].Length - UserInfo[5].IndexOf("http") - 1);
+                                Session["MemberInfo"] = members[0];
+                                ZYSoft.Comm.UtilityLog.WriteInfo(string.Format("QQ账号 {0} 登录。{1}", members[0].Nickname, members[0].OpenId));
+                                Response.Redirect("MemberInfo.aspx", true);
+
+                                //lbNickname.Text = modelMember.Nickname;
+                                //lbMemberNickname.Text = modelMember.Nickname;
+                                //lbLoginTimes.Text = modelMember.LoginTimes.ToString();
+
+                                //if (modelMember.LoginTimes<2)
+                                //{
+                                //    lbLastLoginDateTime.Text = "";
+                                //}
+                                //else
+                                //{
+                                //    lbLastLoginDateTime.Text = "上次登陆时间:"+modelMember.LastLoginDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+
+                                //}
+                                //lbIntegral.Text = modelMember.Integral.ToString();
+                                //imgPhoto.ImageUrl =modelMember.PhotoURL;
+                            }
+
+                        }
+                        else
+                        {
+                            lbLoginMessage.Text = msg;
+                            lbLoginMessage.Visible = true;
+                        }
+                    }
                     //Random rdm = new Random(100);
                     //Response.Redirect("Default.aspx?x=" + rdm.Next().ToString());
                 }
@@ -227,10 +247,10 @@ namespace Web
                 QzoneSDK.Qzone qzone2 = new QzoneSDK.Qzone(key, secret, qzone.OAuthTokenKey, qzone.OAuthTokenSecret, string.Empty, true, qzone.OpenID);
                 Session["qzonesdk"] = qzone2;
 
-                //qzone2 = Session["qzonesdk"] as QzoneSDK.Qzone;
+                qzone2 = Session["qzonesdk"] as QzoneSDK.Qzone;
                 var currentUser = qzone2.GetCurrentUser();
-                this.lbMessage.Text = currentUser;
-                //var user = (BasicProfile)JsonConvert.Import(typeof(BasicProfile), currentUser);
+                //this.lbMessage.Text = currentUser;
+                var user = (BasicProfile)JsonConvert.Import(typeof(BasicProfile), currentUser);
                 //if (null != currentUser)
                 //{
                 //this.result.Text = "成功登陆";
@@ -451,6 +471,95 @@ namespace Web
         protected void Button1_Click(object sender, EventArgs e)
         {
             ZYSoft.Comm.UtilityLog.WriteInfo(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
+        }
+    }
+    class ObjOpenID
+    {
+        public string client_id
+        {
+            set;
+            get;
+        }
+
+        public string openid
+        {
+            set;
+            get;
+        }
+    }
+
+    class ObjUser
+    {
+        public string ret 
+        {
+            set;
+            get;
+        }
+
+        public string msg 
+        {
+            set;
+            get;
+        }
+        public string nickname 
+        {
+            set;
+            get;
+        }
+        public string gender 
+        {
+            set;
+            get;
+        }
+        public string figureurl 
+        {
+            set;
+            get;
+        }
+        public string figureurl_1
+        {
+            set;
+            get;
+        }
+        public string figureurl_2
+        {
+            set;
+            get;
+        }
+        public string figureurl_qq_1 
+        {
+            set;
+            get;
+        }
+        public string figureurl_qq_2
+        {
+            set;
+            get;
+        }
+        public string is_yellow_vip 
+        {
+            set;
+            get;
+        }
+        public string vip 
+        {
+            set;
+            get;
+        }
+        public string yellow_vip_level 
+        {
+            set;
+            get;
+        }
+        public string level 
+        {
+            set;
+            get;
+        }
+        public string is_yellow_year_vip 
+        {
+            set;
+            get;
         }
     }
 }

@@ -176,6 +176,7 @@ namespace Web
                     modelMember.Email = txtEmail.Text;
                     Session["MemberInfo"] = modelMember;
                     lbMessage.Visible = true;
+                    lbLoginTimes.Text = String.Format("这是您第 {0} 次登录", strMsg);
                     lbMessage.Text = "邮箱绑定成功";
                     divBindEmail.Visible = false;
                 }

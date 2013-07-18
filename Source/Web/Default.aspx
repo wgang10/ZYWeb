@@ -109,7 +109,7 @@
 					        密码<asp:TextBox ID="txtLoginPWD" TextMode="Password" runat="server" /><asp:CheckBox ID="ckRemberPWD" Text="记住密码" runat="server" />
                             <asp:Button ID="btnLogin" runat="server" Text="登录" CausesValidation="False" 
                                 onclick="btnLogin_Click" /> <a href="#">忘记密码？</a> 
-					        <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=www.ziyangsoft.com&scope=get_user_info,do_like&state=1150">
+					        <a href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=100289171&redirect_uri=www.ziyangsoft.com&scope=get_user_info,do_like&state=115039554">
 					        <img alt="使用QQ账号登陆" style="float:none; MARGIN:0px 0px 0px 10px" src="images/Connect_logo_3.png" /></a>
 				        </div>
                         <div class="tphd" runat="server" id="divLogined" visible="false">

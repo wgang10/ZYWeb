@@ -391,6 +391,7 @@ namespace ZYSoft.BLL
                     listEmail[0].Nickname = listQQ[0].Nickname;
                     listEmail[0].UpdateTime = DateTime.Now;
                     isSuccess = MemberOP.UpdateMember(listEmail[0]);
+                    Msg = listEmail[0].LoginTimes.ToString();
                     if (isSuccess)
                     {
                         //删除listQQ记录
